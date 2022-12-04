@@ -74,12 +74,12 @@ public class TransferTransactionTest {
     @WithUserDetails(value = MOCK_USER)
     public void transferFromTransactionalToTransactional() throws Exception {
 
-        mockMvc.perform(put("/api/transfer")
+        mockMvc.perform(put("/api/transfer/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 5, 1, 2)))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(put("/api/transfer")
+        mockMvc.perform(put("/api/transfer/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 96, 1, 2)))
                 .andExpect(status().isBadRequest());
@@ -104,7 +104,7 @@ public class TransferTransactionTest {
 
         mockMvc.perform(post("/api/transfer/withdraw")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\"}", 289)))
+                        .content(String.format("{\"amount\": \"%d\"}", 50)))
                 .andExpect(status().isOk());
         deposit();
         deposit();

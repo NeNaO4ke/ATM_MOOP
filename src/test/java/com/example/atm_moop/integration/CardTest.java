@@ -89,7 +89,7 @@ public class CardTest {
         //Valid input body, but cardNumber is not present in DB
         mockMvc.perform(post("/api/card/verify-atm-support-bank")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"cardNumber\": \"%s\", \"atmId\": %d}", "2711080501813222", 1)))
+                        .content(String.format("{\"cardNumber\": \"%s\", \"atmId\": %d}", "4024007160774062", 1)))
                 .andExpect(status().isNotFound());
 
         //Valid input body, but atmId is not present in DB

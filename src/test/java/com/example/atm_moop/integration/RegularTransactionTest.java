@@ -79,7 +79,7 @@ public class RegularTransactionTest {
         mockMvc.perform(post("/api/transaction/scheduled")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d, \"scheduledTime\": %d}", 5, 1, 2, Instant.now().getEpochSecond() - 20)))
-                .andExpect(status().isOk());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class RegularTransactionTest {
         mockMvc.perform(post("/api/transaction/regular")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d, \"scheduledTime\": %d, \"period\": %s, \"initialRepeats\": %d}", -20, 1, 2, Instant.now().getEpochSecond() + 3, "\"P2Y\"", 0)))
-                .andExpect(status().isOk());
+                .andExpect(status().isBadRequest());
     }
 
 }

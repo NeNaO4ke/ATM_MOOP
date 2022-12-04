@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -27,6 +28,11 @@ public class BankTest {
     private TestDbSetup testDbSetup;
 
     @Autowired
+    private BankService bankService;
+
+    @Test
+    void contextLoads() {
+    }
 
     @BeforeAll
     public void setup(){
@@ -34,9 +40,10 @@ public class BankTest {
     }
 
     @Test
-    public void bankTest(@Autowired BankService bankService) throws Exception {
+    public void bankTest() throws Exception {
 
         Optional<Bank> byId = bankService.getById(1L);
+        assert(byId.isPresent());
 
     }
 
