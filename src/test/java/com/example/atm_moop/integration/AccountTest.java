@@ -1,10 +1,7 @@
 package com.example.atm_moop.integration;
 
 import com.example.atm_moop.TestDbSetup;
-import com.example.atm_moop.domain.User;
-import com.example.atm_moop.domain.enums.USER_STATUS;
 import com.example.atm_moop.service.AccountService;
-import com.example.atm_moop.service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,16 +13,14 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
 
-import java.math.BigDecimal;
-
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TransferTransactionTest {
+public class AccountTest {
 
     private final static String CARD_NUMBER = "2440735783328557";
     private final static String CARD_PIN = "5384";
@@ -67,64 +62,21 @@ public class TransferTransactionTest {
 
     @BeforeAll
     public void setupBeforeAll() {
-        testDbSetup.populate();
+          testDbSetup.populate();
     }
 
     @Test
     @WithUserDetails(value = MOCK_USER)
-    public void transferFromTransactionalToTransactional() throws Exception {
+    public void getTransactional() throws Exception {
 
-        mockMvc.perform(put("/api/transfer")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 5, 1, 2)))
+        mockMvc.perform(get("/api/account/transactional/1"))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(put("/api/transfer")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 96, 1, 2)))
-                .andExpect(status().isBadRequest());
-
-    }
-
-    @Test
-    @WithUserDetails(value = MOCK_USER)
-    public void deposit() throws Exception {
-
-        mockMvc.perform(post("/api/transfer/deposit")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\"}", 50)))
+        mockMvc.perform(get("/api/account/all-my"))
                 .andExpect(status().isOk());
 
 
     }
 
-    @Test
-    @WithUserDetails(value = MOCK_USER)
-    public void withdraw() throws Exception {
-
-        mockMvc.perform(post("/api/transfer/withdraw")
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\"}", 289)))
-                .andExpect(status().isOk());
-        deposit();
-        deposit();
-        deposit();
-
-
-    }
-
-    @Test
-    @WithUserDetails(value = MOCK_USER)
-    public void historyOfAccount() throws Exception {
-
-        mockMvc.perform(get("/api/transaction/history/2"))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        mockMvc.perform(get("/api/transaction/history"))
-                .andExpect(status().isOk())
-                .andReturn();
-
-    }
 
 }

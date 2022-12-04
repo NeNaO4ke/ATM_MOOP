@@ -47,8 +47,7 @@ public abstract class Account {
     private MonetaryAmount balance;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

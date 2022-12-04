@@ -26,7 +26,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class TransferService {
+public class TransferService implements TransferServiceI {
 
     private final AccountRepository<Account> accountRepository;
     private final TransactionalAccountRepository transactionalAccountRepository;
@@ -34,8 +34,9 @@ public class TransferService {
     private final TransferTransactionRepository transferTransactionRepository;
 
 
+    @Override
     @Transactional
-    public void transferFromTransactionalToTransactional(User sender, Long accountSenderId, Long accountReceiverId, BigDecimal amount) {
+    public void transferFromTransactionalToTransactional(User sender, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws ResponseStatusException {
 
         if (Objects.equals(accountReceiverId, accountSenderId))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot transfer from and to same account");
@@ -88,10 +89,10 @@ public class TransferService {
 
         if (transactionalAccountRepository.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, reason);
-        TransactionalAccount receiverAcc = transactionalAccountRepository.get();
+        TransactionalAccount account = transactionalAccountRepository.get();
 
 
-        switch (receiverAcc.getAccountStatus()) {
+        switch (account.getAccountStatus()) {
             case FROZEN:
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, reason1);
             case TERMINATED:
@@ -99,15 +100,17 @@ public class TransferService {
             default:
                 break;
         }
-        return receiverAcc;
+        return account;
     }
 
     private Money applyFeeIfNecessary(TransactionalAccount senderAcc, MonetaryAmount senderAccBalance, CurrencyUnit senderCurrency, Money senderTransferringAmount) {
         if (senderAcc.isLendingAvailable()) {
             Money credit = Money.of(senderAcc.getCreditMoneyAmount(), senderCurrency);
             if (senderAccBalance.subtract(senderTransferringAmount).isLessThan(credit)) {
-                Money senderCreditFee = credit.subtract(senderAccBalance.subtract(senderTransferringAmount))
-                        .multiply(senderAcc.getLandingRate().divide(BigDecimal.valueOf(100), 7, RoundingMode.HALF_DOWN));
+                Money subtract = senderTransferringAmount;
+                if(senderAccBalance.isGreaterThan(credit))
+                    subtract = credit.subtract(senderAccBalance.subtract(senderTransferringAmount));
+                Money senderCreditFee = subtract.multiply(senderAcc.getLandingRate().divide(BigDecimal.valueOf(100), 7, RoundingMode.HALF_DOWN));
                 senderTransferringAmount = senderTransferringAmount.add(senderCreditFee);
                 if (!senderAccBalance.isGreaterThan(senderTransferringAmount)) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Your cannot transfer more than you have right now...");
@@ -117,6 +120,7 @@ public class TransferService {
         return senderTransferringAmount;
     }
 
+    @Override
     @Transactional
     public void deposit(Card card, BigDecimal amount) {
         TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
@@ -131,6 +135,7 @@ public class TransferService {
 
     }
 
+    @Override
     @Transactional
     public void withdraw(Card card, BigDecimal amount) {
         TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
@@ -154,9 +159,9 @@ public class TransferService {
         List<TransactionalAccount> result = transactionalAccountRepository.findTransactionalAccountByCardAndDefaultIsTrue(card);
         if (result.isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This account does not exist.");
-        TransactionalAccount senderAcc = result.get(0);
+        TransactionalAccount account = result.get(0);
 
-        switch (senderAcc.getAccountStatus()) {
+        switch (account.getAccountStatus()) {
             case FROZEN:
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This account is temporarily frozen.");
             case TERMINATED:
@@ -164,7 +169,7 @@ public class TransferService {
             default:
                 break;
         }
-        return senderAcc;
+        return account;
     }
 
 

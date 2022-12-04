@@ -75,23 +75,6 @@ public class LoginTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void adminCanLog() throws Exception {
-        mockMvc
-                .perform(formLogin()
-                        .user("number", "2322010770142855")
-                        .password("pin", "6708")
-                )
-                .andExpect(status().isOk());
-        //       .andExpect(redirectedUrl("/"))
-        //        .andExpect(authenticated().withUsername(AppSecurityAdmin.ADMIN_USERNAME));
-
-//        mockMvc
-//                .perform(logout())
-//                .andExpect(status().isFound())
-//                .andExpect(redirectedUrl("/"));
-    }
-
 
     @Test
     @WithUserDetails(value = MOCK_USER)

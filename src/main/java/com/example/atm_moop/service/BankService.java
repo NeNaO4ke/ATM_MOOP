@@ -10,11 +10,12 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class BankService {
+public class BankService implements BankServiceI {
 
     private final BankRepository bankRepository;
 
 
+    @Override
     public Optional<Bank> getById(Long id){
         return bankRepository.findById(id);
     }

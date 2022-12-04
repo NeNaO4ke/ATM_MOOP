@@ -47,7 +47,7 @@ public class TestDbSetup {
 
     public void populate() {
         Bank bank = new Bank();
-        bank.setName("Shukhliada");
+        bank.setName("9 vbyv kozu kulakom");
         Bank bank1 = bankRepository.save(bank);
 
         ATM atm = new ATM();
@@ -94,19 +94,11 @@ public class TestDbSetup {
         Money bohdanMoney = Money.of(50, "USD");
         TransactionalAccount transactionalAccountRoman = new TransactionalAccount(null, ACCOUNT_STATUS.OK, "Checking acc for Roman", romanMoney, roman, cardRoman, true, true, BigDecimal.valueOf(100), BigDecimal.valueOf(5.5));
         TransactionalAccount transactionalAccountBohdan = new TransactionalAccount(null, ACCOUNT_STATUS.OK, "Checking acc Bohdan", bohdanMoney, bohdan, cardBohdan, false, true, null, null);
-        SavingAccount savingAccount = new SavingAccount(null, ACCOUNT_STATUS.OK, "Saving acc", romanMoney, roman, cardRoman, BigDecimal.ONE);
-
-        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(12, "USD"), transactionalAccountRoman, savingAccount);
-        RegularTransaction regularTransaction = RegularTransaction.createRegularTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(10, "USD"), savingAccount, transactionalAccountRoman, Period.ofDays(3));
 
 
         genAccountRepository.save(transactionalAccountRoman);
         genAccountRepository.save(transactionalAccountBohdan);
-        savingAccountRepository.save(savingAccount);
 
-
-    //    transferTransactionTransactionRepository.save(transferTransaction);
-    //    regularTransactionTransactionRepository.save(regularTransaction);
     }
 
 }

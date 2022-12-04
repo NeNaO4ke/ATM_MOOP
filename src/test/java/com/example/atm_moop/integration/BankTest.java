@@ -27,7 +27,6 @@ public class BankTest {
     private TestDbSetup testDbSetup;
 
     @Autowired
-    private UserRepository userRepository;
 
     @BeforeAll
     public void setup(){
@@ -38,9 +37,6 @@ public class BankTest {
     public void bankTest(@Autowired BankService bankService) throws Exception {
 
         Optional<Bank> byId = bankService.getById(1L);
-
-        System.out.println(byId.get());
-        System.out.println(userRepository.findAll());
 
     }
 

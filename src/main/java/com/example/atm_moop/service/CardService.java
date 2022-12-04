@@ -26,7 +26,7 @@ import java.util.*;
 
 @Service("cardService")
 @RequiredArgsConstructor
-public class CardService implements UserDetailsService {
+public class CardService implements UserDetailsService, CardServiceI {
 
     private final CardRepository cardRepository;
     private final ATMRepository atmRepository;
@@ -34,13 +34,16 @@ public class CardService implements UserDetailsService {
 
 
 
+    @Override
     public Optional<Card> getCardByNumber(String number) {
         return cardRepository.findById(number);
     }
 
 
+    @Override
     public void createCard(Bank bank, User user) {
         String cardNumber = paymentCardGenerator.generateByCardType(CardType.MASTERCARD);
+
         StringBuilder pin = new StringBuilder();
 
         for (int i = 0; i < 4; i++) {
@@ -64,6 +67,7 @@ public class CardService implements UserDetailsService {
         cardRepository.save(card);
     }
 
+    @Override
     public void changePin(Card card, String newPin) {
         if (!newPin.matches("\\d+") || newPin.length() != 4)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pin code is invalid! Must be exact 4 digits.");
@@ -72,6 +76,7 @@ public class CardService implements UserDetailsService {
         cardRepository.updatePinByNumber(newPin, card.getNumber());
     }
 
+    @Override
     public boolean blockCardByNumber(String number) throws Exception {
         int updatedRows = cardRepository.updateCardStatusByNumber(CARD_STATUS.BLOCKED, number);
         if(updatedRows == 0)
@@ -110,6 +115,7 @@ public class CardService implements UserDetailsService {
         return new CardAtmUserDetails(card, atm.get());
     }
 
+    @Override
     @Transactional
     public void verifyAtmSupportBank(String cardNumber, Long atmId) {
         Optional<Card> optionalCard = cardRepository.findCardWithBankByID(cardNumber);

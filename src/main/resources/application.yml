@@ -10,8 +10,23 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto:
-        validate
+        create
     show-sql: true
+  quartz:
+    wait-for-jobs-to-complete-on-shutdown: false
+    job-store-type: jdbc
+    overwrite-existing-jobs: true
+    jdbc:
+      initialize-schema: always
+    properties:
+      org.quartz.jobStore.isClustered: true
+      org.quartz.scheduler.instanceId: AUTO
+      org.quartz.scheduler.skipUpdateCheck: true
+      org.quartz.threadPool.threadCount: 2
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+  batch:
+    jdbc:
+      initialize-schema: always
 
 ---
 spring:

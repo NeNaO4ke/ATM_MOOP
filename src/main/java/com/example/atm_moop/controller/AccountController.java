@@ -27,8 +27,8 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping(value = "/all-my", produces = MediaType.APPLICATION_JSON_VALUE)
-    private List<Account> getAll(@AuthenticationPrincipal Card card) {
-        return accountService.getAllUserAccounts(card.getUser().getId());
+    private List<Account> getAll(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails) {
+        return accountService.getAllUserAccounts(cardAtmUserDetails.getCard().getUser().getId());
     }
 
     @GetMapping(value = "/transactional/{accountId}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -8,7 +8,6 @@ import javax.money.MonetaryAmount;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.time.Period;
 
 @NoArgsConstructor
 @Getter
@@ -18,9 +17,9 @@ import java.time.Period;
 public class TransferTransaction extends Transaction {
 
 
-    public TransferTransaction(Long id, TRANSACTION_STATUS transactionStatus, TRANSACTION_TYPE transactionType, Timestamp startTime, Timestamp modifyTime, @NotNull(message = "Amount is required") MonetaryAmount amount, Account fromAccount, Account to_account) {
+    public TransferTransaction(Long id, TRANSACTION_STATUS transactionStatus, TRANSACTION_TYPE transactionType, Timestamp startTime, Timestamp modifyTime, @NotNull(message = "Amount is required") MonetaryAmount amount, Account fromAccount, Account toAccount) {
         super(id, transactionStatus, transactionType, startTime, modifyTime, amount, fromAccount);
-        this.to_account = to_account;
+        this.toAccount = toAccount;
     }
 
     public static TransferTransaction createTransferTransaction(TRANSACTION_TYPE transactionType,MonetaryAmount amount, Account fromAccount, Account to_account) {
@@ -29,6 +28,6 @@ public class TransferTransaction extends Transaction {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "to_account_id", nullable = false)
-    private Account to_account;
+    private Account toAccount;
 
 }

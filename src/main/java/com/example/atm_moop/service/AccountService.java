@@ -28,7 +28,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AccountService {
+public class AccountService implements AccountServiceI {
 
     private final AccountRepository<Account> accountRepository;
     private final TransactionalAccountRepository transactionalAccountRepository;
@@ -37,10 +37,12 @@ public class AccountService {
 
 
 
+    @Override
     public List<Account> getAllUserAccounts(Long userId) {
         return accountRepository.findByUserId(userId);
     }
 
+    @Override
     public Optional<TransactionalAccount> getTransactionalAccountById(Long accountId, String cardNumber) {
         Optional<TransactionalAccount> account = transactionalAccountRepository.findById(accountId);
         if (account.isPresent()) {

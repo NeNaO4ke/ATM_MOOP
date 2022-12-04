@@ -1,6 +1,7 @@
 package com.example.atm_moop.repository;
 
 import com.example.atm_moop.domain.Account;
+import com.example.atm_moop.domain.User;
 import com.example.atm_moop.domain.enums.ACCOUNT_TYPE;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,8 @@ import java.util.Optional;
 
 
 @Transactional(readOnly = true)
-public interface AccountRepository<T extends Account> extends JpaRepository<T, Long> {
+public interface AccountRepository<T extends Account> extends JpaRepository<Account, Long> {
+    @Query("select t from Account t where t.user.id = ?1")
     List<Account> findByUserId(Long userId);
 
     @EntityGraph(attributePaths = {"user"})

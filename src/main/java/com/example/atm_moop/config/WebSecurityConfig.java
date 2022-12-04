@@ -49,7 +49,8 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
                 .antMatchers("/",
                         "/login",
                         "/static/**",
-                        "/api/card/verify-atm-support-bank").permitAll()
+                        "/api/card/verify-atm-support-bank",
+                        "/api/atm/all").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
