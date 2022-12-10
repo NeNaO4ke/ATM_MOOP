@@ -1,13 +1,13 @@
 package com.example.atm_moop.domain;
 
 import com.example.atm_moop.domain.enums.ATM_STATUS;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -26,7 +26,20 @@ public class ATM {
     @Enumerated(EnumType.STRING)
     private ATM_STATUS atmStatus;
 
-    @JsonBackReference
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ATM)) return false;
+        ATM atm = (ATM) o;
+        return getId().equals(atm.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    // @JsonBackReference
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "atms")
     private Set<Bank> banks = new LinkedHashSet<>();
 

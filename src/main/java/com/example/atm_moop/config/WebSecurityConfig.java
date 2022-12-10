@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -50,6 +49,7 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
                         "/login",
                         "/static/**",
                         "/api/card/verify-atm-support-bank",
+                        "/api/**",
                         "/api/atm/all").permitAll()
                 .anyRequest().authenticated()
                 .and()

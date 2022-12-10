@@ -1,14 +1,10 @@
 package com.example.atm_moop.converter;
 
-import com.example.atm_moop.util.MoneyUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
-import org.javamoney.moneta.Money;
 
-import javax.money.MonetaryAmount;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,15 +1,24 @@
 package com.example.atm_moop.controller;
 
 import com.example.atm_moop.domain.CardAtmUserDetails;
+import com.example.atm_moop.domain.RegularTransactionInfo;
+import com.example.atm_moop.domain.TransferTransaction;
+import com.example.atm_moop.domain.TransferTransactionInfo;
 import com.example.atm_moop.dto.AmountDTO;
 import com.example.atm_moop.dto.TransferInputDTO;
+import com.example.atm_moop.exception.AccountStatusException;
+import com.example.atm_moop.exception.ResourceNotFoundException;
+import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.service.TransferService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.projection.ProjectionFactory;
+import org.springframework.data.projection.SpelAwareProxyProjectionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
@@ -21,9 +30,11 @@ public class TransferController {
     private final TransferService transferService;
 
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<?> transfer(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid TransferInputDTO transferInputDTO) {
-        transferService.transferFromTransactionalToTransactional(cardAtmUserDetails.getCard().getUser(), transferInputDTO.getSenderAccountId(), transferInputDTO.getReceiverAccountId(), transferInputDTO.getAmount());
-        return new ResponseEntity<>(HttpStatus.OK);
+    private ResponseEntity<?> transfer(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid TransferInputDTO transferInputDTO) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        ProjectionFactory pf = new SpelAwareProxyProjectionFactory();
+        TransferTransaction transferTransaction = transferService.transferFromTransactional(cardAtmUserDetails.getCard().getUser().getId(), transferInputDTO.getSenderAccountId(), transferInputDTO.getReceiverAccountId(), transferInputDTO.getAmount());
+        TransferTransactionInfo rp = pf.createProjection(TransferTransactionInfo.class, transferTransaction);
+        return new ResponseEntity<>(rp, HttpStatus.OK);
     }
 
 

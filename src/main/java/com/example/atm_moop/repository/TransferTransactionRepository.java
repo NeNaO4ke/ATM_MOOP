@@ -7,15 +7,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 @Transactional(readOnly = true)
 public interface TransferTransactionRepository extends JpaRepository<TransferTransaction, Long> {
     @Query("select t from TransferTransaction t where t.fromAccount in ?1 or t.toAccount in ?1")
-    List<TransferTransactionInfo> findByFromAccountInOrTo_accountIn(Collection<Account> fromAccounts);
+    List<TransferTransactionInfo> findByFromAccountInOrToAccountIn(Collection<Account> fromAccounts);
 
     @Query("select t from TransferTransaction t where t.fromAccount = ?1 or t.toAccount = ?1")
-    List<TransferTransactionInfo> findByFromAccountOrTo_account(Account account);
+    List<TransferTransactionInfo> findByFromAccountOrToAccountSingle(Account account);
+
+    @Query("select t from TransferTransaction t where t.fromAccount = ?1 and t.startTime between ?2 and ?3")
+    List<TransferTransaction> findByFromAccountAndStartTimeBetween(Account fromAccount, Timestamp startTimeStart, Timestamp startTimeEnd);
+
+
+
 
 }
 

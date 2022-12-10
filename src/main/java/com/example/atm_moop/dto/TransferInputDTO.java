@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class TransferInputDTO {
 
+    @NotNull
     @Positive
     BigDecimal amount;
 

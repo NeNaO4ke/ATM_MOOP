@@ -46,52 +46,53 @@ public class TestDbSetup {
     CardService cardService;
 
     public void populate() {
-        Bank bank = new Bank();
-        bank.setName("9 vbyv kozu kulakom");
-        Bank bank1 = bankRepository.save(bank);
+        Bank bank1 = new Bank();
+        bank1.setName("9 vbyv kozu kulakom");
+        bank1 = bankRepository.save(bank1);
+        Bank bank2 = bankRepository.save(new Bank(null, "Bank number2", null));
 
-        ATM atm = new ATM();
-        atm.setAtmStatus(ATM_STATUS.IDLE);
-        //  atm.setBanks(Set.of(bank1));
-        atmRepository.save(atm);
+        ATM atm1 = new ATM();
+        atm1.setAtmStatus(ATM_STATUS.IDLE);
+        atm1.setAddress("Street numero uno");
+        atm1 = atmRepository.save(atm1);
+        ATM atm2 = new ATM();
+        atm2.setAtmStatus(ATM_STATUS.IDLE);
+        atm2.setAddress("Street numero dos");
+        atm2 = atmRepository.save(atm2);
 
-        Optional<ATM> atm1 = atmRepository.findById(1L);
 
-        Optional<Bank> bank2 = bankRepository.findById(1L);
 
-        bank2.get().setAtms(Set.of(atm1.get()));
-        bankRepository.save(bank2.get());
+        bank1.setAtms(Set.of(atm1,atm2));
+        bank2.setAtms(Set.of(atm2));
+        bank1 = bankRepository.save(bank1);
+        bank2 = bankRepository.save(bank2);
 
-        User user = new User();
-        user.setFirstName("Roman");
-        user.setUserStatus(USER_STATUS.OK);
+        User roman = new User();
+        roman.setFirstName("Roman");
+        roman.setUserStatus(USER_STATUS.OK);
 
-        User user1 = new User();
-        user.setFirstName("Bohdan");
-        user.setUserStatus(USER_STATUS.OK);
+        User bohdan = new User();
+        bohdan.setFirstName("Bohdan");
+        bohdan.setUserStatus(USER_STATUS.OK);
 
-        userRepository.save(user);
-        userRepository.save(user1);
+        roman = userRepository.save(roman);
+        bohdan = userRepository.save(bohdan);
 
-        Bank shukhliada = bankRepository.findById(1L).get();
-        User roman = userRepository.findById(1L).get();
-        User bohdan = userRepository.findById(2L).get();
-
-        cardService.createCard(shukhliada, roman);
-        cardService.createCard(shukhliada, bohdan);
+   //     cardService.createCard(bank1, roman);
+   //     cardService.createCard(bank1, bohdan);
 
         Instant nowPlusYear = new Date().toInstant()
                 .atZone(ZoneId.systemDefault())
                 .plus(Period.ofYears(1))
                 .toInstant();
         Date expiryDate = Date.from(nowPlusYear);
-        Card cardRoman = new Card("2440735783328557","5384", expiryDate, "111", CARD_STATUS.OK, roman, shukhliada);
-        Card cardBohdan = new Card("2711080501813222","1111", expiryDate, "111", CARD_STATUS.OK, bohdan, shukhliada);
-        cardRepository.save(cardRoman);
-        cardRepository.save(cardBohdan);
+        Card cardRoman = new Card("2440735783328557","5384", expiryDate, "111", CARD_STATUS.OK, roman, bank1);
+        Card cardBohdan = new Card("2711080501813222","1111", expiryDate, "111", CARD_STATUS.OK, bohdan, bank2);
+        cardRoman = cardRepository.save(cardRoman);
+        cardBohdan = cardRepository.save(cardBohdan);
 
-        Money romanMoney = Money.of(100, "USD");
-        Money bohdanMoney = Money.of(50, "USD");
+        Money romanMoney = Money.of(10000, "USD");
+        Money bohdanMoney = Money.of(150, "USD");
         TransactionalAccount transactionalAccountRoman = new TransactionalAccount(null, ACCOUNT_STATUS.OK, "Checking acc for Roman", romanMoney, roman, cardRoman, true, true, BigDecimal.valueOf(100), BigDecimal.valueOf(5.5));
         TransactionalAccount transactionalAccountBohdan = new TransactionalAccount(null, ACCOUNT_STATUS.OK, "Checking acc Bohdan", bohdanMoney, bohdan, cardBohdan, false, true, null, null);
 

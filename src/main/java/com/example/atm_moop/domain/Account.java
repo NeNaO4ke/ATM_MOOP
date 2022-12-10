@@ -3,13 +3,10 @@ package com.example.atm_moop.domain;
 import com.example.atm_moop.converter.MonetaryAmountSerializer;
 import com.example.atm_moop.domain.enums.ACCOUNT_STATUS;
 import com.example.atm_moop.domain.enums.ACCOUNT_TYPE;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 import org.hibernate.annotations.Columns;
-import org.hibernate.annotations.Polymorphism;
-import org.hibernate.annotations.PolymorphismType;
 import org.hibernate.annotations.Type;
 
 import javax.money.MonetaryAmount;

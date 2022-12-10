@@ -5,11 +5,9 @@ import com.example.atm_moop.domain.*;
 import com.example.atm_moop.domain.enums.CARD_STATUS;
 import com.example.atm_moop.repository.ATMRepository;
 import com.example.atm_moop.repository.CardRepository;
-import com.example.atm_moop.repository.LoginAttemptRepository;
 import com.example.atm_moop.util.CardType;
 import com.example.atm_moop.util.PaymentCardGeneratorImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -127,6 +125,6 @@ public class CardService implements UserDetailsService, CardServiceI {
 
         boolean contains = optionalATM.get().getBanks().contains(optionalCard.get().getBank());
         if (!contains)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This atm does not have support of your bank!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This atm does not have support of your bank.");
     }
 }

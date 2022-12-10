@@ -2,10 +2,15 @@ package com.example.atm_moop.domain;
 
 import com.example.atm_moop.domain.enums.ACCOUNT_STATUS;
 import com.example.atm_moop.domain.enums.ACCOUNT_TYPE;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.javamoney.moneta.Money;
 
 import javax.money.MonetaryAmount;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -15,12 +20,16 @@ import java.math.BigDecimal;
 @ToString
 @Entity
 public class TransactionalAccount extends Account {
-    public TransactionalAccount(Long id, ACCOUNT_STATUS accountStatus, String accountName, @NotNull(message = "Amount is required") MonetaryAmount balance, User user, Card card, boolean isLendingAvailable, boolean isDefault, BigDecimal creditMoneyAmount, BigDecimal landingRate) {
+    public TransactionalAccount(Long id, ACCOUNT_STATUS accountStatus, String accountName, @NotNull(message = "Amount is required") MonetaryAmount balance, User user, Card card, boolean isLendingAvailable, boolean isDefault, BigDecimal creditMoneyAmount, BigDecimal lendingRate) {
         super(id, ACCOUNT_TYPE.TRANSACTIONAL, accountStatus, accountName, balance, user, card);
         this.isLendingAvailable = isLendingAvailable;
         this.isDefault = isDefault;
         this.creditMoneyAmount = creditMoneyAmount;
-        this.landingRate = landingRate;
+        this.lendingRate = lendingRate;
+    }
+
+    public static TransactionalAccount createFromPlan(TransactionalAccountPlan plan, String accountName, String currencyUnitCode, User user, Card card){
+        return new TransactionalAccount(null, ACCOUNT_STATUS.OK, accountName, Money.of(plan.getCreditMoneyAmount(), currencyUnitCode), user, card, plan.isLendingAvailable(), false, plan.getCreditMoneyAmount(),plan.getLendingRate());
     }
 
     private boolean isLendingAvailable;
@@ -31,6 +40,6 @@ public class TransactionalAccount extends Account {
     private BigDecimal creditMoneyAmount;
 
     @Column(name = "landing_rate", precision = 5, scale = 2)
-    private BigDecimal landingRate;
+    private BigDecimal lendingRate;
 
 }

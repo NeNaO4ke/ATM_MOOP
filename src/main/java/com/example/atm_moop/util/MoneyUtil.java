@@ -2,11 +2,11 @@ package com.example.atm_moop.util;
 
 import org.javamoney.moneta.Money;
 
-import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -33,16 +33,13 @@ public class MoneyUtil {
     }
 
 
-    public static List<CurrencyUnit> getAllCurrencies() {
+    public static List<String> getAllCurrencies() {
 
-        List<CurrencyUnit> currencies =
-                Currency.getAvailableCurrencies().stream()
-                        .map(c -> Money.of(1, c.getCurrencyCode()))
-                        .map(MonetaryAmount::getCurrency)
-                        .sorted()
-                        .collect(Collectors.toList());
-
-        currencies.forEach(c -> System.out.printf("%s %d\n", c.getCurrencyCode(), c.getDefaultFractionDigits()));
-        return currencies;
+        return Currency.getAvailableCurrencies().stream()
+                .map(c -> Money.of(1, c.getCurrencyCode()))
+                .map(MonetaryAmount::getCurrency)
+                .map(Objects::toString)
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

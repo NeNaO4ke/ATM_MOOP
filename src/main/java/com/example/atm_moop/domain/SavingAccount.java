@@ -2,16 +2,21 @@ package com.example.atm_moop.domain;
 
 import com.example.atm_moop.domain.enums.ACCOUNT_STATUS;
 import com.example.atm_moop.domain.enums.ACCOUNT_TYPE;
-import lombok.*;
-import org.hibernate.annotations.Type;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.javamoney.moneta.Money;
 
 import javax.money.MonetaryAmount;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.Period;
+import java.sql.Timestamp;
+import java.util.Date;
 
 
 @NoArgsConstructor
@@ -21,17 +26,28 @@ import java.time.Period;
 @Entity
 public class SavingAccount extends Account {
 
-    public SavingAccount(Long id, ACCOUNT_TYPE accountType, ACCOUNT_STATUS accountStatus, String accountName, @NotNull(message = "Amount is required") MonetaryAmount balance, User user, Card card, BigDecimal interestRate, Period paymentStepPeriod, Period totalPeriod, boolean isAdditionAllowed, boolean autoRenewal, boolean isCapitalizationOn) {
-        super(id, accountType, accountStatus, accountName, balance, user, card);
-        this.interestRate = interestRate;
-        this.paymentStepPeriod = paymentStepPeriod;
-        this.totalPeriod = totalPeriod;
-        this.isAdditionAllowed = isAdditionAllowed;
+    public SavingAccount(Long id, ACCOUNT_STATUS accountStatus, String accountName, @NotNull(message = "Amount is required") MonetaryAmount balance, User user, Card card, SavingAccountPlan savingAccountPlan, Integer paymentStepsLeft, Timestamp accumulateStartTime, boolean autoRenewal, boolean isCapitalizationOn, BigDecimal cumulativeAmount, BigDecimal currentEstimatedAmount, Integer daysUntilNextPayment) {
+        super(id, ACCOUNT_TYPE.SAVING, accountStatus, accountName, balance, user, card);
+        this.savingAccountPlan = savingAccountPlan;
+        this.paymentStepsLeft = paymentStepsLeft;
+        this.accumulateStartTime = accumulateStartTime;
         this.autoRenewal = autoRenewal;
         this.isCapitalizationOn = isCapitalizationOn;
+        this.cumulativeAmount = cumulativeAmount;
+        this.currentEstimatedAmount = currentEstimatedAmount;
+        this.daysUntilNextPayment = daysUntilNextPayment;
     }
 
-    @Column(name = "interest_rate", precision = 5, scale = 2)
+    public static SavingAccount createFromPlan(SavingAccountPlan plan, String accountName, String currencyUnitCode, User user, Card card) {
+        return new SavingAccount(null, ACCOUNT_STATUS.OK, accountName, Money.of(0, currencyUnitCode), user, card, plan, null, null, false, true, null, null, null);
+    }
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "saving_account_plan", nullable = false)
+    private SavingAccountPlan savingAccountPlan;
+
+  /*  @Column(name = "interest_rate", precision = 5, scale = 2)
     private BigDecimal interestRate;
 
     @Type(type = "com.example.atm_moop.converter.PeriodUserType")
@@ -40,11 +56,39 @@ public class SavingAccount extends Account {
     @Type(type = "com.example.atm_moop.converter.PeriodUserType")
     private Period totalPeriod;
 
-    private Integer stepsLeft;
+    private Integer initialSteps;
+    private boolean isAdditionAllowed;*/
 
-    private boolean isAdditionAllowed;
+
+
+    private Integer paymentStepsLeft;
+
+
+    private Timestamp accumulateStartTime;
     private boolean autoRenewal;
     private boolean isCapitalizationOn;
+
+    private BigDecimal cumulativeAmount;
+    private BigDecimal currentEstimatedAmount;
+    private Integer daysUntilNextPayment;
+
+    public void applyPlanToAccount(SavingAccountPlan plan){
+        this.paymentStepsLeft = plan.getInitialSteps();
+        this.accumulateStartTime = new Timestamp(new Date().getTime());
+        this.cumulativeAmount = this.getBalance().getNumber().numberValue(BigDecimal.class);
+        this.currentEstimatedAmount = this.getBalance().getNumber().numberValue(BigDecimal.class);
+        this.daysUntilNextPayment = plan.evaluateDaysUntilNextPayment();
+    }
+    public void resetSavingPlanToPlain(){
+        this.savingAccountPlan = SavingAccountPlan.PLAIN;
+        this.setAccountStatus(ACCOUNT_STATUS.OK);
+        this.paymentStepsLeft = null;
+        this.accumulateStartTime = new Timestamp(new Date().getTime());
+        this.cumulativeAmount = null;
+        this.currentEstimatedAmount = null;
+        this.daysUntilNextPayment = null;
+    }
+
 
 
 }

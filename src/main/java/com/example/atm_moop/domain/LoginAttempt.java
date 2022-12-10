@@ -1,7 +1,9 @@
 package com.example.atm_moop.domain;
 
-import com.example.atm_moop.domain.enums.TRANSACTION_TYPE;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;

@@ -2,7 +2,6 @@ package com.example.atm_moop.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -29,7 +28,7 @@ public class Bank {
 
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonManagedReference
+   // @JsonManagedReference
     @JsonBackReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "bank_atms",

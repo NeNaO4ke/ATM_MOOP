@@ -3,7 +3,9 @@ package com.example.atm_moop.service;
 import com.example.atm_moop.domain.*;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
 import com.example.atm_moop.domain.enums.TRANSACTION_TYPE;
-import com.example.atm_moop.domain.enums.USER_STATUS;
+import com.example.atm_moop.exception.AccountStatusException;
+import com.example.atm_moop.exception.ResourceNotFoundException;
+import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
@@ -21,31 +23,27 @@ import javax.money.convert.MonetaryConversions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class TransferService implements TransferServiceI {
+public class TransferService {
+
+    private final TransactionalAccountRepository transactionalAccountRepository;
 
     private final AccountRepository<Account> accountRepository;
-    private final TransactionalAccountRepository transactionalAccountRepository;
 
     private final TransferTransactionRepository transferTransactionRepository;
 
 
-    @Override
     @Transactional
-    public void transferFromTransactionalToTransactional(User sender, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws ResponseStatusException {
+    public TransferTransaction transferFromTransactional(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
 
-        if (Objects.equals(accountReceiverId, accountSenderId))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot transfer from and to same account");
-        if (sender.getUserStatus() != USER_STATUS.OK)
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You has cannot use any operations right now. Refer to closest bank branch.");
+        AccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
 
-        TransactionalAccount receiverAcc = getTransactionalAccount(transactionalAccountRepository.findAccountByIdWithUser(accountReceiverId), "This account does not exist.", "This account cannot accept transactions right now.", "This account has been terminated.");
+        TransactionalAccount senderAcc = AccountService.getAccountWithOkStatus(transactionalAccountRepository.findById(accountSenderId));
+        AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
+        Account receiverAcc = AccountService.getAccountWithOkStatus(accountRepository.findByIdWithUser(accountReceiverId));
 
-        TransactionalAccount senderAcc = getTransactionalAccount(transactionalAccountRepository.findById(accountSenderId), "Your account does not exist.", "Your account cannot send transactions right now.", "Your account has been terminated.");
 
         MonetaryAmount receiverAccBalance = receiverAcc.getBalance();
         MonetaryAmount senderAccBalance = senderAcc.getBalance();
@@ -76,32 +74,18 @@ public class TransferService implements TransferServiceI {
         senderAcc.setBalance(newSenderBalance);
         receiverAcc.setBalance(newReceiverBalance);
 
-        transactionalAccountRepository.saveAll(List.of(senderAcc, receiverAcc));
+        accountRepository.saveAll(List.of(senderAcc, receiverAcc));
 
         TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, senderTransferringAmount, senderAcc, receiverAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
-        transferTransactionRepository.save(transferTransaction);
+        return transferTransactionRepository.save(transferTransaction);
 
 
     }
 
-    private TransactionalAccount getTransactionalAccount(Optional<TransactionalAccount> transactionalAccountRepository, String reason, String reason1, String reason2) {
-
-        if (transactionalAccountRepository.isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, reason);
-        TransactionalAccount account = transactionalAccountRepository.get();
 
 
-        switch (account.getAccountStatus()) {
-            case FROZEN:
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, reason1);
-            case TERMINATED:
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, reason2);
-            default:
-                break;
-        }
-        return account;
-    }
+
 
     private Money applyFeeIfNecessary(TransactionalAccount senderAcc, MonetaryAmount senderAccBalance, CurrencyUnit senderCurrency, Money senderTransferringAmount) {
         if (senderAcc.isLendingAvailable()) {
@@ -110,7 +94,7 @@ public class TransferService implements TransferServiceI {
                 Money subtract = senderTransferringAmount;
                 if(senderAccBalance.isGreaterThan(credit))
                     subtract = credit.subtract(senderAccBalance.subtract(senderTransferringAmount));
-                Money senderCreditFee = subtract.multiply(senderAcc.getLandingRate().divide(BigDecimal.valueOf(100), 7, RoundingMode.HALF_DOWN));
+                Money senderCreditFee = subtract.multiply(senderAcc.getLendingRate().divide(BigDecimal.valueOf(100), 7, RoundingMode.HALF_DOWN));
                 senderTransferringAmount = senderTransferringAmount.add(senderCreditFee);
                 if (!senderAccBalance.isGreaterThan(senderTransferringAmount)) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Your cannot transfer more than you have right now...");
@@ -120,10 +104,16 @@ public class TransferService implements TransferServiceI {
         return senderTransferringAmount;
     }
 
-    @Override
     @Transactional
     public void deposit(Card card, BigDecimal amount) {
-        TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
+        TransactionalAccount senderAcc;
+        try {
+            senderAcc = getCardDefaultTransactionalAccount(card);
+        } catch (AccountStatusException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
 
         MonetaryAmount balance = senderAcc.getBalance();
         Money transferringAmount = Money.of(amount, balance.getCurrency());
@@ -135,10 +125,16 @@ public class TransferService implements TransferServiceI {
 
     }
 
-    @Override
     @Transactional
     public void withdraw(Card card, BigDecimal amount) {
-        TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
+        TransactionalAccount senderAcc;
+        try {
+            senderAcc = getCardDefaultTransactionalAccount(card);
+        } catch (AccountStatusException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
 
         MonetaryAmount balance = senderAcc.getBalance();
         Money transferringAmount = Money.of(amount, balance.getCurrency());
@@ -153,19 +149,17 @@ public class TransferService implements TransferServiceI {
 
     }
 
-    private TransactionalAccount getCardDefaultTransactionalAccount(Card card) {
-        if (card.getUser().getUserStatus() != USER_STATUS.OK)
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "This user currently cannot make this operation");
+    private TransactionalAccount getCardDefaultTransactionalAccount(Card card) throws AccountStatusException, ResourceNotFoundException {
         List<TransactionalAccount> result = transactionalAccountRepository.findTransactionalAccountByCardAndDefaultIsTrue(card);
         if (result.isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This account does not exist.");
+            throw new ResourceNotFoundException("This account does not exist.");
         TransactionalAccount account = result.get(0);
 
         switch (account.getAccountStatus()) {
             case FROZEN:
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This account is temporarily frozen.");
+                throw new AccountStatusException("This account is temporarily frozen.");
             case TERMINATED:
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This account has been terminated.");
+                throw new AccountStatusException("This account has been terminated.");
             default:
                 break;
         }

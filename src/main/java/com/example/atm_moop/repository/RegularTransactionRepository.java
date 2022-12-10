@@ -21,6 +21,8 @@ public interface RegularTransactionRepository extends JpaRepository<RegularTrans
     @Query("update RegularTransaction r set r.transactionStatus = ?1 where r.id = ?2")
     void updateTransactionStatusById(TRANSACTION_STATUS transactionStatus, Long id);
 
+
+
     @Transactional
     @Modifying
     @Query("update RegularTransaction r set r.transactionStatus = ?1, r.repeatsLeft = ?2 where r.id = ?3")

@@ -1,20 +1,14 @@
 package com.example.atm_moop.domain;
 
 import com.example.atm_moop.domain.enums.CARD_STATUS;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.hibernate.validator.constraints.LuhnCheck;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
-import java.util.Collection;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -58,5 +52,6 @@ public class Card {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "bank_id", nullable = false)
     private Bank bank;
+
 
 }

@@ -16,6 +16,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class ScheduledTransactionDTO {
 
+    @NotNull
     @Positive
     BigDecimal amount;
 
@@ -25,6 +26,7 @@ public class ScheduledTransactionDTO {
     @NotNull
     Long receiverAccountId;
 
+    @NotNull
     @Future
     Instant scheduledTime;
 

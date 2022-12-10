@@ -3,7 +3,6 @@ package com.example.atm_moop.domain;
 import com.example.atm_moop.domain.enums.CARD_STATUS;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

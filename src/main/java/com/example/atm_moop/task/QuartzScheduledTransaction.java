@@ -1,6 +1,6 @@
 package com.example.atm_moop.task;
 
-import com.example.atm_moop.exception.BusinessException;
+import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.service.TransactionService;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
@@ -18,9 +18,10 @@ public class QuartzScheduledTransaction implements Job {
         long transactionId = context.getMergedJobDataMap().getLong("transactionId");
         try {
             transactionService.fireScheduledTransaction(transactionId);
-        } catch (BusinessException e) {
+        } catch (ResourceNotFoundException e) {
             throw new RuntimeException(e);
         }
+
     }
 
 }
