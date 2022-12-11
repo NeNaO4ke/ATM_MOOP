@@ -114,7 +114,7 @@ public class LoginTest {
 
     @BeforeAll
     public void setupBeforeAll() {
-             testDbSetup.populate();
+        //testDbSetup.populate();
     }
 
     @Test

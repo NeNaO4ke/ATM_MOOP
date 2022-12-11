@@ -1,7 +1,6 @@
 package com.example.atm_moop.controller;
 
 import com.example.atm_moop.domain.CardAtmUserDetails;
-import com.example.atm_moop.domain.RegularTransactionInfo;
 import com.example.atm_moop.domain.TransferTransaction;
 import com.example.atm_moop.domain.TransferTransactionInfo;
 import com.example.atm_moop.dto.AmountDTO;
@@ -18,13 +17,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/transfer")
+@CrossOrigin("http://localhost:4200")
 public class TransferController {
 
     private final TransferService transferService;
@@ -39,13 +38,13 @@ public class TransferController {
 
 
     @PostMapping(value = "/deposit", consumes = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<?> deposit(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid AmountDTO amountDTO) {
+    private ResponseEntity<?> deposit(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid AmountDTO amountDTO) throws AccountStatusException, ResourceNotFoundException {
         transferService.deposit(cardAtmUserDetails.getCard(), amountDTO.getAmount());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping(value = "/withdraw", consumes = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<?> withdraw(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid AmountDTO amountDTO) {
+    private ResponseEntity<?> withdraw(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid AmountDTO amountDTO) throws AccountStatusException, ResourceNotFoundException {
         transferService.withdraw(cardAtmUserDetails.getCard(), amountDTO.getAmount());
         return new ResponseEntity<>(HttpStatus.OK);
     }

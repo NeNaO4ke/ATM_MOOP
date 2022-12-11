@@ -130,7 +130,7 @@ public class AccountTest {
 
     @BeforeAll
     public void setupBeforeAll() {
-        testDbSetup.populate();
+        //testDbSetup.populate();
     }
 
     @Test
@@ -257,6 +257,20 @@ public class AccountTest {
     @WithUserDetails(value = MOCK_USER)
     public void getAllAccounts() throws Exception {
         mockMvc.perform(get("/api/account/all-my"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails(value = MOCK_USER)
+    public void getPlans() throws Exception {
+        mockMvc.perform(get("/api/account/plans"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithUserDetails(value = MOCK_USER)
+    public void getCurrencies() throws Exception {
+        mockMvc.perform(get("/api/account/currency"))
                 .andExpect(status().isOk());
     }
 

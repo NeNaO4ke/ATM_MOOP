@@ -1,6 +1,9 @@
 package com.example.atm_moop.service;
 
-import com.example.atm_moop.domain.*;
+import com.example.atm_moop.domain.Account;
+import com.example.atm_moop.domain.Card;
+import com.example.atm_moop.domain.TransactionalAccount;
+import com.example.atm_moop.domain.TransferTransaction;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
 import com.example.atm_moop.domain.enums.TRANSACTION_TYPE;
 import com.example.atm_moop.exception.AccountStatusException;
@@ -105,15 +108,9 @@ public class TransferService {
     }
 
     @Transactional
-    public void deposit(Card card, BigDecimal amount) {
-        TransactionalAccount senderAcc;
-        try {
-            senderAcc = getCardDefaultTransactionalAccount(card);
-        } catch (AccountStatusException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        } catch (ResourceNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        }
+    public void deposit(Card card, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException {
+        TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
+
 
         MonetaryAmount balance = senderAcc.getBalance();
         Money transferringAmount = Money.of(amount, balance.getCurrency());
@@ -126,15 +123,8 @@ public class TransferService {
     }
 
     @Transactional
-    public void withdraw(Card card, BigDecimal amount) {
-        TransactionalAccount senderAcc;
-        try {
-            senderAcc = getCardDefaultTransactionalAccount(card);
-        } catch (AccountStatusException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        } catch (ResourceNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        }
+    public void withdraw(Card card, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException {
+        TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
 
         MonetaryAmount balance = senderAcc.getBalance();
         Money transferringAmount = Money.of(amount, balance.getCurrency());

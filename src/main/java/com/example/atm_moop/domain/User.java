@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -22,7 +23,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "usr")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usr_seq")
     @SequenceGenerator(name = "usr_seq", allocationSize = 1)

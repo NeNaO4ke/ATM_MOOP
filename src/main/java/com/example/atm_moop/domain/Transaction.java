@@ -38,6 +38,7 @@ public abstract class Transaction {
     private TRANSACTION_TYPE transactionType;
 
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp startTime;
 
     @UpdateTimestamp

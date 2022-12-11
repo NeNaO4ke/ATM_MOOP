@@ -1,9 +1,10 @@
 package com.example.atm_moop.service;
 
-import com.example.atm_moop.domain.*;
+import com.example.atm_moop.domain.Account;
+import com.example.atm_moop.domain.Card;
+import com.example.atm_moop.domain.TransactionalAccount;
+import com.example.atm_moop.domain.User;
 import com.example.atm_moop.dto.TransactionalPlanInputDTO;
-import com.example.atm_moop.exception.AccountStatusException;
-import com.example.atm_moop.exception.MyAccountNotFoundException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 
 import java.util.List;

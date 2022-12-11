@@ -10,15 +10,18 @@ import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.service.AccountService;
 import com.example.atm_moop.util.MoneyUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,6 +51,7 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getAccountById(accountId, cardAtmUserDetails.getCard().getUser().getId()), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/plans", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<?> getTransactionalPlans() {
         Map<String, Object> response = new HashMap<>();

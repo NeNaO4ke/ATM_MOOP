@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,7 +18,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "bank")
-public class Bank {
+public class Bank implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bank_seq")
     @SequenceGenerator(name = "bank_seq", allocationSize = 1)

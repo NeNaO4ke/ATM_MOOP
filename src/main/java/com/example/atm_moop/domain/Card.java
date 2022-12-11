@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -18,7 +19,7 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "card")
-public class Card {
+public class Card implements Serializable {
 
     @Id
     @Column(name = "number", nullable = false)
