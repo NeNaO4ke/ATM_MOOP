@@ -75,10 +75,10 @@ public class CardService implements UserDetailsService, CardServiceI {
     }
 
     @Override
-    public boolean blockCardByNumber(String number) throws Exception {
+    public boolean blockCardByNumber(String number) {
         int updatedRows = cardRepository.updateCardStatusByNumber(CARD_STATUS.BLOCKED, number);
         if(updatedRows == 0)
-            throw new Exception("Card blocking failed!");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Card blocking failed!");
         return true;
     }
 

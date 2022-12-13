@@ -60,7 +60,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
-@ActiveProfiles("test")
+@ActiveProfiles("presentation")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
@@ -171,7 +171,7 @@ public class AccountTest {
     @Test
     @WithUserDetails(value = MOCK_USER)
     public void createSavingFromPlan() throws Exception {
-        SavingPlanInputDTO savingPlanInputDTO = new SavingPlanInputDTO(SavingAccountPlan.LONG, "USD", "New acc");
+        SavingPlanInputDTO savingPlanInputDTO = new SavingPlanInputDTO(SavingAccountPlan.LONG, "UAH", "New acc");
         User user = new User();
         user.setId(1L);
         Card card = new Card();
@@ -182,9 +182,9 @@ public class AccountTest {
         Long savAccId = savingAccount.getId();
         transferService.transferFromTransactional(1L, 1L, savAccId, BigDecimal.valueOf(60));
         savingAccount = accountService.fireAccumulatingSavingAccount(savAccId, 1L);
-        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), savingAccount, jarAcc);
+        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), null, savingAccount, jarAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
-        TransferTransaction transferTransaction2 = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), savingAccount, jarAcc);
+        TransferTransaction transferTransaction2 = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), null, savingAccount, jarAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         savingAccount.setPaymentStepsLeft(1);
         accountService.save(savingAccount);
@@ -240,7 +240,7 @@ public class AccountTest {
     }
 
     private SavingAccount createSaveAccWithMoney() throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
-        SavingPlanInputDTO savingPlanInputDTO = new SavingPlanInputDTO(SavingAccountPlan.LONG, "USD", "New acc");
+        SavingPlanInputDTO savingPlanInputDTO = new SavingPlanInputDTO(SavingAccountPlan.LONG, "UAH", "New acc");
         User user = new User();
         user.setId(1L);
         Card card = new Card();

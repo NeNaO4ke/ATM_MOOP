@@ -30,8 +30,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.server.ResponseStatusException;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.restdocs.http.HttpDocumentation.httpRequest;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
@@ -47,7 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @Transactional
-@ActiveProfiles("test")
+@ActiveProfiles("presentation")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
@@ -146,12 +148,17 @@ public class LoginTest {
 
     @Test
     public void invalidLogin() throws Exception {
-        mockMvc.perform(post("/login")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                        .param("number", CARD_NUMBER)
-                        .param("pin", "9999")
-                        .param("atm", ATM_ID))
-                .andDo(print());
+        try {
+            int status = mockMvc.perform(post("/login")
+                            .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                            .param("number", CARD_NUMBER)
+                            .param("pin", "9999")
+                            .param("atm", ATM_ID))
+                    .andDo(print())
+                    .andReturn().getResponse().getStatus();
+        } catch (ResponseStatusException e){
+            assertEquals(e.getStatus().value(), 400);
+        }
     }
 
 

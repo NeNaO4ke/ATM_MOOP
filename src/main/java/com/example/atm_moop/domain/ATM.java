@@ -1,6 +1,7 @@
 package com.example.atm_moop.domain;
 
 import com.example.atm_moop.domain.enums.ATM_STATUS;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 public class ATM implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "atm_seq")

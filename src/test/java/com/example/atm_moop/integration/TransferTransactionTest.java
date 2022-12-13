@@ -4,6 +4,9 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.example.atm_moop.TestDbSetup;
+import com.example.atm_moop.exception.AccountStatusException;
+import com.example.atm_moop.exception.ResourceNotFoundException;
+import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.service.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +47,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
-@ActiveProfiles("test")
+@ActiveProfiles("presentation")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
@@ -108,8 +111,8 @@ public class TransferTransactionTest {
     }
 
     @BeforeAll
-    public void setupBeforeAll() {
-        testDbSetup.populate();
+    public void setupBeforeAll() throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+     //   testDbSetup.populate();
     }
 
     @Test
@@ -118,11 +121,11 @@ public class TransferTransactionTest {
 
         mockMvc.perform(put("/api/transfer/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 1000000, 1, 2)))
+                        .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 1000000, 1, 3)))
                 .andExpect(status().isBadRequest());
         mockMvc.perform(put("/api/transfer/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 5, 1, 2)))
+                        .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 5, 1, 3)))
                 .andExpect(status().isOk());
 
 
@@ -168,9 +171,9 @@ public class TransferTransactionTest {
     public void historyOfAccount() throws Exception {
         transferFromTransactional();
         transferFromTransactional();
-        mockMvc.perform(get("/api/transaction/history/2"))
+        mockMvc.perform(get("/api/transaction/history/3"))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andDo(print());
 
     }
 

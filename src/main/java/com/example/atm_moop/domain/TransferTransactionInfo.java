@@ -6,6 +6,7 @@ import com.example.atm_moop.domain.enums.TRANSACTION_TYPE;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.money.MonetaryAmount;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -24,6 +25,8 @@ public interface TransferTransactionInfo {
 
     @JsonSerialize(using = MonetaryAmountSerializer.class)
     MonetaryAmount getAmount();
+
+    BigDecimal getFee();
 
     AccountInfo getFromAccount();
     AccountInfo getToAccount();

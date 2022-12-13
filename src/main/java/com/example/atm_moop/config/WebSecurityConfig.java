@@ -23,7 +23,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -61,6 +60,7 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
                         "/logout",
                         "/h2-console/**",
                         "/static/**",
+                        "/css/**",
                         "/api/card/verify-atm-support-bank",
                         "/api/atm/all").permitAll()
                 .anyRequest().authenticated()
@@ -102,7 +102,7 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:63342"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:63342", "https://f379-212-90-62-127.eu.ngrok.io"));
         configuration.setAllowedMethods(Arrays.asList("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH"));
         // setAllowCredentials(true) is important, otherwise:
@@ -110,8 +110,8 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
         configuration.setAllowCredentials(true);
         // setAllowedHeaders is important! Without it, OPTIONS preflight request
         // will fail with 403 Invalid CORS request
-   //     configuration.setAllowedHeaders(Arrays.asList("*"));
-   //     configuration.setExposedHeaders(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setExposedHeaders(Arrays.asList("*"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

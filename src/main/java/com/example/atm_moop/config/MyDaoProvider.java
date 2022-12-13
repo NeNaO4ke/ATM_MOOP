@@ -8,18 +8,17 @@ import com.example.atm_moop.service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
@@ -67,17 +66,14 @@ public class MyDaoProvider extends DaoAuthenticationProvider {
                     .toInstant();
             Timestamp start = Timestamp.from(nowMinusHour);
             List<LoginAttempt> attempts = loginAttemptRepository.findTop3ByCardAndAtBetweenOrderByAtDesc(card, start, now);
-            if(!attempts.isEmpty()){
+            if (!attempts.isEmpty()) {
                 Optional<LoginAttempt> first = attempts.stream().filter(LoginAttempt::isSuccessful).findFirst();
-                if(first.isEmpty() && attempts.size() == 3){
-                    try {
-                        cardService.blockCardByNumber(card.getNumber());
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
+                if (first.isEmpty() && attempts.size() == 3) {
+                    cardService.blockCardByNumber(card.getNumber());
+                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Your card has been blocked!");
                 }
             }
-            throw e;
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid data input!");
         }
 
     }

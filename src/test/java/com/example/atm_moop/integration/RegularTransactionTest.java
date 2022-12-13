@@ -4,6 +4,9 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.example.atm_moop.TestDbSetup;
+import com.example.atm_moop.exception.AccountStatusException;
+import com.example.atm_moop.exception.ResourceNotFoundException;
+import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.service.AccountService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +45,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
-@ActiveProfiles("test")
+@ActiveProfiles("presentation")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RequiredArgsConstructor
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
@@ -109,8 +112,8 @@ public class RegularTransactionTest {
     }
 
     @BeforeAll
-    public void setupBeforeAll() {
-        testDbSetup.populate();
+    public void setupBeforeAll() throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+     //   testDbSetup.populate();
     }
 
     @Test

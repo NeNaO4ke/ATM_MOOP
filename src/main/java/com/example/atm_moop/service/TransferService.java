@@ -1,9 +1,8 @@
 package com.example.atm_moop.service;
 
-import com.example.atm_moop.domain.Account;
-import com.example.atm_moop.domain.Card;
-import com.example.atm_moop.domain.TransactionalAccount;
-import com.example.atm_moop.domain.TransferTransaction;
+import com.example.atm_moop.domain.*;
+import com.example.atm_moop.domain.enums.ACCOUNT_STATUS;
+import com.example.atm_moop.domain.enums.ACCOUNT_TYPE;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
 import com.example.atm_moop.domain.enums.TRANSACTION_TYPE;
 import com.example.atm_moop.exception.AccountStatusException;
@@ -12,12 +11,11 @@ import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
+import com.example.atm_moop.util.MoneyUtil;
 import lombok.RequiredArgsConstructor;
 import org.javamoney.moneta.Money;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
@@ -26,6 +24,7 @@ import javax.money.convert.MonetaryConversions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,8 +44,23 @@ public class TransferService {
 
         TransactionalAccount senderAcc = AccountService.getAccountWithOkStatus(transactionalAccountRepository.findById(accountSenderId));
         AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
-        Account receiverAcc = AccountService.getAccountWithOkStatus(accountRepository.findByIdWithUser(accountReceiverId));
+        Optional<Account> optionalReceiver = accountRepository.findByIdWithUser(accountReceiverId);
+        Account receiverAcc = AccountService.getResourceOrThrowException(optionalReceiver);
 
+        if (receiverAcc.getAccountType() == ACCOUNT_TYPE.SAVING) {
+            if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK && receiverAcc.getAccountStatus() != ACCOUNT_STATUS.ACCUMULATING) {
+                AccountService.getAccountWithOkStatus(optionalReceiver);
+            }
+            SavingAccount savingAccount = (SavingAccount) receiverAcc;
+            if (!savingAccount.getSavingAccountPlan().isAdditionAllowed()) {
+                throw new RightsViolationException("You cannot transfer money to saving account that not have feature for it");
+            }
+            if (!userSenderId.equals(savingAccount.getUser().getId())) {
+                throw new RightsViolationException("You cannot transfer money to saving account that doesn`t belong to you");
+            }
+        } else if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK) {
+            AccountService.getAccountWithOkStatus(optionalReceiver);
+        }
 
         MonetaryAmount receiverAccBalance = receiverAcc.getBalance();
         MonetaryAmount senderAccBalance = senderAcc.getBalance();
@@ -55,52 +69,58 @@ public class TransferService {
         CurrencyUnit senderCurrency = senderAccBalance.getCurrency();
 
         Money senderTransferringAmount = Money.of(amount, senderCurrency);
-        if (!senderAccBalance.isGreaterThan(senderTransferringAmount)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Your cannot transfer more than you have right now...");
+        if (!senderAccBalance.isGreaterThanOrEqualTo(senderTransferringAmount)) {
+            throw new AccountStatusException("Your cannot transfer more than you have right now...");
         }
 
         CurrencyUnit receiverCurrency = receiverAccBalance.getCurrency();
 
-        Money receiverTransferringAmount = senderTransferringAmount;
+        Money receiverTransferringAmount = applyConversionIfNecessary(senderTransferringAmount, receiverCurrency, senderCurrency);
 
-        if (receiverCurrency != senderCurrency) {
-            CurrencyConversion targetCurrency = MonetaryConversions.getConversion(receiverCurrency);
-            receiverTransferringAmount = senderTransferringAmount.with(targetCurrency);
+        Money withFee = applyFeeIfNecessary(senderAcc, senderAccBalance, senderCurrency, senderTransferringAmount);
+        BigDecimal fee = null;
+        if (!withFee.isEqualTo(senderTransferringAmount)) {
+            fee = withFee.subtract(senderTransferringAmount).getNumber().numberValue(BigDecimal.class);
         }
 
-        senderTransferringAmount = applyFeeIfNecessary(senderAcc, senderAccBalance, senderCurrency, senderTransferringAmount);
-
-
-        MonetaryAmount newSenderBalance = senderAccBalance.subtract(senderTransferringAmount);
+        MonetaryAmount newSenderBalance = senderAccBalance.subtract(withFee);
         MonetaryAmount newReceiverBalance = receiverAccBalance.add(receiverTransferringAmount);
 
         senderAcc.setBalance(newSenderBalance);
         receiverAcc.setBalance(newReceiverBalance);
+        if (receiverAcc.getAccountStatus() == ACCOUNT_STATUS.ACCUMULATING) {
+            SavingAccount savingAccount = (SavingAccount) receiverAcc;
+            savingAccount.setCumulativeAmount(savingAccount.getCumulativeAmount().add(MoneyUtil.extractAmount(receiverTransferringAmount)));
+            savingAccount.setCurrentEstimatedAmount(savingAccount.getCurrentEstimatedAmount().add(MoneyUtil.extractAmount(receiverTransferringAmount)));
+            accountRepository.saveAll(List.of(senderAcc, savingAccount));
+        } else {
+            accountRepository.saveAll(List.of(senderAcc, receiverAcc));
+        }
 
-        accountRepository.saveAll(List.of(senderAcc, receiverAcc));
-
-        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, senderTransferringAmount, senderAcc, receiverAcc);
+        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, senderTransferringAmount, fee, senderAcc, receiverAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         return transferTransactionRepository.save(transferTransaction);
-
-
     }
 
+    private Money applyConversionIfNecessary(Money senderTransferringAmount, CurrencyUnit receiverCurrency, CurrencyUnit senderCurrency) {
+        if (receiverCurrency != senderCurrency) {
+            CurrencyConversion targetCurrency = MonetaryConversions.getConversion(receiverCurrency);
+            return senderTransferringAmount.with(targetCurrency);
+        }
+        return senderTransferringAmount;
+    }
 
-
-
-
-    private Money applyFeeIfNecessary(TransactionalAccount senderAcc, MonetaryAmount senderAccBalance, CurrencyUnit senderCurrency, Money senderTransferringAmount) {
+    private Money applyFeeIfNecessary(TransactionalAccount senderAcc, MonetaryAmount senderAccBalance, CurrencyUnit senderCurrency, Money senderTransferringAmount) throws AccountStatusException {
         if (senderAcc.isLendingAvailable()) {
             Money credit = Money.of(senderAcc.getCreditMoneyAmount(), senderCurrency);
             if (senderAccBalance.subtract(senderTransferringAmount).isLessThan(credit)) {
                 Money subtract = senderTransferringAmount;
-                if(senderAccBalance.isGreaterThan(credit))
+                if (senderAccBalance.isGreaterThan(credit))
                     subtract = credit.subtract(senderAccBalance.subtract(senderTransferringAmount));
                 Money senderCreditFee = subtract.multiply(senderAcc.getLendingRate().divide(BigDecimal.valueOf(100), 7, RoundingMode.HALF_DOWN));
                 senderTransferringAmount = senderTransferringAmount.add(senderCreditFee);
-                if (!senderAccBalance.isGreaterThan(senderTransferringAmount)) {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Your cannot transfer more than you have right now...");
+                if (!senderAccBalance.isGreaterThanOrEqualTo(senderTransferringAmount)) {
+                    throw new AccountStatusException("Your cannot transfer more than you have right now...");
                 }
             }
         }
@@ -110,16 +130,13 @@ public class TransferService {
     @Transactional
     public void deposit(Card card, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException {
         TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
-
-
         MonetaryAmount balance = senderAcc.getBalance();
         Money transferringAmount = Money.of(amount, balance.getCurrency());
         senderAcc.setBalance(balance.add(transferringAmount));
         transactionalAccountRepository.save(senderAcc);
-        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.DEPOSIT, transferringAmount, senderAcc, senderAcc);
+        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.DEPOSIT, transferringAmount, null, senderAcc, senderAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         transferTransactionRepository.save(transferTransaction);
-
     }
 
     @Transactional
@@ -129,11 +146,16 @@ public class TransferService {
         MonetaryAmount balance = senderAcc.getBalance();
         Money transferringAmount = Money.of(amount, balance.getCurrency());
 
-        transferringAmount = applyFeeIfNecessary(senderAcc, balance, balance.getCurrency(), transferringAmount);
-        senderAcc.setBalance(balance.subtract(transferringAmount));
+        Money withFee = applyFeeIfNecessary(senderAcc, balance, balance.getCurrency(), transferringAmount);
+        BigDecimal fee = null;
+        if (!withFee.isEqualTo(transferringAmount)) {
+            fee = withFee.subtract(transferringAmount).getNumber().numberValue(BigDecimal.class);
+        }
+
+        senderAcc.setBalance(balance.subtract(withFee));
 
         transactionalAccountRepository.save(senderAcc);
-        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.WITHDRAWAL, transferringAmount, senderAcc, senderAcc);
+        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.WITHDRAWAL, transferringAmount, fee, senderAcc, senderAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         transferTransactionRepository.save(transferTransaction);
 

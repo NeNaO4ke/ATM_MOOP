@@ -47,20 +47,6 @@ public class SavingAccount extends Account {
     @Column(name = "saving_account_plan", nullable = false)
     private SavingAccountPlan savingAccountPlan;
 
-  /*  @Column(name = "interest_rate", precision = 5, scale = 2)
-    private BigDecimal interestRate;
-
-    @Type(type = "com.example.atm_moop.converter.PeriodUserType")
-    private Period paymentStepPeriod;
-
-    @Type(type = "com.example.atm_moop.converter.PeriodUserType")
-    private Period totalPeriod;
-
-    private Integer initialSteps;
-    private boolean isAdditionAllowed;*/
-
-
-
     private Integer paymentStepsLeft;
 
 
@@ -68,6 +54,7 @@ public class SavingAccount extends Account {
     private boolean autoRenewal;
     private boolean isCapitalizationOn;
 
+    @Column(precision = 26, scale = 7)
     private BigDecimal cumulativeAmount;
     private BigDecimal currentEstimatedAmount;
     private Integer daysUntilNextPayment;

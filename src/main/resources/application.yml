@@ -6,45 +6,22 @@ server:
     include-stacktrace: always
 
 
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/atm-dev
-#    username: atm
-#    password: 666666
-#    driver-class-name: org.postgresql.Driver
-#  jpa:
-#    database: postgresql
-#    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
-#    generate-ddl: true
-#    hibernate:
-#      ddl-auto:
-#        validate
-#    show-sql: true
-
-
-
-
 spring:
-#  session:
-#    store-type: jdbc
-#    jdbc:
-#      initialize-schema: always
+  profiles:
+    active: presentation
   datasource:
-    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
-    username: sa
-    password: sa
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/atm-dev
+    username: atm
+    password: 666666
+    driver-class-name: org.postgresql.Driver
   jpa:
-    database: h2
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     generate-ddl: true
     hibernate:
       ddl-auto:
         create
     show-sql: true
-  h2:
-    console:
-      enabled: true
   quartz:
     wait-for-jobs-to-complete-on-shutdown: false
     job-store-type: jdbc
@@ -60,6 +37,13 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+  web:
+    resources:
+      static-locations: /
+#  session:
+#    store-type: jdbc
+#    jdbc:
+#      initialize-schema: always
 
 ---
 
@@ -79,8 +63,10 @@ spring:
     show-sql: true
   config:
     activate:
-      on-profile: test
+      on-profile: test, presentation
   h2:
     console:
       enabled: true
+
+---
 

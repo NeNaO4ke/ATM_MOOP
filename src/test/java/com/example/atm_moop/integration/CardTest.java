@@ -48,7 +48,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Transactional
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@ActiveProfiles("presentation")
 @RequiredArgsConstructor
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -113,7 +113,7 @@ public class CardTest {
 
     @BeforeAll
     public void setupBeforeAll() {
-        testDbSetup.populate();
+        //testDbSetup.populate();
     }
 
     @Test
