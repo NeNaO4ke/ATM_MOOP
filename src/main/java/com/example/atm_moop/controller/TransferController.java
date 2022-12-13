@@ -23,15 +23,14 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/transfer")
-@CrossOrigin("http://localhost:4200")
 public class TransferController {
 
     private final TransferService transferService;
 
-    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<?> transfer(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid TransferInputDTO transferInputDTO) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
         ProjectionFactory pf = new SpelAwareProxyProjectionFactory();
-        TransferTransaction transferTransaction = transferService.transferFromTransactional(cardAtmUserDetails.getCard().getUser().getId(), transferInputDTO.getSenderAccountId(), transferInputDTO.getReceiverAccountId(), transferInputDTO.getAmount());
+        TransferTransaction transferTransaction = transferService.transfer(cardAtmUserDetails.getCard().getUser().getId(), transferInputDTO.getSenderAccountId(), transferInputDTO.getReceiverAccountId(), transferInputDTO.getAmount());
         TransferTransactionInfo rp = pf.createProjection(TransferTransactionInfo.class, transferTransaction);
         return new ResponseEntity<>(rp, HttpStatus.OK);
     }

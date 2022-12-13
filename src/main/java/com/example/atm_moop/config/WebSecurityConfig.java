@@ -10,12 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.ExceptionHandlingConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
@@ -102,7 +105,7 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:63342", "https://f379-212-90-62-127.eu.ngrok.io"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:63342", "https://4a54-212-90-62-127.eu.ngrok.io"));
         configuration.setAllowedMethods(Arrays.asList("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH"));
         // setAllowCredentials(true) is important, otherwise:
@@ -132,8 +135,8 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
         return new AuthSuccessHandler();
     }
 
-    public AuthFailureHandler authFailureHandler() {
-        return new AuthFailureHandler();
+    public BadCredentialsHelper authFailureHandler() {
+        return new BadCredentialsHelper();
     }
 
 }

@@ -70,10 +70,10 @@ public class MyDaoProvider extends DaoAuthenticationProvider {
                 Optional<LoginAttempt> first = attempts.stream().filter(LoginAttempt::isSuccessful).findFirst();
                 if (first.isEmpty() && attempts.size() == 3) {
                     cardService.blockCardByNumber(card.getNumber());
-                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Your card has been blocked!");
+                    throw new BadCredentialsException("Your card has been blocked!");
                 }
             }
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid data input!");
+            throw new BadCredentialsException("Invalid pin code! " + (3 - attempts.size()) + " attempt(s) left.");
         }
 
     }

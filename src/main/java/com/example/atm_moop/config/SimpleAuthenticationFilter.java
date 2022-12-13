@@ -33,6 +33,7 @@ public class SimpleAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
         UsernamePasswordAuthenticationToken authRequest = getAuthRequest(request);
         setDetails(request, authRequest);
+
         Authentication authenticate = this.getAuthenticationManager()
                 .authenticate(authRequest);
         SecurityContextHolder.getContext().setAuthentication(authRequest);

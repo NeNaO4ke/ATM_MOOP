@@ -14,6 +14,7 @@ import com.example.atm_moop.repository.TransferTransactionRepository;
 import com.example.atm_moop.util.MoneyUtil;
 import lombok.RequiredArgsConstructor;
 import org.javamoney.moneta.Money;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,29 +39,13 @@ public class TransferService {
 
 
     @Transactional
-    public TransferTransaction transferFromTransactional(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
+    public TransferTransaction transfer(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
 
         AccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
-
-        TransactionalAccount senderAcc = AccountService.getAccountWithOkStatus(transactionalAccountRepository.findById(accountSenderId));
+        Account senderAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(accountSenderId));
         AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
-        Optional<Account> optionalReceiver = accountRepository.findByIdWithUser(accountReceiverId);
-        Account receiverAcc = AccountService.getResourceOrThrowException(optionalReceiver);
+        Account receiverAcc = getReceiverAccountWithChecks(accountRepository.findByIdWithUser(accountReceiverId), userSenderId);
 
-        if (receiverAcc.getAccountType() == ACCOUNT_TYPE.SAVING) {
-            if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK && receiverAcc.getAccountStatus() != ACCOUNT_STATUS.ACCUMULATING) {
-                AccountService.getAccountWithOkStatus(optionalReceiver);
-            }
-            SavingAccount savingAccount = (SavingAccount) receiverAcc;
-            if (!savingAccount.getSavingAccountPlan().isAdditionAllowed()) {
-                throw new RightsViolationException("You cannot transfer money to saving account that not have feature for it");
-            }
-            if (!userSenderId.equals(savingAccount.getUser().getId())) {
-                throw new RightsViolationException("You cannot transfer money to saving account that doesn`t belong to you");
-            }
-        } else if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK) {
-            AccountService.getAccountWithOkStatus(optionalReceiver);
-        }
 
         MonetaryAmount receiverAccBalance = receiverAcc.getBalance();
         MonetaryAmount senderAccBalance = senderAcc.getBalance();
@@ -77,10 +62,15 @@ public class TransferService {
 
         Money receiverTransferringAmount = applyConversionIfNecessary(senderTransferringAmount, receiverCurrency, senderCurrency);
 
-        Money withFee = applyFeeIfNecessary(senderAcc, senderAccBalance, senderCurrency, senderTransferringAmount);
+        Money withFee = senderTransferringAmount;
         BigDecimal fee = null;
-        if (!withFee.isEqualTo(senderTransferringAmount)) {
-            fee = withFee.subtract(senderTransferringAmount).getNumber().numberValue(BigDecimal.class);
+
+        if(senderAcc.getAccountType() == ACCOUNT_TYPE.TRANSACTIONAL){
+            TransactionalAccount tra = (TransactionalAccount) senderAcc;
+            withFee = applyFeeIfNecessary(tra, senderAccBalance, senderCurrency, senderTransferringAmount);
+            if (!withFee.isEqualTo(senderTransferringAmount)) {
+                fee = withFee.subtract(senderTransferringAmount).getNumber().numberValue(BigDecimal.class);
+            }
         }
 
         MonetaryAmount newSenderBalance = senderAccBalance.subtract(withFee);
@@ -100,6 +90,46 @@ public class TransferService {
         TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, senderTransferringAmount, fee, senderAcc, receiverAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         return transferTransactionRepository.save(transferTransaction);
+    }
+
+    private Pair<Account, Account> checkIfTransferAvailableAndGetAccounts(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        AccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
+        Account senderAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(accountSenderId));
+        AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
+        Account receiverAcc = getReceiverAccountWithChecks(accountRepository.findByIdWithUser(accountReceiverId), userSenderId);
+
+        MonetaryAmount senderAccBalance = senderAcc.getBalance();
+        CurrencyUnit senderCurrency = senderAccBalance.getCurrency();
+        Money senderTransferringAmount = Money.of(amount, senderCurrency);
+        if (!senderAccBalance.isGreaterThanOrEqualTo(senderTransferringAmount)) {
+            throw new AccountStatusException("Your cannot transfer more than you have right now...");
+        }
+
+        if(senderAcc.getAccountType() == ACCOUNT_TYPE.TRANSACTIONAL){
+            TransactionalAccount tra = (TransactionalAccount) senderAcc;
+            applyFeeIfNecessary(tra, senderAccBalance, senderCurrency, senderTransferringAmount);
+        }
+
+        return Pair.of(senderAcc, receiverAcc);
+    }
+
+    private Account getReceiverAccountWithChecks(Optional<Account> optionalReceiver, Long userSenderId) throws ResourceNotFoundException, AccountStatusException, RightsViolationException {
+        Account receiverAcc = AccountService.getResourceOrThrowException(optionalReceiver);
+        if (receiverAcc.getAccountType() == ACCOUNT_TYPE.SAVING) {
+            if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK && receiverAcc.getAccountStatus() != ACCOUNT_STATUS.ACCUMULATING) {
+                AccountService.getAccountWithOkStatus(optionalReceiver);
+            }
+            SavingAccount savingAccount = (SavingAccount) receiverAcc;
+            if (!savingAccount.getSavingAccountPlan().isAdditionAllowed()) {
+                throw new RightsViolationException("You cannot transfer money to saving account that not have feature for it");
+            }
+            if (!userSenderId.equals(savingAccount.getUser().getId())) {
+                throw new RightsViolationException("You cannot transfer money to saving account that doesn`t belong to you");
+            }
+        } else  {
+            receiverAcc = AccountService.getAccountWithOkStatus(optionalReceiver);
+        }
+        return receiverAcc;
     }
 
     private Money applyConversionIfNecessary(Money senderTransferringAmount, CurrencyUnit receiverCurrency, CurrencyUnit senderCurrency) {

@@ -126,7 +126,8 @@ public class TransferTransactionTest {
         mockMvc.perform(put("/api/transfer/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(String.format("{\"amount\": \"%d\", \"senderAccountId\": %d, \"receiverAccountId\": %d}", 5, 1, 3)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andDo(print());
 
 
     }

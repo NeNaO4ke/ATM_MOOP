@@ -37,16 +37,13 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultHandler;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.Objects;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
@@ -180,7 +177,7 @@ public class AccountTest {
         jarAcc.setId(2L);
         SavingAccount savingAccount = accountService.createSavingAccountFromPlan(savingPlanInputDTO, user, card);
         Long savAccId = savingAccount.getId();
-        transferService.transferFromTransactional(1L, 1L, savAccId, BigDecimal.valueOf(60));
+        transferService.transfer(1L, 1L, savAccId, BigDecimal.valueOf(60));
         savingAccount = accountService.fireAccumulatingSavingAccount(savAccId, 1L);
         TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), null, savingAccount, jarAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
@@ -249,7 +246,7 @@ public class AccountTest {
         jarAcc.setId(2L);
         SavingAccount savingAccount = accountService.createSavingAccountFromPlan(savingPlanInputDTO, user, card);
         Long savAccId = savingAccount.getId();
-        transferService.transferFromTransactional(1L, 1L, savAccId, BigDecimal.valueOf(60));
+        transferService.transfer(1L, 1L, savAccId, BigDecimal.valueOf(60));
         return savingAccount;
     }
 

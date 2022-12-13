@@ -70,7 +70,7 @@ public class CardService implements UserDetailsService, CardServiceI {
         if (!newPin.matches("\\d+") || newPin.length() != 4)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pin code is invalid! Must be exact 4 digits.");
         if (Objects.equals(newPin, card.getPin()))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "New pin code cannot be the same as old!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Your new and previous pin code should not match.");
         cardRepository.updatePinByNumber(newPin, card.getNumber());
     }
 
@@ -125,6 +125,6 @@ public class CardService implements UserDetailsService, CardServiceI {
 
         boolean contains = optionalATM.get().getBanks().contains(optionalCard.get().getBank());
         if (!contains)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This atm does not have support of your bank.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This card is not supported by this ATM");
     }
 }

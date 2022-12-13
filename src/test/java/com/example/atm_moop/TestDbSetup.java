@@ -18,7 +18,6 @@ import org.springframework.test.context.ActiveProfiles;
 import java.math.BigDecimal;
 import java.time.*;
 import java.util.Date;
-import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -117,8 +116,8 @@ public class TestDbSetup {
 
         genAccountRepository.save(mykolaSavingAcc);
 
-        transferService.transferFromTransactional(bohdan.getId(), bohdanAcc.getId(), romanAcc.getId(), BigDecimal.valueOf(15.60));
-        transferService.transferFromTransactional(roman.getId(), romanAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(666));
+        transferService.transfer(bohdan.getId(), bohdanAcc.getId(), romanAcc.getId(), BigDecimal.valueOf(15.60));
+        transferService.transfer(roman.getId(), romanAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(666));
 
     }
 

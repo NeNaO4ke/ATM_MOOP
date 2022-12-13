@@ -10,6 +10,7 @@ import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.RegularTransactionRepository;
+import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
 import com.example.atm_moop.task.QuartzRegularTransaction;
 import com.example.atm_moop.task.QuartzScheduledTransaction;
@@ -36,7 +37,10 @@ public class TransactionService implements TransactionServiceI {
 
     private final TransferTransactionRepository transferTransactionRepository;
     private final RegularTransactionRepository regularTransactionRepository;
+    private final TransactionalAccountRepository transactionalAccountRepository;
+
     private final AccountRepository<Account> accountRepository;
+
     private final TransferService transferService;
 
     private final Scheduler scheduler;
@@ -86,6 +90,30 @@ public class TransactionService implements TransactionServiceI {
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
+/*    @Transactional
+    public RegularTransaction createScheduledTransaction2(Long userSenderId, BigDecimal amount, Long senderAccountId, Long receiverAccountId, Instant scheduledTime) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
+        AccountService.confirmAccountsIsNotTheSame(senderAccountId, receiverAccountId);
+        TransactionalAccount senderAcc = AccountService.getAccountWithOkStatus(transactionalAccountRepository.findById(senderAccountId));
+        AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
+        Account receiverAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(senderAccountId));
+        return senderAccount.map(account -> {
+            Optional<Account> receiverAccount = accountRepository.findById(transactionDTO.getReceiverAccountId());
+            return receiverAccount.map(receiverAcc -> {
+                Money amount = Money.of(transactionDTO.getAmount(), account.getBalance().getCurrency());
+                Timestamp timestamp = new Timestamp(transactionDTO.getScheduledTime().toEpochMilli());
+                RegularTransaction regularTransaction = regularTransactionRepository.save(RegularTransaction.createScheduledTransactionOf(TRANSACTION_TYPE.TRANSFERRING, amount, account, receiverAcc, timestamp));
+                JobDetail jobDetail = buildJobDetailForScheduled(regularTransaction.getId());
+                Trigger trigger = buildJobTriggerForScheduled(jobDetail, transactionDTO.getScheduledTime());
+                try {
+                    scheduler.scheduleJob(jobDetail, trigger);
+                } catch (SchedulerException e) {
+                    throw new RuntimeException(e);
+                }
+                return regularTransaction;
+            }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+    }*/
+
     @Override
     @Transactional
     public void fireScheduledTransaction(Long transactionId) throws ResourceNotFoundException {
@@ -94,7 +122,7 @@ public class TransactionService implements TransactionServiceI {
                     Long fromAccountId = regularTransaction.getFromAccount().getId();
                     User user = accountRepository.findByIdWithUser(fromAccountId).get().getUser();
                     try {
-                        transferService.transferFromTransactional(user.getId(),
+                        transferService.transfer(user.getId(),
                                 fromAccountId,
                                 regularTransaction.getToAccount().getId(),
                                 regularTransaction.getAmount().getNumber().numberValue(BigDecimal.class));
@@ -150,7 +178,7 @@ public class TransactionService implements TransactionServiceI {
                     Long fromAccountId = regularTransaction.getFromAccount().getId();
                     User user = accountRepository.findByIdWithUser(fromAccountId).get().getUser();
                     try {
-                        transferService.transferFromTransactional(user.getId(),
+                        transferService.transfer(user.getId(),
                                 fromAccountId,
                                 regularTransaction.getToAccount().getId(),
                                 regularTransaction.getAmount().getNumber().numberValue(BigDecimal.class));

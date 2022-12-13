@@ -120,8 +120,8 @@ public class CardTest {
     @WithUserDetails(value = MOCK_USER)
     public void updatePin() throws Exception {
         mockMvc.perform(put("/api/card/update-pin")
-                        .contentType(MediaType.MULTIPART_FORM_DATA_VALUE)
-                        .requestAttr("pin", "1111"))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(String.format("{\"pin\": \"%s\"}", "1111")))
                 .andExpect(status().isOk());
     }
 

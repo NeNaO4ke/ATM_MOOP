@@ -127,18 +127,18 @@ public class DbDataInserter {
         mykolaAcc = genAccountRepository.save(mykolaAcc);
 
         patronSavingAcc = genAccountRepository.save(patronSavingAcc);
-        transferService.transferFromTransactional(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(3000));
+        transferService.transfer(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(3000));
         accountService.fireAccumulatingSavingAccount(patronSavingAcc.getId(), patron.getId());
-        transferService.transferFromTransactional(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(400));
+        transferService.transfer(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(400));
 
         mykolaUsdAcc = genAccountRepository.save(mykolaUsdAcc);
         genAccountRepository.save(mykolaSavingAcc);
 
-        transferService.transferFromTransactional(mykola.getId(), mykolaUsdAcc.getId(), mykolaSavingAcc.getId(), BigDecimal.valueOf(170));
+        transferService.transfer(mykola.getId(), mykolaUsdAcc.getId(), mykolaSavingAcc.getId(), BigDecimal.valueOf(170));
 
-        transferService.transferFromTransactional(roman.getId(), romanAcc.getId(), mykolaAcc.getId(), BigDecimal.valueOf(666));
+        transferService.transfer(roman.getId(), romanAcc.getId(), mykolaAcc.getId(), BigDecimal.valueOf(666));
 
-        transferService.transferFromTransactional(patron.getId(), patronAcc.getId(), romanAcc.getId(), BigDecimal.valueOf(500));
+        transferService.transfer(patron.getId(), patronAcc.getId(), romanAcc.getId(), BigDecimal.valueOf(500));
 
 
 
@@ -146,7 +146,7 @@ public class DbDataInserter {
 
         TransactionalAccount patronEuroAcc = TransactionalAccount.createFromPlan(TransactionalAccountPlan.LIGHT, "Credit EURO acc for Patron", "EUR", patron, cardPatron);
         patronEuroAcc = genAccountRepository.save(patronEuroAcc);
-        transferService.transferFromTransactional(bohdan.getId(), bohdanAcc.getId(), mykolaUsdAcc.getId(), BigDecimal.valueOf(300));
+        transferService.transfer(bohdan.getId(), bohdanAcc.getId(), mykolaUsdAcc.getId(), BigDecimal.valueOf(300));
 
     //    Money conversion might take a long time and not so much currencies supported
     //    transferService.transferFromTransactional(patron.getId(), patronEuroAcc.getId(), mykolaSavingAcc.getId(), BigDecimal.valueOf(200));

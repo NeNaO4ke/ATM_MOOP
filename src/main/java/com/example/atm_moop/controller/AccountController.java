@@ -100,9 +100,10 @@ public class AccountController {
         return new ResponseEntity<>(accountService.fireAccumulatingSavingAccount(accountId, cardAtmUserDetails.getCard().getUser().getId()), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/auth", produces = MediaType.TEXT_PLAIN_VALUE)
-    private String getAuth(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails) {
-        return cardAtmUserDetails.toString();
+    @GetMapping(path = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+    private CardAtmUserDetails getAuth(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails) {
+        return cardAtmUserDetails;
     }
+
 
 }
