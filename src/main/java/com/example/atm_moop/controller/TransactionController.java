@@ -6,6 +6,9 @@ import com.example.atm_moop.domain.RegularTransactionInfo;
 import com.example.atm_moop.domain.TransferTransactionInfo;
 import com.example.atm_moop.dto.RegularTransactionDTO;
 import com.example.atm_moop.dto.ScheduledTransactionDTO;
+import com.example.atm_moop.exception.AccountStatusException;
+import com.example.atm_moop.exception.ResourceNotFoundException;
+import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.projection.ProjectionFactory;
@@ -14,8 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @RestController
@@ -39,19 +45,25 @@ public class TransactionController {
     }
 
     @PostMapping(value = "/scheduled")
-    private ResponseEntity<?> createScheduled(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid ScheduledTransactionDTO scheduledTransactionDTO){
-        RegularTransaction scheduledTransaction = transactionService.createScheduledTransaction(scheduledTransactionDTO, cardAtmUserDetails);
+    private ResponseEntity<?> createScheduled(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid ScheduledTransactionDTO dto) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        RegularTransaction scheduledTransaction = transactionService.createScheduledTransaction(cardAtmUserDetails.getCard().getUser().getId(), dto.getAmount(), dto.getSenderAccountId(), dto.getReceiverAccountId(), dto.getScheduledTime());
         ProjectionFactory pf = new SpelAwareProxyProjectionFactory();
         RegularTransactionInfo rp = pf.createProjection(RegularTransactionInfo.class, scheduledTransaction);
-        return new ResponseEntity<>(rp,HttpStatus.OK);
+        return new ResponseEntity<>(rp, HttpStatus.OK);
     }
 
     @PostMapping(value = "/regular")
-    private ResponseEntity<?> createRegular(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid RegularTransactionDTO regularTransactionDTO){
-        RegularTransaction regularTransaction = transactionService.createRegularTransaction(regularTransactionDTO, cardAtmUserDetails);
+    private ResponseEntity<?> createRegular(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @RequestBody @Valid RegularTransactionDTO dto) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        Period period = null;
+        try {
+            period = Period.parse(dto.getPeriod());
+        } catch (DateTimeParseException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+        RegularTransaction regularTransaction = transactionService.createRegularTransaction(cardAtmUserDetails.getCard().getUser().getId(), dto.getAmount(), dto.getSenderAccountId(), dto.getReceiverAccountId(), dto.getScheduledTime(), period , dto.getInitialRepeats());
         ProjectionFactory pf = new SpelAwareProxyProjectionFactory();
         RegularTransactionInfo rp = pf.createProjection(RegularTransactionInfo.class, regularTransaction);
-        return new ResponseEntity<>(rp,HttpStatus.OK);
+        return new ResponseEntity<>(rp, HttpStatus.OK);
     }
 
 }

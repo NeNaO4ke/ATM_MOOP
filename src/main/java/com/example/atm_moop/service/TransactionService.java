@@ -17,6 +17,7 @@ import com.example.atm_moop.task.QuartzScheduledTransaction;
 import lombok.RequiredArgsConstructor;
 import org.javamoney.moneta.Money;
 import org.quartz.*;
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,50 +70,24 @@ public class TransactionService implements TransactionServiceI {
 
     @Override
     @Transactional
-    public RegularTransaction createScheduledTransaction(ScheduledTransactionDTO transactionDTO, CardAtmUserDetails cardAtmUserDetails) {
-        AccountService.confirmAccountsIsNotTheSame(transactionDTO.getSenderAccountId(), transactionDTO.getReceiverAccountId());
-        Optional<Account> senderAccount = accountRepository.findById(transactionDTO.getSenderAccountId());
-        return senderAccount.map(account -> {
-            Optional<Account> receiverAccount = accountRepository.findById(transactionDTO.getReceiverAccountId());
-            return receiverAccount.map(receiverAcc -> {
-                Money amount = Money.of(transactionDTO.getAmount(), account.getBalance().getCurrency());
-                Timestamp timestamp = new Timestamp(transactionDTO.getScheduledTime().toEpochMilli());
-                RegularTransaction regularTransaction = regularTransactionRepository.save(RegularTransaction.createScheduledTransactionOf(TRANSACTION_TYPE.TRANSFERRING, amount, account, receiverAcc, timestamp));
-                JobDetail jobDetail = buildJobDetailForScheduled(regularTransaction.getId());
-                Trigger trigger = buildJobTriggerForScheduled(jobDetail, transactionDTO.getScheduledTime());
-                try {
-                    scheduler.scheduleJob(jobDetail, trigger);
-                } catch (SchedulerException e) {
-                    throw new RuntimeException(e);
-                }
-                return regularTransaction;
-            }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-    }
+    public RegularTransaction createScheduledTransaction(Long userSenderId, BigDecimal sendingAmount, Long senderAccountId, Long receiverAccountId, Instant scheduledTime) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
+        Pair<Account, Account> accountAccountPair = transferService.checkIfTransferAvailableAndGetAccounts(userSenderId, senderAccountId, receiverAccountId, sendingAmount);
 
-/*    @Transactional
-    public RegularTransaction createScheduledTransaction2(Long userSenderId, BigDecimal amount, Long senderAccountId, Long receiverAccountId, Instant scheduledTime) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
-        AccountService.confirmAccountsIsNotTheSame(senderAccountId, receiverAccountId);
-        TransactionalAccount senderAcc = AccountService.getAccountWithOkStatus(transactionalAccountRepository.findById(senderAccountId));
-        AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
-        Account receiverAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(senderAccountId));
-        return senderAccount.map(account -> {
-            Optional<Account> receiverAccount = accountRepository.findById(transactionDTO.getReceiverAccountId());
-            return receiverAccount.map(receiverAcc -> {
-                Money amount = Money.of(transactionDTO.getAmount(), account.getBalance().getCurrency());
-                Timestamp timestamp = new Timestamp(transactionDTO.getScheduledTime().toEpochMilli());
-                RegularTransaction regularTransaction = regularTransactionRepository.save(RegularTransaction.createScheduledTransactionOf(TRANSACTION_TYPE.TRANSFERRING, amount, account, receiverAcc, timestamp));
-                JobDetail jobDetail = buildJobDetailForScheduled(regularTransaction.getId());
-                Trigger trigger = buildJobTriggerForScheduled(jobDetail, transactionDTO.getScheduledTime());
-                try {
-                    scheduler.scheduleJob(jobDetail, trigger);
-                } catch (SchedulerException e) {
-                    throw new RuntimeException(e);
-                }
-                return regularTransaction;
-            }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-    }*/
+        Account senderAcc = accountAccountPair.getFirst();
+        Account receiverAcc = accountAccountPair.getSecond();
+
+        Money amount = Money.of(sendingAmount, senderAcc.getBalance().getCurrency());
+        Timestamp timestamp = new Timestamp(scheduledTime.toEpochMilli());
+        RegularTransaction regularTransaction = regularTransactionRepository.save(RegularTransaction.createScheduledTransactionOf(TRANSACTION_TYPE.TRANSFERRING, amount, senderAcc, receiverAcc, timestamp));
+        JobDetail jobDetail = buildJobDetailForScheduled(regularTransaction.getId());
+        Trigger trigger = buildJobTriggerForScheduled(jobDetail, scheduledTime);
+        try {
+            scheduler.scheduleJob(jobDetail, trigger);
+        } catch (SchedulerException e) {
+            throw new RuntimeException(e);
+        }
+        return regularTransaction;
+    }
 
     @Override
     @Transactional
@@ -137,27 +112,23 @@ public class TransactionService implements TransactionServiceI {
 
     @Override
     @Transactional
-    public RegularTransaction createRegularTransaction(RegularTransactionDTO transactionDTO, CardAtmUserDetails cardAtmUserDetails) {
-        AccountService.confirmAccountsIsNotTheSame(transactionDTO.getSenderAccountId(), transactionDTO.getReceiverAccountId());
-        return accountRepository.findById(transactionDTO.getSenderAccountId())
-                .map(account -> accountRepository.findById(transactionDTO.getReceiverAccountId())
-                        .map(receiverAcc -> {
-                            Money amount = Money.of(transactionDTO.getAmount(), account.getBalance().getCurrency());
-                            Timestamp timestamp = null;
-                            Instant scheduledTime = transactionDTO.getScheduledTime();
-                            if (scheduledTime != null) {
-                                if (scheduledTime.isAfter(Instant.now())) {
-                                    timestamp = new Timestamp(scheduledTime.toEpochMilli());
-                                }
-                            }
-                            Integer initialRepeats = transactionDTO.getInitialRepeats();
-                            Period period = Period.parse(transactionDTO.getPeriod());
-                            RegularTransaction transaction = RegularTransaction.createRegularTransaction(TRANSACTION_TYPE.TRANSFERRING, amount, account, receiverAcc, period, timestamp, initialRepeats, initialRepeats);
-                            transaction = regularTransactionRepository.save(transaction);
-                            scheduleNext(scheduledTime, transaction);
-                            return transaction;
-                        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+    public RegularTransaction createRegularTransaction(Long userSenderId, BigDecimal sendingAmount, Long senderAccountId, Long receiverAccountId, Instant scheduledTime, Period period, Integer initialRepeats) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
+        Pair<Account, Account> accountAccountPair = transferService.checkIfTransferAvailableAndGetAccounts(userSenderId, senderAccountId, receiverAccountId, sendingAmount);
+
+        Account senderAcc = accountAccountPair.getFirst();
+        Account receiverAcc = accountAccountPair.getSecond();
+
+        Money amount = Money.of(sendingAmount, senderAcc.getBalance().getCurrency());
+        Timestamp timestamp = null;
+        if (scheduledTime != null) {
+            if (scheduledTime.isAfter(Instant.now())) {
+                timestamp = new Timestamp(scheduledTime.toEpochMilli());
+            }
+        }
+        RegularTransaction transaction = RegularTransaction.createRegularTransaction(TRANSACTION_TYPE.TRANSFERRING, amount, senderAcc, receiverAcc, period, timestamp, initialRepeats, initialRepeats);
+        transaction = regularTransactionRepository.save(transaction);
+        scheduleNext(scheduledTime, transaction);
+        return transaction;
     }
 
     private void scheduleNext(Instant scheduledTime, RegularTransaction regularTransaction) {

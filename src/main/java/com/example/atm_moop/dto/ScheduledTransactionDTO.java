@@ -17,17 +17,17 @@ import java.time.Instant;
 public class ScheduledTransactionDTO {
 
     @NotNull
-    @Positive
+    @Positive(message = "Amount must be positive!")
     BigDecimal amount;
 
-    @NotNull
+    @NotNull(message = "Sender account id must not be null!")
     Long senderAccountId;
 
-    @NotNull
+    @NotNull(message = "Receiver account id must not be null!")
     Long receiverAccountId;
 
     @NotNull
-    @Future
+    @Future(message = "Scheduled date is not in future!")
     Instant scheduledTime;
 
 }

@@ -42,6 +42,7 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestBody;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
@@ -142,7 +143,8 @@ public class RegularTransactionTest {
 
         mockMvc.perform(post("/api/transaction/regular")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": %d, \"senderAccountId\": %d, \"receiverAccountId\": %d, \"scheduledTime\": %d, \"period\": %s, \"initialRepeats\": %d}", 5, 1, 2, Instant.now().getEpochSecond() + 3, "\"P2Y\"", 0)))
+                        .content(String.format("{\"amount\": %d, \"senderAccountId\": %d, \"receiverAccountId\": %d, \"scheduledTime\": %d, \"period\": %s, \"initialRepeats\": %d}", 5, 1, 2, Instant.now().getEpochSecond() + 3, "\"P1M\"", 0)))
+                .andDo(print())
                 .andExpect(status().isOk());
 
     }

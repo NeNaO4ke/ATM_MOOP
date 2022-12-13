@@ -41,31 +41,23 @@ public class TransferService {
     @Transactional
     public TransferTransaction transfer(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
 
-        AccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
-        Account senderAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(accountSenderId));
-        AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
-        Account receiverAcc = getReceiverAccountWithChecks(accountRepository.findByIdWithUser(accountReceiverId), userSenderId);
+        Pair<Account, Account> accountAccountPair = checkIfTransferAvailableAndGetAccounts(userSenderId, accountSenderId, accountReceiverId, amount);
 
+        Account senderAcc = accountAccountPair.getFirst();
+        Account receiverAcc = accountAccountPair.getSecond();
 
         MonetaryAmount receiverAccBalance = receiverAcc.getBalance();
         MonetaryAmount senderAccBalance = senderAcc.getBalance();
 
-
         CurrencyUnit senderCurrency = senderAccBalance.getCurrency();
-
         Money senderTransferringAmount = Money.of(amount, senderCurrency);
-        if (!senderAccBalance.isGreaterThanOrEqualTo(senderTransferringAmount)) {
-            throw new AccountStatusException("Your cannot transfer more than you have right now...");
-        }
 
-        CurrencyUnit receiverCurrency = receiverAccBalance.getCurrency();
-
-        Money receiverTransferringAmount = applyConversionIfNecessary(senderTransferringAmount, receiverCurrency, senderCurrency);
+        Money receiverTransferringAmount = applyConversionIfNecessary(senderTransferringAmount, receiverAccBalance.getCurrency(), senderCurrency);
 
         Money withFee = senderTransferringAmount;
         BigDecimal fee = null;
 
-        if(senderAcc.getAccountType() == ACCOUNT_TYPE.TRANSACTIONAL){
+        if (senderAcc.getAccountType() == ACCOUNT_TYPE.TRANSACTIONAL) {
             TransactionalAccount tra = (TransactionalAccount) senderAcc;
             withFee = applyFeeIfNecessary(tra, senderAccBalance, senderCurrency, senderTransferringAmount);
             if (!withFee.isEqualTo(senderTransferringAmount)) {
@@ -78,21 +70,23 @@ public class TransferService {
 
         senderAcc.setBalance(newSenderBalance);
         receiverAcc.setBalance(newReceiverBalance);
+
+        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, senderTransferringAmount, fee, senderAcc, receiverAcc);
+        //   transferTransaction = transferTransactionRepository.save(transferTransaction);
         if (receiverAcc.getAccountStatus() == ACCOUNT_STATUS.ACCUMULATING) {
             SavingAccount savingAccount = (SavingAccount) receiverAcc;
             savingAccount.setCumulativeAmount(savingAccount.getCumulativeAmount().add(MoneyUtil.extractAmount(receiverTransferringAmount)));
             savingAccount.setCurrentEstimatedAmount(savingAccount.getCurrentEstimatedAmount().add(MoneyUtil.extractAmount(receiverTransferringAmount)));
             accountRepository.saveAll(List.of(senderAcc, savingAccount));
         } else {
-            accountRepository.saveAll(List.of(senderAcc, receiverAcc));
+               accountRepository.saveAll(List.of(senderAcc, receiverAcc));
         }
 
-        TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, senderTransferringAmount, fee, senderAcc, receiverAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         return transferTransactionRepository.save(transferTransaction);
     }
 
-    private Pair<Account, Account> checkIfTransferAvailableAndGetAccounts(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+    Pair<Account, Account> checkIfTransferAvailableAndGetAccounts(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
         AccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
         Account senderAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(accountSenderId));
         AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
@@ -105,7 +99,7 @@ public class TransferService {
             throw new AccountStatusException("Your cannot transfer more than you have right now...");
         }
 
-        if(senderAcc.getAccountType() == ACCOUNT_TYPE.TRANSACTIONAL){
+        if (senderAcc.getAccountType() == ACCOUNT_TYPE.TRANSACTIONAL) {
             TransactionalAccount tra = (TransactionalAccount) senderAcc;
             applyFeeIfNecessary(tra, senderAccBalance, senderCurrency, senderTransferringAmount);
         }
@@ -126,7 +120,7 @@ public class TransferService {
             if (!userSenderId.equals(savingAccount.getUser().getId())) {
                 throw new RightsViolationException("You cannot transfer money to saving account that doesn`t belong to you");
             }
-        } else  {
+        } else {
             receiverAcc = AccountService.getAccountWithOkStatus(optionalReceiver);
         }
         return receiverAcc;
