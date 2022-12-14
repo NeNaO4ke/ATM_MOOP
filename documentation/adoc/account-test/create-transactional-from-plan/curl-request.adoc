@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/account/transactional/plan' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"plan": "MEDIUM", "currencyUnitCode": "USD", "accountName": "Test acc"}'
+----

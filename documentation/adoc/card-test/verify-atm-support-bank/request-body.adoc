@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"cardNumber": "2440735783328557", "atmId": 1}
+----

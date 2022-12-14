@@ -1,0 +1,9 @@
+[source,http,options="nowrap"]
+----
+POST /api/account/transactional/plan HTTP/1.1
+Content-Type: application/json
+Content-Length: 72
+Host: localhost:8080
+
+{"plan": "MEDIUM", "currencyUnitCode": "USD", "accountName": "Test acc"}
+----

@@ -11,10 +11,11 @@ import java.math.BigDecimal;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TransactionalAccountPlan {
 
-    PLAIN("Plain",false, BigDecimal.ZERO, BigDecimal.ZERO),
-    LIGHT("Light",true, BigDecimal.valueOf(1000), BigDecimal.valueOf(5)),
-    MEDIUM("Medium",true, BigDecimal.valueOf(5000), BigDecimal.valueOf(4));
+    PLAIN("PLAIN","Plain",false, BigDecimal.ZERO, BigDecimal.ZERO),
+    LIGHT("LIGHT","Light",true, BigDecimal.valueOf(1000), BigDecimal.valueOf(5)),
+    MEDIUM("MEDIUM","Medium",true, BigDecimal.valueOf(5000), BigDecimal.valueOf(4));
 
+    private final String id;
     private final String planName;
     private final boolean isLendingAvailable;
     private final BigDecimal creditMoneyAmount;

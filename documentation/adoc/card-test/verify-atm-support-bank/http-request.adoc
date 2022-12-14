@@ -1,0 +1,9 @@
+[source,http,options="nowrap"]
+----
+POST /api/card/verify-atm-support-bank HTTP/1.1
+Content-Type: application/json
+Content-Length: 46
+Host: localhost:8080
+
+{"cardNumber": "2440735783328557", "atmId": 1}
+----

@@ -1,0 +1,6 @@
+[[resources-login-test-login]]
+=== { class - name } / { method - name }
+
+include::auto-method-path.adoc[]
+
+include::auto-description.adoc[]

@@ -1,0 +1,24 @@
+|===
+|Path|Type|Optional|Description
+
+|amount
+|Decimal
+|false
+|Amount must be positive!.
+
+|senderAccountId
+|Integer
+|false
+|
+
+|receiverAccountId
+|Integer
+|false
+|
+
+|scheduledTime
+|Array[Object]
+|false
+|Scheduled date is not in future!.
+
+|===

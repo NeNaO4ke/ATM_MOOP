@@ -1,0 +1,1 @@
+`+PATCH /api/account/saving/terminate-contract/{accountId}+`

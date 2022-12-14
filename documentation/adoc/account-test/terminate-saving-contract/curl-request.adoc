@@ -1,0 +1,4 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/account/saving/terminate-contract/11' -i -X PATCH
+----

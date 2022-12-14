@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"plan": 2, "currencyUnitCode": "USD", "accountName": "Test acc name"}
+----

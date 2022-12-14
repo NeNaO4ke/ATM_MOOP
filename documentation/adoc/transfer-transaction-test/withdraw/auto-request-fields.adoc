@@ -1,0 +1,9 @@
+|===
+|Path|Type|Optional|Description
+
+|amount
+|Decimal
+|false
+|Must be positive.
+
+|===

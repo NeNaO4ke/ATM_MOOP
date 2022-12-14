@@ -1,0 +1,19 @@
+|===
+|Path|Type|Optional|Description
+
+|amount
+|Decimal
+|false
+|Must be positive.
+
+|senderAccountId
+|Integer
+|false
+|
+
+|receiverAccountId
+|Integer
+|false
+|
+
+|===

@@ -1,0 +1,1 @@
+`+POST /api/card/verify-atm-support-bank+`

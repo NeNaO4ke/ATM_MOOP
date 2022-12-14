@@ -1,0 +1,4 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/account/saving/fire-contract/14' -i -X PATCH
+----

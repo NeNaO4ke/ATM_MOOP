@@ -1,0 +1,58 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 948
+
+{
+  "id" : 14,
+  "accountType" : "SAVING",
+  "accountStatus" : "ACCUMULATING",
+  "accountName" : "New acc",
+  "balance" : {
+    "currency" : "UAH",
+    "amount" : 60.0
+  },
+  "user" : {
+    "id" : 1,
+    "firstName" : null,
+    "middleName" : null,
+    "lastName" : null,
+    "birthdayDate" : null,
+    "userStatus" : null,
+    "role" : [ ]
+  },
+  "card" : {
+    "number" : "2440735783328557",
+    "cardStatus" : null
+  },
+  "savingAccountPlan" : {
+    "id" : "LONG",
+    "planName" : "Long",
+    "interestRate" : 9,
+    "paymentStepPeriod" : {
+      "period" : "1 month"
+    },
+    "totalPeriod" : {
+      "period" : "9 months"
+    },
+    "initialSteps" : 9,
+    "additionAllowed" : true
+  },
+  "paymentStepsLeft" : 9,
+  "accumulateStartTime" : 1670977620168,
+  "autoRenewal" : false,
+  "cumulativeAmount" : 60,
+  "currentEstimatedAmount" : 60,
+  "daysUntilNextPayment" : 31,
+  "capitalizationOn" : true
+}
+----

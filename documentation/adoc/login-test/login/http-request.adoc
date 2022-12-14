@@ -1,0 +1,8 @@
+[source,http,options="nowrap"]
+----
+POST /login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Host: localhost:8080
+
+number=2440735783328557&pin=5384&atm=1
+----

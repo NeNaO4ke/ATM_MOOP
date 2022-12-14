@@ -1,0 +1,67 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 979
+
+[ {
+  "id" : 4,
+  "startTime" : 1670977622862,
+  "fromAccount" : {
+    "id" : 1
+  },
+  "toAccount" : {
+    "id" : 4
+  },
+  "amount" : {
+    "currency" : "UAH",
+    "amount" : 666.0
+  },
+  "transactionStatus" : "COMMITTED",
+  "transactionType" : "TRANSFERRING",
+  "modifyTime" : 1670977622862,
+  "fee" : null
+}, {
+  "id" : 5,
+  "startTime" : 1670977622886,
+  "fromAccount" : {
+    "id" : 3
+  },
+  "toAccount" : {
+    "id" : 1
+  },
+  "amount" : {
+    "currency" : "UAH",
+    "amount" : 500.0
+  },
+  "transactionStatus" : "COMMITTED",
+  "transactionType" : "TRANSFERRING",
+  "modifyTime" : 1670977622886,
+  "fee" : 20.0
+}, {
+  "id" : 20,
+  "startTime" : 1670977624965,
+  "fromAccount" : {
+    "id" : 1
+  },
+  "toAccount" : {
+    "id" : 3
+  },
+  "amount" : {
+    "currency" : "UAH",
+    "amount" : 5.0
+  },
+  "transactionStatus" : "COMMITTED",
+  "transactionType" : "TRANSFERRING",
+  "modifyTime" : 1670977624965,
+  "fee" : null
+} ]
+----

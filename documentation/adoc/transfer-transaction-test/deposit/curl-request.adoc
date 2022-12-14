@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/transfer/deposit' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"amount": "50"}'
+----

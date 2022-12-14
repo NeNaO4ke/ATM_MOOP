@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/transfer/' -i -X PUT \
+    -H 'Content-Type: application/json' \
+    -d '{"amount": "5", "senderAccountId": 1, "receiverAccountId": 3}'
+----

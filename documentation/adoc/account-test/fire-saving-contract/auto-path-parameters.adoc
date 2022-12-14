@@ -1,0 +1,9 @@
+|===
+|Parameter|Type|Optional|Description
+
+|accountId
+|Integer
+|false
+|
+
+|===

@@ -488,7 +488,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_example_request">Example request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">$ curl 'http://localhost:8080/api/account/saving/10' -i -X GET</code></pre>
+<pre class="CodeRay highlight"><code data-lang="bash">$ curl 'http://localhost:8080/api/account/saving/9' -i -X GET</code></pre>
 </div>
 </div>
 </div>
@@ -497,22 +497,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
 Content-Type: application/json
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
-X-Frame-Options: DENY
-Content-Length: 918
+Content-Length: 947
 
 {
-  &quot;id&quot; : 10,
+  &quot;id&quot; : 9,
   &quot;accountType&quot; : &quot;SAVING&quot;,
-  &quot;accountStatus&quot; : &quot;OK&quot;,
+  &quot;accountStatus&quot; : &quot;ACCUMULATING&quot;,
   &quot;accountName&quot; : &quot;New acc&quot;,
   &quot;balance&quot; : {
-    &quot;currency&quot; : &quot;USD&quot;,
+    &quot;currency&quot; : &quot;UAH&quot;,
     &quot;amount&quot; : 60.0
   },
   &quot;user&quot; : {
@@ -529,6 +531,7 @@ Content-Length: 918
     &quot;cardStatus&quot; : null
   },
   &quot;savingAccountPlan&quot; : {
+    &quot;id&quot; : &quot;LONG&quot;,
     &quot;planName&quot; : &quot;Long&quot;,
     &quot;interestRate&quot; : 9,
     &quot;paymentStepPeriod&quot; : {
@@ -540,12 +543,12 @@ Content-Length: 918
     &quot;initialSteps&quot; : 9,
     &quot;additionAllowed&quot; : true
   },
-  &quot;paymentStepsLeft&quot; : null,
-  &quot;accumulateStartTime&quot; : null,
+  &quot;paymentStepsLeft&quot; : 9,
+  &quot;accumulateStartTime&quot; : 1670977218794,
   &quot;autoRenewal&quot; : false,
-  &quot;cumulativeAmount&quot; : null,
-  &quot;currentEstimatedAmount&quot; : null,
-  &quot;daysUntilNextPayment&quot; : null,
+  &quot;cumulativeAmount&quot; : 60,
+  &quot;currentEstimatedAmount&quot; : 60,
+  &quot;daysUntilNextPayment&quot; : 31,
   &quot;capitalizationOn&quot; : true
 }</code></pre>
 </div>
@@ -555,7 +558,7 @@ Content-Length: 918
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-12-10 08:29:55 +0200
+Last updated 2022-12-14 02:20:19 +0200
 </div>
 </div>
 </body>

@@ -17,12 +17,13 @@ import java.time.temporal.ChronoUnit;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum SavingAccountPlan {
 
-    PLAIN("Plain", null, null, null, null, true),
-    STANDARD("Standard", BigDecimal.valueOf(7), Period.ofMonths(1), Period.ofMonths(3), 3, true),
-    LONG("Long", BigDecimal.valueOf(9), Period.ofMonths(1), Period.ofMonths(9), 9, true),
-    QUICK("Quick", BigDecimal.valueOf(4), Period.ofWeeks(1), Period.ofWeeks(3), 3, false),
-    EXTRA_QUICK("QuickExtra", BigDecimal.valueOf(3), Period.ofDays(1), Period.ofDays(7), 7, false);
+    PLAIN("PLAIN", "Plain", null, null, null, null, true),
+    STANDARD("STANDARD","Standard", BigDecimal.valueOf(7), Period.ofMonths(1), Period.ofMonths(3), 3, true),
+    LONG("LONG","Long", BigDecimal.valueOf(9), Period.ofMonths(1), Period.ofMonths(9), 9, true),
+    QUICK("QUICK","Quick", BigDecimal.valueOf(4), Period.ofWeeks(1), Period.ofWeeks(3), 3, false),
+    EXTRA_QUICK("EXTRA_QUICK","QuickExtra", BigDecimal.valueOf(3), Period.ofDays(1), Period.ofDays(7), 7, false);
 
+    private final String id;
     private final String planName;
 
     private final BigDecimal interestRate;

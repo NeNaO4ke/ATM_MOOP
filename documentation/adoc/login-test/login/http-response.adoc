@@ -1,0 +1,48 @@
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 656
+
+{
+  "card" : {
+    "number" : "2440735783328557",
+    "cardStatus" : "OK",
+    "user" : {
+      "id" : 1,
+      "firstName" : "Roman",
+      "middleName" : null,
+      "lastName" : null,
+      "birthdayDate" : null,
+      "userStatus" : "OK",
+      "role" : [ ]
+    },
+    "bank" : {
+      "id" : 1,
+      "name" : "9 vbyv kozu kulakom"
+    }
+  },
+  "atm" : {
+    "id" : 1,
+    "address" : "Khreschatyk 1 st.",
+    "atmStatus" : "IDLE",
+    "banks" : [ {
+      "id" : 1,
+      "name" : "9 vbyv kozu kulakom"
+    }, {
+      "id" : 2,
+      "name" : "Ecofascism"
+    }, {
+      "id" : 3,
+      "name" : "Patron"
+    } ]
+  }
+}
+----

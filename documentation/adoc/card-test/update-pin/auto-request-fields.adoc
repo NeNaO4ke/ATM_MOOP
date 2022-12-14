@@ -1,0 +1,9 @@
+|===
+|Path|Type|Optional|Description
+
+|pin
+|String
+|false
+|Must match the regular expression `\d{4}`.
+
+|===

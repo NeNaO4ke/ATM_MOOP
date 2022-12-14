@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/api/card/verify-atm-support-bank' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"cardNumber": "2440735783328557", "atmId": 1}'
+----

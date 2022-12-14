@@ -1,0 +1,1 @@
+`+PATCH /api/account/saving/change-plan/{accountId}/{newPlan}+`

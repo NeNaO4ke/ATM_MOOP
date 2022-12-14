@@ -1,0 +1,6 @@
+[source,bash]
+----
+$ curl 'http://localhost:8080/login' -i -X POST \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -d 'number=2440735783328557&pin=9999&atm=1'
+----

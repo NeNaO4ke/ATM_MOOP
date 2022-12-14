@@ -141,19 +141,17 @@ public class AccountTest {
     @WithUserDetails(value = MOCK_USER)
     public void getSavingById() throws Exception {
         SavingAccount savingAccount = createSaveAccWithMoney();
+        savingAccount = accountService.fireAccumulatingSavingAccount(savingAccount.getId(), 1L);
         mockMvc.perform(get("/api/account/saving/" + savingAccount.getId()))
                 .andExpect(status().isOk()).andDo(print());
     }
 
     @Test
     @WithUserDetails(value = MOCK_USER)
-    public void getAccountById() throws Exception {
-        SavingAccount savingAccount = createSaveAccWithMoney();
+    public void getTransactionalAccountById() throws Exception {
         mockMvc.perform(get("/api/account/1"))
                 .andExpect(status().isOk()).andDo(print());
 
-        mockMvc.perform(get("/api/account/" + savingAccount.getId()))
-                .andExpect(status().isOk()).andDo(print());
     }
 
     @Test
@@ -233,6 +231,30 @@ public class AccountTest {
                 .andExpect(status().isOk());
 
 
+
+    }
+
+    @Test
+    @WithUserDetails(value = MOCK_USER)
+    public void changeSavingPlan() throws Exception{
+        SavingAccount savingAccount = createSaveAccWithMoney();
+
+        mockMvc.perform(patch("/api/account/saving/change-plan/"+savingAccount.getId()+"/" + SavingAccountPlan.EXTRA_QUICK.getId()))
+                .andExpect(status().isOk())
+                .andDo(print());
+
+
+        savingAccount = accountService.fireAccumulatingSavingAccount(savingAccount.getId(), 1L);
+
+        mockMvc.perform(patch("/api/account/saving/change-plan/"+savingAccount.getId()+"/" + SavingAccountPlan.EXTRA_QUICK.getId()))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+
+        SavingAccount savingAccount2 = createSaveAccWithMoney();
+
+        mockMvc.perform(patch("/api/account/saving/change-plan/"+savingAccount2.getId()+"/" + SavingAccountPlan.EXTRA_QUICK.getId()))
+                .andExpect(status().isOk())
+                .andDo(print());
 
     }
 

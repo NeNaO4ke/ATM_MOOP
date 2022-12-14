@@ -1,0 +1,4 @@
+[source,options="nowrap"]
+----
+{"amount": 5, "senderAccountId": 1, "receiverAccountId": 2, "scheduledTime": 1670977627, "period": "P1M", "initialRepeats": 0}
+----

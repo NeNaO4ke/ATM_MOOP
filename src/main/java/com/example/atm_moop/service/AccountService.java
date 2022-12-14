@@ -105,6 +105,15 @@ public class AccountService {
         return savingAccountRepository.save(account);
     }
 
+    @Transactional
+    public void changeSavingPlan(Long accountId, Long userId, SavingAccountPlan plan) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
+        SavingAccount account = getAccountWithOkStatus(savingAccountRepository.findById(accountId));
+        confirmOwnedByUser(account.getUser().getId(), userId);
+        if(account.getSavingAccountPlan() == plan)
+            throw new AccountStatusException("New plan mut not match previous.");
+        savingAccountRepository.updateSavingAccountPlanById(plan, accountId);
+    }
+
     public static <T> T getResourceOrThrowException(Optional<T> optional) throws ResourceNotFoundException {
         if (optional.isEmpty())
             throw new ResourceNotFoundException("This resource is not found.");

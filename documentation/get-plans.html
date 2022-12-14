@@ -476,18 +476,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
 Content-Type: application/json
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
-X-Frame-Options: DENY
-Content-Length: 1232
+Content-Length: 1373
 
 {
   &quot;plans&quot; : {
     &quot;saving&quot; : [ {
+      &quot;id&quot; : &quot;PLAIN&quot;,
       &quot;planName&quot; : &quot;Plain&quot;,
       &quot;interestRate&quot; : null,
       &quot;paymentStepPeriod&quot; : null,
@@ -495,6 +498,7 @@ Content-Length: 1232
       &quot;initialSteps&quot; : null,
       &quot;additionAllowed&quot; : true
     }, {
+      &quot;id&quot; : &quot;STANDARD&quot;,
       &quot;planName&quot; : &quot;Standard&quot;,
       &quot;interestRate&quot; : 7,
       &quot;paymentStepPeriod&quot; : {
@@ -506,6 +510,7 @@ Content-Length: 1232
       &quot;initialSteps&quot; : 3,
       &quot;additionAllowed&quot; : true
     }, {
+      &quot;id&quot; : &quot;LONG&quot;,
       &quot;planName&quot; : &quot;Long&quot;,
       &quot;interestRate&quot; : 9,
       &quot;paymentStepPeriod&quot; : {
@@ -518,23 +523,26 @@ Content-Length: 1232
       &quot;additionAllowed&quot; : true
     } ],
     &quot;transactional&quot; : [ {
+      &quot;id&quot; : &quot;PLAIN&quot;,
       &quot;planName&quot; : &quot;Plain&quot;,
       &quot;creditMoneyAmount&quot; : 0,
       &quot;lendingRate&quot; : 0,
       &quot;lendingAvailable&quot; : false
     }, {
+      &quot;id&quot; : &quot;LIGHT&quot;,
       &quot;planName&quot; : &quot;Light&quot;,
       &quot;creditMoneyAmount&quot; : 1000,
       &quot;lendingRate&quot; : 5,
       &quot;lendingAvailable&quot; : true
     }, {
+      &quot;id&quot; : &quot;MEDIUM&quot;,
       &quot;planName&quot; : &quot;Medium&quot;,
       &quot;creditMoneyAmount&quot; : 5000,
       &quot;lendingRate&quot; : 4,
       &quot;lendingAvailable&quot; : true
     } ]
   },
-  &quot;currencies&quot; : [&quot;ADP&quot;,&quot;AED&quot;,&quot;AFA&quot;,&quot;AFN&quot;,&quot;ALL&quot;,&quot;AMD&quot;,&quot;ANG&quot;,&quot;AOA&quot;,&quot;ARS&quot;,&quot;ATS&quot;,&quot;AUD&quot;,&quot;AWG&quot;,&quot;AYM&quot;,&quot;AZM&quot;,&quot;AZN&quot;,&quot;BAM&quot;,&quot;BBD&quot;,&quot;BDT&quot;,&quot;BEF&quot;,&quot;BGL&quot;,&quot;BGN&quot;,&quot;BHD&quot;,&quot;BIF&quot;,&quot;BMD&quot;,&quot;BND&quot;,&quot;BOB&quot;,&quot;BOV&quot;,&quot;BRL&quot;,&quot;BSD&quot;,&quot;BTN&quot;,&quot;BWP&quot;,&quot;BYB&quot;,&quot;BYN&quot;,&quot;BYR&quot;,&quot;BZD&quot;,&quot;CAD&quot;,&quot;CDF&quot;,&quot;CHE&quot;,&quot;CHF&quot;,&quot;CHW&quot;,&quot;CLF&quot;,&quot;CLP&quot;,&quot;CNY&quot;,&quot;COP&quot;,&quot;COU&quot;,&quot;CRC&quot;,&quot;CSD&quot;,&quot;CUC&quot;,&quot;CUP&quot;,&quot;CVE&quot;,&quot;CYP&quot;,&quot;CZK&quot;,&quot;DEM&quot;,&quot;DJF&quot;,&quot;DKK&quot;,&quot;DOP&quot;,&quot;DZD&quot;,&quot;EEK&quot;,&quot;EGP&quot;,&quot;ERN&quot;,&quot;ESP&quot;,&quot;ETB&quot;,&quot;EUR&quot;,&quot;FIM&quot;,&quot;FJD&quot;,&quot;FKP&quot;,&quot;FRF&quot;,&quot;GBP&quot;,&quot;GEL&quot;,&quot;GHC&quot;,&quot;GHS&quot;,&quot;GIP&quot;,&quot;GMD&quot;,&quot;GNF&quot;,&quot;GRD&quot;,&quot;GTQ&quot;,&quot;GWP&quot;,&quot;GYD&quot;,&quot;HKD&quot;,&quot;HNL&quot;,&quot;HRK&quot;,&quot;HTG&quot;,&quot;HUF&quot;,&quot;IDR&quot;,&quot;IEP&quot;,&quot;ILS&quot;,&quot;INR&quot;,&quot;IQD&quot;,&quot;IRR&quot;,&quot;ISK&quot;,&quot;ITL&quot;,&quot;JMD&quot;,&quot;JOD&quot;,&quot;JPY&quot;,&quot;KES&quot;,&quot;KGS&quot;,&quot;KHR&quot;,&quot;KMF&quot;,&quot;KPW&quot;,&quot;KRW&quot;,&quot;KWD&quot;,&quot;KYD&quot;,&quot;KZT&quot;,&quot;LAK&quot;,&quot;LBP&quot;,&quot;LKR&quot;,&quot;LRD&quot;,&quot;LSL&quot;,&quot;LTL&quot;,&quot;LUF&quot;,&quot;LVL&quot;,&quot;LYD&quot;,&quot;MAD&quot;,&quot;MDL&quot;,&quot;MGA&quot;,&quot;MGF&quot;,&quot;MKD&quot;,&quot;MMK&quot;,&quot;MNT&quot;,&quot;MOP&quot;,&quot;MRO&quot;,&quot;MRU&quot;,&quot;MTL&quot;,&quot;MUR&quot;,&quot;MVR&quot;,&quot;MWK&quot;,&quot;MXN&quot;,&quot;MXV&quot;,&quot;MYR&quot;,&quot;MZM&quot;,&quot;MZN&quot;,&quot;NAD&quot;,&quot;NGN&quot;,&quot;NIO&quot;,&quot;NLG&quot;,&quot;NOK&quot;,&quot;NPR&quot;,&quot;NZD&quot;,&quot;OMR&quot;,&quot;PAB&quot;,&quot;PEN&quot;,&quot;PGK&quot;,&quot;PHP&quot;,&quot;PKR&quot;,&quot;PLN&quot;,&quot;PTE&quot;,&quot;PYG&quot;,&quot;QAR&quot;,&quot;ROL&quot;,&quot;RON&quot;,&quot;RSD&quot;,&quot;RUB&quot;,&quot;RUR&quot;,&quot;RWF&quot;,&quot;SAR&quot;,&quot;SBD&quot;,&quot;SCR&quot;,&quot;SDD&quot;,&quot;SDG&quot;,&quot;SEK&quot;,&quot;SGD&quot;,&quot;SHP&quot;,&quot;SIT&quot;,&quot;SKK&quot;,&quot;SLL&quot;,&quot;SOS&quot;,&quot;SRD&quot;,&quot;SRG&quot;,&quot;SSP&quot;,&quot;STD&quot;,&quot;STN&quot;,&quot;SVC&quot;,&quot;SYP&quot;,&quot;SZL&quot;,&quot;THB&quot;,&quot;TJS&quot;,&quot;TMM&quot;,&quot;TMT&quot;,&quot;TND&quot;,&quot;TOP&quot;,&quot;TPE&quot;,&quot;TRL&quot;,&quot;TRY&quot;,&quot;TTD&quot;,&quot;TWD&quot;,&quot;TZS&quot;,&quot;UAH&quot;,&quot;UGX&quot;,&quot;USD&quot;,&quot;USN&quot;,&quot;USS&quot;,&quot;UYI&quot;,&quot;UYU&quot;,&quot;UZS&quot;,&quot;VEB&quot;,&quot;VED&quot;,&quot;VEF&quot;,&quot;VES&quot;,&quot;VND&quot;,&quot;VUV&quot;,&quot;WST&quot;,&quot;XAF&quot;,&quot;XAG&quot;,&quot;XAU&quot;,&quot;XBA&quot;,&quot;XBB&quot;,&quot;XBC&quot;,&quot;XBD&quot;,&quot;XCD&quot;,&quot;XDR&quot;,&quot;XFO&quot;,&quot;XFU&quot;,&quot;XOF&quot;,&quot;XPD&quot;,&quot;XPF&quot;,&quot;XPT&quot;,&quot;XSU&quot;,&quot;XTS&quot;,&quot;XUA&quot;,&quot;XXX&quot;,&quot;YER&quot;,&quot;YUM&quot;,&quot;ZAR&quot;,&quot;ZMK&quot;,&quot;ZMW&quot;,&quot;ZWD&quot;,&quot;ZWL&quot;,&quot;ZWN&quot;,&quot;ZWR&quot;]
+  &quot;currencies&quot; : [ &quot;ADP&quot;, &quot;AED&quot;, &quot;AFA&quot; ]
 }</code></pre>
 </div>
 </div>
@@ -543,7 +551,7 @@ Content-Length: 1232
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-12-10 16:27:14 +0200
+Last updated 2022-12-14 02:11:23 +0200
 </div>
 </div>
 </body>

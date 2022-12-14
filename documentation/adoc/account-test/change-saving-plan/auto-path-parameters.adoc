@@ -1,0 +1,14 @@
+|===
+|Parameter|Type|Optional|Description
+
+|accountId
+|Integer
+|false
+|
+
+|newPlan
+|String
+|false
+|Must be one of ["PLAIN","STANDARD","LONG","QUICK","EXTRA_QUICK"].
+
+|===

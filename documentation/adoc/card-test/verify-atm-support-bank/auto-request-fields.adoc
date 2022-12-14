@@ -1,0 +1,15 @@
+|===
+|Path|Type|Optional|Description
+
+|cardNumber
+|String
+|false
+|Must be a well-formed credit card number. +
+Must match the regular expression `\d{16}`.
+
+|atmId
+|Integer
+|false
+|Must be positive.
+
+|===
