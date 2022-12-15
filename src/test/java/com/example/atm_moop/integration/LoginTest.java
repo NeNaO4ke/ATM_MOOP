@@ -53,7 +53,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-@AutoConfigureRestDocs(outputDir = "target/generated-snippets")
 public class LoginTest {
 
     private final static String CARD_NUMBER = "2440735783328557";
@@ -161,7 +160,6 @@ public class LoginTest {
         }
     }
 
-
     @Test
     public void invalidLoginWithCardBlock() throws Exception {
         invalidLogin();
@@ -171,6 +169,7 @@ public class LoginTest {
         invalidLogin();
         invalidLogin();
     }
+
 
 
 }

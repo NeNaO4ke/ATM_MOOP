@@ -12,6 +12,7 @@ import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.SavingAccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
+import com.example.atm_moop.service.interfaces.IAccountService;
 import com.example.atm_moop.util.MoneyUtil;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
@@ -32,16 +33,16 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class TransferService {
+public class TransferService implements com.example.atm_moop.service.interfaces.ITransferService {
 
     private final TransactionalAccountRepository transactionalAccountRepository;
 
     private final AccountRepository<Account> accountRepository;
-    private final SavingAccountRepository savingAccountRepository;
 
     private final TransferTransactionRepository transferTransactionRepository;
 
 
+    @Override
     @Transactional
     public TransferTransaction transfer(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
 
@@ -90,10 +91,11 @@ public class TransferService {
         return transferTransactionRepository.save(transferTransaction);
     }
 
-    Pair<Account, Account> checkIfTransferAvailableAndGetAccounts(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
-        AccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
-        Account senderAcc = AccountService.getAccountWithOkStatus(accountRepository.findById(accountSenderId));
-        AccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
+    @Override
+    public Pair<Account, Account> checkIfTransferAvailableAndGetAccounts(Long userSenderId, Long accountSenderId, Long accountReceiverId, BigDecimal amount) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        IAccountService.confirmAccountsIsNotTheSame(accountSenderId, accountReceiverId);
+        Account senderAcc = IAccountService.getAccountWithOkStatus(accountRepository.findById(accountSenderId));
+        IAccountService.confirmOwnedByUser(userSenderId, senderAcc.getUser().getId());
         Account receiverAcc = getReceiverAccountWithChecks(accountRepository.findByIdWithUser(accountReceiverId), userSenderId);
 
         MonetaryAmount senderAccBalance = senderAcc.getBalance();
@@ -112,10 +114,10 @@ public class TransferService {
     }
 
     private Account getReceiverAccountWithChecks(Optional<Account> optionalReceiver, Long userSenderId) throws ResourceNotFoundException, AccountStatusException, RightsViolationException {
-        Account receiverAcc = AccountService.getResourceOrThrowException(optionalReceiver);
+        Account receiverAcc = IAccountService.getResourceOrThrowException(optionalReceiver);
         if (receiverAcc.getAccountType() == ACCOUNT_TYPE.SAVING) {
             if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK && receiverAcc.getAccountStatus() != ACCOUNT_STATUS.ACCUMULATING) {
-                AccountService.getAccountWithOkStatus(optionalReceiver);
+                IAccountService.getAccountWithOkStatus(optionalReceiver);
             }
             SavingAccount savingAccount;
             if(receiverAcc instanceof HibernateProxy){
@@ -131,7 +133,7 @@ public class TransferService {
             }
             receiverAcc = savingAccount;
         } else {
-            receiverAcc = AccountService.getAccountWithOkStatus(optionalReceiver);
+            receiverAcc = IAccountService.getAccountWithOkStatus(optionalReceiver);
         }
         return receiverAcc;
     }
@@ -161,6 +163,7 @@ public class TransferService {
         return senderTransferringAmount;
     }
 
+    @Override
     @Transactional
     public void deposit(Card card, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException {
         TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);
@@ -173,6 +176,7 @@ public class TransferService {
         transferTransactionRepository.save(transferTransaction);
     }
 
+    @Override
     @Transactional
     public void withdraw(Card card, BigDecimal amount) throws AccountStatusException, ResourceNotFoundException {
         TransactionalAccount senderAcc = getCardDefaultTransactionalAccount(card);

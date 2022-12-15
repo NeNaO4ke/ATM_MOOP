@@ -112,7 +112,7 @@ public class TestDbSetup {
         bohdanAcc = genAccountRepository.save(bohdanAcc);
 
         patronSavingAcc = genAccountRepository.save(patronSavingAcc);
-        accountService.fireAccumulatingSavingAccount(patronSavingAcc.getId(), patron.getId());
+        accountService.fireSavingContract(patronSavingAcc.getId(), patron.getId());
 
         genAccountRepository.save(mykolaSavingAcc);
 

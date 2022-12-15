@@ -141,7 +141,7 @@ public class AccountTest {
     @WithUserDetails(value = MOCK_USER)
     public void getSavingById() throws Exception {
         SavingAccount savingAccount = createSaveAccWithMoney();
-        savingAccount = accountService.fireAccumulatingSavingAccount(savingAccount.getId(), 1L);
+        savingAccount = accountService.fireSavingContract(savingAccount.getId(), 1L);
         mockMvc.perform(get("/api/account/saving/" + savingAccount.getId()))
                 .andExpect(status().isOk()).andDo(print());
     }
@@ -176,7 +176,7 @@ public class AccountTest {
         SavingAccount savingAccount = accountService.createSavingAccountFromPlan(savingPlanInputDTO, user, card);
         Long savAccId = savingAccount.getId();
         transferService.transfer(1L, 1L, savAccId, BigDecimal.valueOf(60));
-        savingAccount = accountService.fireAccumulatingSavingAccount(savAccId, 1L);
+        savingAccount = accountService.fireSavingContract(savAccId, 1L);
         TransferTransaction transferTransaction = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), null, savingAccount, jarAcc);
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
         TransferTransaction transferTransaction2 = TransferTransaction.createTransferTransaction(TRANSACTION_TYPE.TRANSFERRING, Money.of(BigDecimal.valueOf(25), savingAccount.getBalance().getCurrency()), null, savingAccount, jarAcc);
@@ -199,7 +199,7 @@ public class AccountTest {
     @WithUserDetails(value = MOCK_USER)
     public void fireSavingContract() throws Exception{
         SavingAccount savingAccount = createSaveAccWithMoney();
-        savingAccount = accountService.fireAccumulatingSavingAccount(savingAccount.getId(), 1L);
+        savingAccount = accountService.fireSavingContract(savingAccount.getId(), 1L);
 
         mockMvc.perform(patch("/api/account/saving/fire-contract/" + savingAccount.getId()))
                 .andExpect(status().isBadRequest())
@@ -225,7 +225,7 @@ public class AccountTest {
                 .andExpect(result -> assertEquals("You don`t have any contract.", Objects.requireNonNull(result.getResolvedException()).getMessage()));
 
 
-        savingAccount = accountService.fireAccumulatingSavingAccount(savingAccount.getId(), 1L);
+        savingAccount = accountService.fireSavingContract(savingAccount.getId(), 1L);
 
         mockMvc.perform(patch("/api/account/saving/terminate-contract/" + savingAccount.getId()))
                 .andExpect(status().isOk());
@@ -244,7 +244,7 @@ public class AccountTest {
                 .andDo(print());
 
 
-        savingAccount = accountService.fireAccumulatingSavingAccount(savingAccount.getId(), 1L);
+        savingAccount = accountService.fireSavingContract(savingAccount.getId(), 1L);
 
         mockMvc.perform(patch("/api/account/saving/change-plan/"+savingAccount.getId()+"/" + SavingAccountPlan.EXTRA_QUICK.getId()))
                 .andExpect(status().isBadRequest())

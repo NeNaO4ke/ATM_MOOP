@@ -51,6 +51,8 @@ spring:
 
 spring:
   datasource:
+    hikari:
+      connection-timeout: 4000
     url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
     username: sa
     password: sa
@@ -69,6 +71,10 @@ spring:
   h2:
     console:
       enabled: true
+  quartz:
+    properties:
+      org.quartz.jobStore.isClustered: false
+
 
 ---
 

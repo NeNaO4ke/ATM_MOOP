@@ -4,6 +4,7 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.example.atm_moop.TestDbSetup;
+import com.example.atm_moop.domain.RegularTransaction;
 import com.example.atm_moop.domain.Transaction;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
 import com.example.atm_moop.dto.RegularTransactionInfo;
@@ -39,7 +40,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -156,23 +162,38 @@ public class RegularTransactionTest {
 
         mockMvc.perform(post("/api/transaction/regular")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
-                        .content(String.format("{\"amount\": %d, \"senderAccountId\": %d, \"receiverAccountId\": %d, \"scheduledTime\": %d, \"period\": %s, \"initialRepeats\": %d}", 5, 1, 2, Instant.now().getEpochSecond() + 3, "\"P1M\"", 0)))
+                        .content(String.format("{\"amount\": %d, \"senderAccountId\": %d, \"receiverAccountId\": %d, \"scheduledTime\": %d, \"period\": %s, \"initialRepeats\": %d}", 5, 1, 2, Instant.now().getEpochSecond() + 100, "\"P1M\"", 0)))
                 .andDo(print())
                 .andExpect(status().isOk());
 
+    }
+
+    RegularTransaction createRegularTransaction() throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        Instant nowPlus3Months = new Date().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .plus(Period.ofMonths(3))
+                .toInstant();
+       return transactionService.createRegularTransaction(1L, BigDecimal.valueOf(15), 1L, 2L, nowPlus3Months, Period.ofMonths(3), 3);
+    }
+
+    RegularTransaction createScheduledTransaction() throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        Instant nowPlus3Months = new Date().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .plus(Period.ofMonths(3))
+                .toInstant();
+        return transactionService.createScheduledTransaction(1L, BigDecimal.valueOf(15), 1L, 2L, nowPlus3Months);
     }
 
     @Test
     @WithUserDetails(value = MOCK_USER)
     public void getAllRegularTransactions() throws Exception {
 
-        scheduleTransaction();
+        RegularTransaction scheduledTransaction = createScheduledTransaction();
 
-        regularTransaction();
+        RegularTransaction regularTransaction = createRegularTransaction();
 
         List<RegularTransactionInfo> allRegularTransactionsByFromAccountId = transactionService.getAllRegularTransactionsByFromAccountId(1L, 1L);
-        System.out.println(allRegularTransactionsByFromAccountId);
-        Long id = allRegularTransactionsByFromAccountId.get(0).getFromAccount().getId();
+        Long id = scheduledTransaction.getFromAccount().getId();
         mockMvc.perform(get("/api/transaction/regular/" + id))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -184,14 +205,13 @@ public class RegularTransactionTest {
     @WithUserDetails(value = MOCK_USER)
     public void cancelRegularTransaction() throws Exception {
 
-        scheduleTransaction();
+        RegularTransaction scheduledTransaction = createScheduledTransaction();
 
-        regularTransaction();
+        RegularTransaction regularTransaction = createRegularTransaction();
 
         List<RegularTransactionInfo> allRegularTransactionsByFromAccountId = transactionService.getAllRegularTransactionsByFromAccountId(1L, 1L);
-        System.out.println(allRegularTransactionsByFromAccountId);
-        Long transactionId1 = allRegularTransactionsByFromAccountId.get(0).getId();
-        Long transactionId2 = allRegularTransactionsByFromAccountId.get(1).getId();
+        Long transactionId1 = scheduledTransaction.getId();
+        Long transactionId2 = regularTransaction.getId();
 
         transactionService.cancelRegularTransaction(transactionId1, 1L);
         assertEquals(TRANSACTION_STATUS.CANCELED, transactionRepository.findById(transactionId1).get().getTransactionStatus());

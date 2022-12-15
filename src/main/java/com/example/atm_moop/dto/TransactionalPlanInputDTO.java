@@ -6,7 +6,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +22,7 @@ public class TransactionalPlanInputDTO {
     TransactionalAccountPlan plan;
     @NotBlank
     String currencyUnitCode;
-    @NotBlank
+    @Length(min = 1, max = 64)
     String accountName;
 
 }

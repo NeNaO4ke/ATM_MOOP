@@ -12,6 +12,8 @@ import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.RegularTransactionRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
+import com.example.atm_moop.service.interfaces.IAccountService;
+import com.example.atm_moop.service.interfaces.ITransactionService;
 import com.example.atm_moop.task.QuartzRegularTransaction;
 import com.example.atm_moop.task.QuartzScheduledTransaction;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +35,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TransactionService implements TransactionServiceI {
+public class TransactionService implements ITransactionService {
 
     private final TransferTransactionRepository transferTransactionRepository;
     private final RegularTransactionRepository regularTransactionRepository;
@@ -52,6 +54,7 @@ public class TransactionService implements TransactionServiceI {
         return transferTransactionRepository.findByFromAccountInOrToAccountIn(allUserAccountsIds);
     }
 
+    @Override
     public TransferTransaction save(TransferTransaction transferTransaction){
         return transferTransactionRepository.save(transferTransaction);
     }
@@ -63,21 +66,24 @@ public class TransactionService implements TransactionServiceI {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
     }
 
-    public List<TransferTransaction> getAllTransferTransactionsByFromAccountAndStartTimeBetween(Account accountId, Timestamp start,Timestamp end ) {
+    @Override
+    public List<TransferTransaction> getAllTransferTransactionsByFromAccountAndStartTimeBetween(Account accountId, Timestamp start, Timestamp end) {
         return transferTransactionRepository.findByFromAccountAndStartTimeBetween(accountId, start, end);
     }
 
+    @Override
     public List<RegularTransactionInfo> getAllRegularTransactionsByFromAccountId(Long accountId, Long userId) throws ResourceNotFoundException, RightsViolationException {
-        Account account = AccountService.getResourceOrThrowException(accountRepository.findById(accountId));
-        AccountService.confirmOwnedByUser(account.getUser().getId(), userId);
+        Account account = IAccountService.getResourceOrThrowException(accountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(account.getUser().getId(), userId);
         return regularTransactionRepository.findByFromAccountOrderByStartTimeDesc(accountId);
     }
 
 
+    @Override
     public void cancelRegularTransaction(Long transactionId, Long userId) throws ResourceNotFoundException, RightsViolationException, SchedulerException {
-        RegularTransaction transaction = AccountService.getResourceOrThrowException(regularTransactionRepository.findById(transactionId));
-        Account account = AccountService.getResourceOrThrowException(accountRepository.findById(transaction.getFromAccount().getId()));
-        AccountService.confirmOwnedByUser(account.getUser().getId(), userId);
+        RegularTransaction transaction = IAccountService.getResourceOrThrowException(regularTransactionRepository.findById(transactionId));
+        Account account = IAccountService.getResourceOrThrowException(accountRepository.findById(transaction.getFromAccount().getId()));
+        IAccountService.confirmOwnedByUser(account.getUser().getId(), userId);
         JobDetail job = JobBuilder.newJob(QuartzScheduledTransaction.class)
                 .withIdentity(String.valueOf(transactionId), "transactions-scheduled")
                 .withDescription("Scheduled transaction")

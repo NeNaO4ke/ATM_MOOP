@@ -10,9 +10,10 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class BankService implements BankServiceI {
+public class BankService implements com.example.atm_moop.service.interfaces.IBankService {
 
     private final BankRepository bankRepository;
+
 
 
     @Override

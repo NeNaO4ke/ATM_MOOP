@@ -11,9 +11,8 @@ import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.SavingAccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
+import com.example.atm_moop.service.interfaces.IAccountService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
 import org.javamoney.moneta.Money;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AccountService {
+public class AccountService implements IAccountService {
 
     private final AccountRepository<Account> accountRepository;
     private final TransactionalAccountRepository transactionalAccountRepository;
@@ -38,46 +37,54 @@ public class AccountService {
     private final TransactionService transactionService;
 
 
+    @Override
     public List<Account> getAllUserAccounts(Long userId) {
         return accountRepository.findByUserId(userId);
     }
 
+    @Override
     public Account save(Account account) {
         return accountRepository.save(account);
     }
 
+    @Override
     public TransactionalAccount getTransactionalAccountById(Long accountId, Long userId) throws ResourceNotFoundException, RightsViolationException {
-        TransactionalAccount acc = getResourceOrThrowException(transactionalAccountRepository.findById(accountId));
-        confirmOwnedByUser(acc.getUser().getId(), userId);
+        TransactionalAccount acc = IAccountService.getResourceOrThrowException(transactionalAccountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(acc.getUser().getId(), userId);
         return acc;
     }
 
+    @Override
     public SavingAccount getSavingAccountById(Long accountId, Long userId) throws ResourceNotFoundException, RightsViolationException {
-        SavingAccount acc = getResourceOrThrowException(savingAccountRepository.findById(accountId));
-        confirmOwnedByUser(acc.getUser().getId(), userId);
+        SavingAccount acc = IAccountService.getResourceOrThrowException(savingAccountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(acc.getUser().getId(), userId);
         return acc;
     }
 
+    @Override
     public Account getAccountById(Long accountId, Long userId) throws ResourceNotFoundException, RightsViolationException {
-        Account acc = getResourceOrThrowException(accountRepository.findById(accountId));
-        confirmOwnedByUser(acc.getUser().getId(), userId);
+        Account acc = IAccountService.getResourceOrThrowException(accountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(acc.getUser().getId(), userId);
         return acc;
     }
 
+    @Override
     public TransactionalAccount createTransactionalAccountFromPlan(TransactionalPlanInputDTO planInputDTO, User user, Card card) {
         TransactionalAccount fromPlan = TransactionalAccount.createFromPlan(planInputDTO.getPlan(), planInputDTO.getAccountName(), planInputDTO.getCurrencyUnitCode(), user, card);
         return transactionalAccountRepository.save(fromPlan);
     }
 
+    @Override
     public SavingAccount createSavingAccountFromPlan(SavingPlanInputDTO inputDTO, User user, Card card) {
         SavingAccount fromPlan = SavingAccount.createFromPlan(inputDTO.getPlan(), inputDTO.getAccountName(), inputDTO.getCurrencyUnitCode(), user, card);
         return savingAccountRepository.save(fromPlan);
     }
 
+    @Override
     @Transactional
-    public SavingAccount fireAccumulatingSavingAccount(Long accountId, Long accountOwnerId) throws RightsViolationException, AccountStatusException, ResourceNotFoundException {
-        SavingAccount account = AccountService.getAccountWithOkStatus(savingAccountRepository.findById(accountId));
-        confirmOwnedByUser(account.getUser().getId(), accountOwnerId);
+    public SavingAccount fireSavingContract(Long accountId, Long accountOwnerId) throws RightsViolationException, AccountStatusException, ResourceNotFoundException {
+        SavingAccount account = IAccountService.getAccountWithOkStatus(savingAccountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(account.getUser().getId(), accountOwnerId);
         if (account.getSavingAccountPlan() == SavingAccountPlan.PLAIN)
             throw new AccountStatusException("You must choose plan.");
         MonetaryAmount balance = account.getBalance();
@@ -88,10 +95,11 @@ public class AccountService {
         return savingAccountRepository.save(account);
     }
 
+    @Override
     @Transactional
     public SavingAccount terminateSavingContract(Long accountId, Long accountOwnerId) throws RightsViolationException, AccountStatusException, ResourceNotFoundException {
-        SavingAccount account = AccountService.getResourceOrThrowException(savingAccountRepository.findById(accountId));
-        confirmOwnedByUser(account.getUser().getId(), accountOwnerId);
+        SavingAccount account = IAccountService.getResourceOrThrowException(savingAccountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(account.getUser().getId(), accountOwnerId);
         if (account.getSavingAccountPlan() == SavingAccountPlan.PLAIN || account.getAccountStatus() != ACCOUNT_STATUS.ACCUMULATING)
             throw new AccountStatusException("You don`t have any contract.");
         if (!Objects.equals(account.getPaymentStepsLeft(), account.getSavingAccountPlan().getInitialSteps())) {
@@ -107,52 +115,16 @@ public class AccountService {
         return savingAccountRepository.save(account);
     }
 
+    @Override
     @Transactional
     public SavingAccount changeSavingPlan(Long accountId, Long userId, SavingAccountPlan plan) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
-        SavingAccount account = getAccountWithOkStatus(savingAccountRepository.findById(accountId));
-        confirmOwnedByUser(account.getUser().getId(), userId);
+        SavingAccount account = IAccountService.getAccountWithOkStatus(savingAccountRepository.findById(accountId));
+        IAccountService.confirmOwnedByUser(account.getUser().getId(), userId);
         if(account.getSavingAccountPlan() == plan)
             throw new AccountStatusException("New plan mut not match previous.");
         account.setSavingAccountPlan(plan);
         return savingAccountRepository.save(account);
     }
-
-    public static <T> T getResourceOrThrowException(Optional<T> optional) throws ResourceNotFoundException {
-        if (optional.isEmpty())
-            throw new ResourceNotFoundException("This resource is not found.");
-        return optional.get();
-    }
-
-
-    public static <T extends Account> T getAccountWithOkStatus(Optional<T> optionalAccount) throws AccountStatusException, ResourceNotFoundException {
-        if (optionalAccount.isEmpty())
-            throw new ResourceNotFoundException("This account is not found.");
-        T account = optionalAccount.get();
-        switch (account.getAccountStatus()) {
-            case FROZEN:
-                throw new AccountStatusException("Your account is currently unavailable for operations with status: FROZEN.");
-            case TERMINATED:
-                throw new AccountStatusException("Your account has been TERMINATED.");
-            case ACCUMULATING:
-                throw new AccountStatusException("Your account already accumulating.");
-            case OK:
-                return account;
-            default:
-                throw new AccountStatusException("Your account cannot perform this operation right now.");
-        }
-    }
-
-    public static void confirmOwnedByUser(Long accUserId, Long ownerId) throws RightsViolationException {
-        if (!Objects.equals(accUserId, ownerId)) {
-            throw new RightsViolationException("Account is not owned by you.");
-        }
-    }
-
-    public static void confirmAccountsIsNotTheSame(Long accountSenderId, Long accountReceiverId) {
-        if (Objects.equals(accountReceiverId, accountSenderId))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot transfer from and to same account");
-    }
-
 
 
 }

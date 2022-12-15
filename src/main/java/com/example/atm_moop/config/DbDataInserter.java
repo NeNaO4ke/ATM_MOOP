@@ -128,7 +128,7 @@ public class DbDataInserter {
 
         patronSavingAcc = genAccountRepository.save(patronSavingAcc);
         transferService.transfer(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(3000));
-        accountService.fireAccumulatingSavingAccount(patronSavingAcc.getId(), patron.getId());
+        accountService.fireSavingContract(patronSavingAcc.getId(), patron.getId());
         transferService.transfer(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(400));
 
         mykolaUsdAcc = genAccountRepository.save(mykolaUsdAcc);

@@ -5,6 +5,7 @@ import com.example.atm_moop.domain.*;
 import com.example.atm_moop.domain.enums.CARD_STATUS;
 import com.example.atm_moop.repository.ATMRepository;
 import com.example.atm_moop.repository.CardRepository;
+import com.example.atm_moop.service.interfaces.ICardService;
 import com.example.atm_moop.util.CardType;
 import com.example.atm_moop.util.PaymentCardGeneratorImpl;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ import java.util.*;
 
 @Service("cardService")
 @RequiredArgsConstructor
-public class CardService implements UserDetailsService, CardServiceI {
+public class CardService implements UserDetailsService, ICardService {
 
     private final CardRepository cardRepository;
     private final ATMRepository atmRepository;

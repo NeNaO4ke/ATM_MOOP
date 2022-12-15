@@ -86,22 +86,22 @@ public class AccountController {
     }
 
     @GetMapping(value = "/currency", produces = MediaType.APPLICATION_JSON_VALUE)
-    private List<String> getTransactionalCurrency() {
+    private List<String> getCurrency() {
         return MoneyUtil.getAllCurrencies();
     }
 
     @PatchMapping(value = "/saving/terminate-contract/{accountId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SavingAccount> terminateSavingContract(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+    private ResponseEntity<SavingAccount> terminateSavingContract(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
         return new ResponseEntity<>(accountService.terminateSavingContract(accountId, cardAtmUserDetails.getCard().getUser().getId()), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/saving/fire-contract/{accountId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SavingAccount> fireAccumulatingSavingAccount(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
-        return new ResponseEntity<>(accountService.fireAccumulatingSavingAccount(accountId, cardAtmUserDetails.getCard().getUser().getId()), HttpStatus.OK);
+    private ResponseEntity<SavingAccount> fireAccumulatingSavingAccount(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+        return new ResponseEntity<>(accountService.fireSavingContract(accountId, cardAtmUserDetails.getCard().getUser().getId()), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/saving/change-plan/{accountId}/{newPlan}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> changeSavingPlan(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId, @PathVariable SavingAccountPlan newPlan) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
+    private ResponseEntity<?> changeSavingPlan(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId, @PathVariable SavingAccountPlan newPlan) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
         SavingAccount savingAccount = accountService.changeSavingPlan(accountId, cardAtmUserDetails.getCard().getUser().getId(), newPlan);
         return new ResponseEntity<>(savingAccount,HttpStatus.OK);
     }
