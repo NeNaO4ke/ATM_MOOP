@@ -29,8 +29,6 @@ public interface RegularTransactionRepository extends JpaRepository<RegularTrans
     List<RegularTransactionInfo> findByFromAccountOrderByStartTimeDesc(Long accountId);
 
 
-
-
     @Transactional
     @Modifying
     @Query("update RegularTransaction r set r.transactionStatus = ?1, r.repeatsLeft = ?2 where r.id = ?3")

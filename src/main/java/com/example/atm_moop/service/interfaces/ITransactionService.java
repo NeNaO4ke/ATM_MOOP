@@ -8,6 +8,7 @@ import com.example.atm_moop.dto.TransferTransactionInfo;
 import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;
+import org.quartz.JobExecutionContext;
 import org.quartz.SchedulerException;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,5 +41,5 @@ public interface ITransactionService {
     RegularTransaction createRegularTransaction(Long userSenderId, BigDecimal sendingAmount, Long senderAccountId, Long receiverAccountId, Instant scheduledTime, Period period, Integer initialRepeats) throws AccountStatusException, ResourceNotFoundException, RightsViolationException;
 
     @Transactional
-    void fireRegularTransaction(Long transactionId) throws ResourceNotFoundException;
+    void fireRegularTransaction(Long transactionId, JobExecutionContext context) throws ResourceNotFoundException;
 }

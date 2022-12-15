@@ -1135,21 +1135,21 @@ __webpack_require__.r(__webpack_exports__);
 
 function AtmWindowComponent_div_10_Template(rf, ctx) {
   if (rf & 1) {
-    const _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
+    const _r15 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵgetCurrentView"]();
 
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div", 11)(1, "app-atm-list", 12);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("onAtmSelect", function AtmWindowComponent_div_10_Template_app_atm_list_onAtmSelect_1_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r14);
-      const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r13.onAtmSelect($event));
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r15);
+      const ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r14.onAtmSelect($event));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipe"](2, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](3, "app-atm-login", 13);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵlistener"]("afterLogin", function AtmWindowComponent_div_10_Template_app_atm_login_afterLogin_3_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r14);
-      const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r15.afterLogin());
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵrestoreView"](_r15);
+      const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵresetView"](ctx_r16.afterLogin());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]()();
   }
@@ -1222,15 +1222,20 @@ function AtmWindowComponent_div_17_Template(rf, ctx) {
 function AtmWindowComponent_div_18_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-card-info");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-transactions-history", 14);
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
+  }
+
+  if (rf & 2) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("isScheduledAndRegular", true);
   }
 }
 
 function AtmWindowComponent_div_19_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-change-pin-code");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-card-info");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
@@ -1238,7 +1243,7 @@ function AtmWindowComponent_div_19_Template(rf, ctx) {
 function AtmWindowComponent_div_20_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-new-transaction");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-change-pin-code");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
@@ -1246,12 +1251,20 @@ function AtmWindowComponent_div_20_Template(rf, ctx) {
 function AtmWindowComponent_div_21_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-new-transaction");
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
+  }
+}
+
+function AtmWindowComponent_div_22_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](1, "app-account-info");
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
   }
 }
 
-function AtmWindowComponent_app_notification_22_Template(rf, ctx) {
+function AtmWindowComponent_app_notification_23_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelement"](0, "app-notification");
   }
@@ -1292,9 +1305,9 @@ AtmWindowComponent.ɵfac = function AtmWindowComponent_Factory(t) {
 AtmWindowComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵdefineComponent"]({
   type: AtmWindowComponent,
   selectors: [["app-atm-window"]],
-  decls: 24,
-  vars: 18,
-  consts: [[1, "window", 2, "width", "500px", "height", "400px"], [1, "title-bar"], [1, "title-bar-text"], [1, "title-bar-controls"], ["aria-label", "Minimize"], ["aria-label", "Maximize"], ["aria-label", "Close"], [1, "window-body", 3, "ngSwitch"], ["fxLayout", "row", "fxLayoutAlign", "space-between stretch", "fxFlex", "", "style", "height: 100%;", 4, "ngSwitchCase"], [4, "ngSwitchCase"], [4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "space-between stretch", "fxFlex", "", 2, "height", "100%"], ["fxFlex", "45", 3, "atmList", "onAtmSelect"], ["fxFlex", "", 3, "selectedAtm$", "afterLogin"]],
+  decls: 25,
+  vars: 19,
+  consts: [[1, "window", 2, "width", "500px", "height", "400px"], [1, "title-bar"], [1, "title-bar-text"], [1, "title-bar-controls"], ["aria-label", "Minimize"], ["aria-label", "Maximize"], ["aria-label", "Close"], [1, "window-body", 3, "ngSwitch"], ["fxLayout", "row", "fxLayoutAlign", "space-between stretch", "fxFlex", "", "style", "height: 100%;", 4, "ngSwitchCase"], [4, "ngSwitchCase"], [4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "space-between stretch", "fxFlex", "", 2, "height", "100%"], ["fxFlex", "45", 3, "atmList", "onAtmSelect"], ["fxFlex", "", 3, "selectedAtm$", "afterLogin"], [3, "isScheduledAndRegular"]],
   template: function AtmWindowComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "div", 2);
@@ -1313,19 +1326,20 @@ AtmWindowComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](15, AtmWindowComponent_div_15_Template, 2, 0, "div", 9);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](16, AtmWindowComponent_div_16_Template, 2, 0, "div", 9);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](17, AtmWindowComponent_div_17_Template, 2, 0, "div", 9);
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](18, AtmWindowComponent_div_18_Template, 2, 0, "div", 9);
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](18, AtmWindowComponent_div_18_Template, 2, 1, "div", 9);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](19, AtmWindowComponent_div_19_Template, 2, 0, "div", 9);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](20, AtmWindowComponent_div_20_Template, 2, 0, "div", 9);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](21, AtmWindowComponent_div_21_Template, 2, 0, "div", 9);
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](22, AtmWindowComponent_div_22_Template, 2, 0, "div", 9);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](22, AtmWindowComponent_app_notification_22_Template, 1, 0, "app-notification", 10);
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipe"](23, "async");
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵtemplate"](23, AtmWindowComponent_app_notification_23_Template, 1, 0, "app-notification", 10);
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipe"](24, "async");
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵelementEnd"]();
     }
 
     if (rf & 2) {
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](8);
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitch", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipeBind1"](9, 14, ctx.atmState$));
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitch", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipeBind1"](9, 15, ctx.atmState$));
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](2);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitchCase", ctx.ATM_STATES.LOGIN);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
@@ -1343,6 +1357,8 @@ AtmWindowComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitchCase", ctx.ATM_STATES.TRANSACTION_HISTORY);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitchCase", ctx.ATM_STATES.REGULAR_TRANSACTION_HISTORY);
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitchCase", ctx.ATM_STATES.CARD_INFO);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitchCase", ctx.ATM_STATES.CHANGE_PIN);
@@ -1351,7 +1367,7 @@ AtmWindowComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngSwitchCase", ctx.ATM_STATES.ACCOUNT_INFO);
       _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵadvance"](1);
-      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipeBind1"](23, 16, ctx.notifications$));
+      _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵpipeBind1"](24, 17, ctx.notifications$));
     }
   },
   dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_20__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_20__.NgSwitch, _angular_common__WEBPACK_IMPORTED_MODULE_20__.NgSwitchCase, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_21__.DefaultLayoutDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_21__.DefaultLayoutAlignDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_21__.DefaultFlexDirective, _atm_list_atm_list_component__WEBPACK_IMPORTED_MODULE_4__.AtmListComponent, _atm_login_atm_login_component__WEBPACK_IMPORTED_MODULE_5__.AtmLoginComponent, _atm_main_menu_atm_main_menu_component__WEBPACK_IMPORTED_MODULE_6__.AtmMainMenuComponent, _pages_my_accounts_my_accounts_component__WEBPACK_IMPORTED_MODULE_7__.MyAccountsComponent, _pages_select_new_account_type_select_new_account_type_component__WEBPACK_IMPORTED_MODULE_8__.SelectNewAccountTypeComponent, _pages_new_account_new_account_component__WEBPACK_IMPORTED_MODULE_9__.NewAccountComponent, _notification_notification_component__WEBPACK_IMPORTED_MODULE_10__.NotificationComponent, _pages_withdraw_withdraw_component__WEBPACK_IMPORTED_MODULE_11__.WithdrawComponent, _pages_deposit_deposit_component__WEBPACK_IMPORTED_MODULE_12__.DepositComponent, _pages_transactions_history_transactions_history_component__WEBPACK_IMPORTED_MODULE_13__.TransactionsHistoryComponent, _pages_card_info_card_info_component__WEBPACK_IMPORTED_MODULE_14__.CardInfoComponent, _pages_change_pin_code_change_pin_code_component__WEBPACK_IMPORTED_MODULE_15__.ChangePinCodeComponent, _pages_new_transaction_new_transaction_component__WEBPACK_IMPORTED_MODULE_16__.NewTransactionComponent, _pages_account_info_account_info_component__WEBPACK_IMPORTED_MODULE_17__.AccountInfoComponent, _angular_common__WEBPACK_IMPORTED_MODULE_20__.AsyncPipe],
@@ -1441,51 +1457,225 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TransactionListItemComponent": () => (/* binding */ TransactionListItemComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ 4666);
+/* harmony import */ var src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/interfaces/app.interfaces */ 5675);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var src_app_services_account_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/account.service */ 9876);
+/* harmony import */ var src_app_services_atm_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/atm-http.service */ 9823);
+/* harmony import */ var src_app_services_navigation_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/navigation.service */ 9565);
+/* harmony import */ var src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/notification.service */ 2013);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 4666);
+/* harmony import */ var _angular_flex_layout_extended__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/flex-layout/extended */ 3704);
 
 
-function TransactionListItemComponent_div_0_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 1)(1, "button")(2, "div", 2)(3, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](7, "date");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 3)(9, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "span");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()()();
+
+
+
+
+
+
+function TransactionListItemComponent_div_0_span_17_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Transaction #", ctx_r0.transaction.id, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Created: ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](7, 6, ctx_r0.transaction.startTime, "short"), "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("From: ", ctx_r0.transaction.fromAccount.id, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"]("Amount: ", ctx_r0.transaction.amount == null ? null : ctx_r0.transaction.amount.amount, " ", ctx_r0.transaction.amount == null ? null : ctx_r0.transaction.amount.currency, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("To: ", ctx_r0.transaction.toAccount.id, "");
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate2"]("Fee: ", ctx_r2.transaction.fee, " ", ctx_r2.transaction.amount == null ? null : ctx_r2.transaction.amount.currency, "");
+} }
+const _c0 = function (a0) { return { "color": a0 }; };
+function TransactionListItemComponent_div_0_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 2)(1, "button", 3)(2, "div", 4)(3, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6, "Type: ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](7, "span", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](11, "date");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](12, "div", 6)(13, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](17, TransactionListItemComponent_div_0_span_17_Template, 2, 2, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](18, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()()();
+} if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate2"]("#", ctx_r0.transaction.id, " | Status: ", ctx_r0.transaction.transactionStatus, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngStyle", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpureFunction1"](13, _c0, ctx_r0.transactionColor));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate"](ctx_r0.transaction.transactionType);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("Created: ", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind2"](11, 10, ctx_r0.transaction.startTime, "M/d/yy, HH:mm"), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("From: ", ctx_r0.transaction.fromAccount.id, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate2"]("Amount: ", ctx_r0.transaction.amount == null ? null : ctx_r0.transaction.amount.amount, " ", ctx_r0.transaction.amount == null ? null : ctx_r0.transaction.amount.currency, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r0.transaction.fee);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("To: ", ctx_r0.transaction.toAccount.id, "");
+} }
+function TransactionListItemComponent_div_1_span_9_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("Initial repeats: ", ctx_r3.transactionSch.initialRepeats, "");
+} }
+function TransactionListItemComponent_div_1_span_10_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("Repeats left: ", ctx_r4.transactionSch.repeatsLeft, "");
+} }
+function TransactionListItemComponent_div_1_span_11_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "Infinite repeat");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+} }
+function TransactionListItemComponent_div_1_span_12_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("Repeats every ", ctx_r6.transactionSch.period.period, "");
+} }
+function TransactionListItemComponent_div_1_span_14_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](2, "date");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("Planned start: ", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind2"](2, 1, ctx_r7.transactionSch.scheduledTime, "M/d/yy, HH:mm"), "");
+} }
+function TransactionListItemComponent_div_1_button_19_Template(rf, ctx) { if (rf & 1) {
+    const _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "button", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function TransactionListItemComponent_div_1_button_19_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r10); const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2); return _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵresetView"](ctx_r9.cancelRegularTransaction()); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, "Cancel");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+} }
+function TransactionListItemComponent_div_1_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 8)(1, "button", 3)(2, "div", 4)(3, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](7, "date");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](8, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](9, TransactionListItemComponent_div_1_span_9_Template, 2, 1, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](10, TransactionListItemComponent_div_1_span_10_Template, 2, 1, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](11, TransactionListItemComponent_div_1_span_11_Template, 2, 0, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](12, TransactionListItemComponent_div_1_span_12_Template, 2, 1, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](13, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](14, TransactionListItemComponent_div_1_span_14_Template, 3, 4, "span", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](17, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](19, TransactionListItemComponent_div_1_button_19_Template, 2, 0, "button", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]()()();
+} if (rf & 2) {
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate2"]("#", ctx_r1.transactionSch.id, " | Status: ", ctx_r1.transactionSch.transactionStatus, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("Created: ", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind2"](7, 12, ctx_r1.transactionSch.startTime, "M/d/yy, HH:mm"), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r1.transactionSch.initialRepeats);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r1.transactionSch.initialRepeats);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx_r1.transactionSch.initialRepeats);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r1.transactionSch.period);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r1.transactionSch.scheduledTime);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate2"]("Amount: ", ctx_r1.transactionSch.amount == null ? null : ctx_r1.transactionSch.amount.amount, " ", ctx_r1.transactionSch.amount == null ? null : ctx_r1.transactionSch.amount.currency, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("To: ", ctx_r1.transactionSch.toAccount.id, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r1.transactionSch.transactionStatus === ctx_r1.SCHEDULED_STATUSES.SCHEDULED);
 } }
 class TransactionListItemComponent {
-    constructor() { }
+    constructor(accountService, atmHttpService, navigationService, notificationService) {
+        this.accountService = accountService;
+        this.atmHttpService = atmHttpService;
+        this.navigationService = navigationService;
+        this.notificationService = notificationService;
+        this.SCHEDULED_STATUSES = src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.ScheduledTransactionStatus;
+        this.transactionColor = 'black';
+    }
     ngOnInit() {
+        this.transactionColor = this.getTransactionColor();
+    }
+    getTransactionColor() {
+        switch (this.transaction?.transactionType) {
+            case src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.TransactionType.DEPOSIT:
+                return 'lawngreen';
+            case src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.TransactionType.WITHDRAWAL:
+                return 'red';
+            case src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.TransactionType.TRANSFERRING:
+                return this.getTransferringColor();
+            default:
+                return 'black';
+        }
+    }
+    getTransferringColor() {
+        const isFrom = this.accountService.allAccounts$.value.findIndex(account => account.id === this.transaction?.fromAccount.id) >= 0;
+        const isTo = this.accountService.allAccounts$.value.findIndex(account => account.id === this.transaction?.toAccount.id) >= 0;
+        if (isFrom && isTo)
+            return 'yellow';
+        else if (isFrom)
+            return 'red';
+        else if (isTo)
+            return 'lawngreen';
+        else
+            return 'black';
+    }
+    cancelRegularTransaction() {
+        if (!this.transactionSch)
+            return;
+        this.atmHttpService.cancelRegularTransaction(this.transactionSch?.id)
+            .subscribe(() => {
+            this.navigationService.goTo(src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState.ACCOUNT_INFO);
+            this.notificationService.notification$.next('Scheduled transaction successfully cancelled!');
+        });
     }
 }
-TransactionListItemComponent.ɵfac = function TransactionListItemComponent_Factory(t) { return new (t || TransactionListItemComponent)(); };
-TransactionListItemComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TransactionListItemComponent, selectors: [["app-transaction-list-item"]], inputs: { transaction: "transaction" }, decls: 1, vars: 1, consts: [["class", "transaction-info", 4, "ngIf"], [1, "transaction-info"], [1, "main-info"], [1, "additional-info"]], template: function TransactionListItemComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, TransactionListItemComponent_div_0_Template, 15, 9, "div", 0);
+TransactionListItemComponent.ɵfac = function TransactionListItemComponent_Factory(t) { return new (t || TransactionListItemComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_account_service__WEBPACK_IMPORTED_MODULE_1__.AccountService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_atm_http_service__WEBPACK_IMPORTED_MODULE_2__.AtmHttpService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_navigation_service__WEBPACK_IMPORTED_MODULE_3__.NavigationService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_4__.NotificationService)); };
+TransactionListItemComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({ type: TransactionListItemComponent, selectors: [["app-transaction-list-item"]], inputs: { transaction: "transaction", transactionSch: "transactionSch" }, decls: 2, vars: 2, consts: [["class", "transaction-info", 4, "ngIf"], ["class", "transaction-scheduled-info", 4, "ngIf"], [1, "transaction-info"], ["disabled", ""], [1, "main-info"], [3, "ngStyle"], [1, "additional-info"], [4, "ngIf"], [1, "transaction-scheduled-info"], [1, "primary-info"], [3, "click", 4, "ngIf"], [3, "click"]], template: function TransactionListItemComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, TransactionListItemComponent_div_0_Template, 20, 15, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, TransactionListItemComponent_div_1_Template, 20, 15, "div", 1);
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.transaction);
-    } }, dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_1__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_1__.DatePipe], styles: [".transaction-info[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n.transaction-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  width: 90%;\n  height: 50px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.transaction-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]   .main-info[_ngcontent-%COMP%], .transaction-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]   .additional-info[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  justify-content: space-between;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zYWN0aW9uLWxpc3QtaXRlbS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7QUFDSjtBQUNJO0VBQ0ksVUFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSw2QkFBQTtBQUNSO0FBQ1E7RUFDSSxhQUFBO0VBQ0EsV0FBQTtFQUNBLDhCQUFBO0FBQ1oiLCJmaWxlIjoidHJhbnNhY3Rpb24tbGlzdC1pdGVtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRyYW5zYWN0aW9uLWluZm8ge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcblxyXG4gICAgYnV0dG9uIHtcclxuICAgICAgICB3aWR0aDogOTAlO1xyXG4gICAgICAgIGhlaWdodDogNTBweDtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQ7XHJcblxyXG4gICAgICAgIC5tYWluLWluZm8sIC5hZGRpdGlvbmFsLWluZm8ge1xyXG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxufSJdfQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.transaction);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.transactionSch);
+    } }, dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_6__.NgStyle, _angular_flex_layout_extended__WEBPACK_IMPORTED_MODULE_7__.DefaultStyleDirective, _angular_common__WEBPACK_IMPORTED_MODULE_6__.DatePipe], styles: [".transaction-info[_ngcontent-%COMP%], .transaction-scheduled-info[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n.transaction-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%], .transaction-scheduled-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 50px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  color: black;\n  text-shadow: none;\n}\n.transaction-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%]   .main-info[_ngcontent-%COMP%], .transaction-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%]   .primary-info[_ngcontent-%COMP%], .transaction-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%]   .additional-info[_ngcontent-%COMP%], .transaction-scheduled-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%]   .main-info[_ngcontent-%COMP%], .transaction-scheduled-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%]   .primary-info[_ngcontent-%COMP%], .transaction-scheduled-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%]   .additional-info[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  justify-content: space-between;\n  align-items: center;\n}\n.transaction-scheduled-info[_ngcontent-%COMP%]    > button[_ngcontent-%COMP%] {\n  height: 80px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zYWN0aW9uLWxpc3QtaXRlbS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7QUFDSjtBQUNJO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSw2QkFBQTtFQUNBLFlBQUE7RUFDQSxpQkFBQTtBQUNSO0FBQ1E7RUFDSSxhQUFBO0VBQ0EsV0FBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUFDWjtBQUlBO0VBQ0ksWUFBQTtBQURKIiwiZmlsZSI6InRyYW5zYWN0aW9uLWxpc3QtaXRlbS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi50cmFuc2FjdGlvbi1pbmZvLCAudHJhbnNhY3Rpb24tc2NoZWR1bGVkLWluZm8ge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcblxyXG4gICAgPiBidXR0b24ge1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICAgIGhlaWdodDogNTBweDtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQ7XHJcbiAgICAgICAgY29sb3I6IGJsYWNrO1xyXG4gICAgICAgIHRleHQtc2hhZG93OiBub25lO1xyXG5cclxuICAgICAgICAubWFpbi1pbmZvLCAucHJpbWFyeS1pbmZvLCAuYWRkaXRpb25hbC1pbmZvIHtcclxuICAgICAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn1cclxuXHJcbi50cmFuc2FjdGlvbi1zY2hlZHVsZWQtaW5mbyA+IGJ1dHRvbiB7XHJcbiAgICBoZWlnaHQ6IDgwcHg7XHJcbn0iXX0= */"] });
 
 
 /***/ }),
@@ -1534,11 +1724,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AtmStatus": () => (/* binding */ AtmStatus),
 /* harmony export */   "CardStatus": () => (/* binding */ CardStatus),
 /* harmony export */   "SavingPlanType": () => (/* binding */ SavingPlanType),
+/* harmony export */   "ScheduledTransactionStatus": () => (/* binding */ ScheduledTransactionStatus),
 /* harmony export */   "TramsactionalPlanType": () => (/* binding */ TramsactionalPlanType),
 /* harmony export */   "TransactionStatus": () => (/* binding */ TransactionStatus),
 /* harmony export */   "TransactionType": () => (/* binding */ TransactionType),
 /* harmony export */   "UserStatus": () => (/* binding */ UserStatus)
 /* harmony export */ });
+var ScheduledTransactionStatus;
+(function (ScheduledTransactionStatus) {
+    ScheduledTransactionStatus["SCHEDULED"] = "SCHEDULED";
+    ScheduledTransactionStatus["CANCELED"] = "CANCELED";
+    ScheduledTransactionStatus["COMMITTED"] = "COMMITTED";
+})(ScheduledTransactionStatus || (ScheduledTransactionStatus = {}));
 var AtmStatus;
 (function (AtmStatus) {
     AtmStatus["IDLE"] = "IDLE";
@@ -1567,6 +1764,7 @@ var AtmState;
     AtmState["WITHDRAW"] = "Withdraw";
     AtmState["DEPOSIT"] = "Deposit";
     AtmState["TRANSACTION_HISTORY"] = "Transaction history";
+    AtmState["REGULAR_TRANSACTION_HISTORY"] = "Scheduled transactions";
     AtmState["CARD_INFO"] = "Card info";
     AtmState["NEW_ACCOUNT"] = "New account";
     AtmState["CHOOSE_PLAN"] = "Choose your plan";
@@ -1655,14 +1853,14 @@ __webpack_require__.r(__webpack_exports__);
 
 function AccountInfoComponent_div_1_div_1_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 8)(1, "button", 9)(2, "div", 10)(3, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 10)(1, "button", 11)(2, "div", 12)(3, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4, "Name:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](7, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "div", 11)(9, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "div", 13)(9, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](10, "Balance:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](11, "span");
@@ -1670,7 +1868,7 @@ function AccountInfoComponent_div_1_div_1_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](13, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](14, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](15, "div", 12)(16, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](15, "div", 14)(16, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](17, "Credit amount:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](18, "span");
@@ -1678,14 +1876,14 @@ function AccountInfoComponent_div_1_div_1_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](20, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](21, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](22, "div", 13)(23, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](22, "div", 15)(23, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](24, "Lending rate:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](25, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](26);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](27, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](28, "div", 14)(29, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](28, "div", 16)(29, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](30, "Default?");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](31, "span");
@@ -1711,7 +1909,7 @@ function AccountInfoComponent_div_1_div_1_Template(rf, ctx) {
 
 function AccountInfoComponent_div_1_div_3_div_15_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 24)(1, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 26)(1, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Current balance:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "span");
@@ -1730,7 +1928,7 @@ function AccountInfoComponent_div_1_div_3_div_15_Template(rf, ctx) {
 
 function AccountInfoComponent_div_1_div_3_div_17_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 25)(1, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 27)(1, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Payments left:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "span");
@@ -1748,7 +1946,7 @@ function AccountInfoComponent_div_1_div_3_div_17_Template(rf, ctx) {
 
 function AccountInfoComponent_div_1_div_3_div_19_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 26)(1, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 28)(1, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Next payment in:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](3, "span");
@@ -1766,14 +1964,14 @@ function AccountInfoComponent_div_1_div_3_div_19_Template(rf, ctx) {
 
 function AccountInfoComponent_div_1_div_3_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 15)(1, "button", 16)(2, "div", 10)(3, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 17)(1, "button", 18)(2, "div", 12)(3, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](4, "Name:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](7, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "div", 17)(9, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "div", 19)(9, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](10, "Safe balance:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](11, "span");
@@ -1781,27 +1979,27 @@ function AccountInfoComponent_div_1_div_3_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](13, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](14, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](15, AccountInfoComponent_div_1_div_3_div_15_Template, 7, 6, "div", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](15, AccountInfoComponent_div_1_div_3_div_15_Template, 7, 6, "div", 20);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](16, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](17, AccountInfoComponent_div_1_div_3_div_17_Template, 6, 3, "div", 19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](17, AccountInfoComponent_div_1_div_3_div_17_Template, 6, 3, "div", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](18, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](19, AccountInfoComponent_div_1_div_3_div_19_Template, 6, 3, "div", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](19, AccountInfoComponent_div_1_div_3_div_19_Template, 6, 3, "div", 22);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](20, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](21, "div", 21)(22, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](21, "div", 23)(22, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](23, "Capitalization:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](24, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](25);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](26, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](27, "div", 22)(28, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](27, "div", 24)(28, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](29, "Autorenewal:");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](30, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](31);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](32, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](33, "app-account-plan-list-item", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](33, "app-account-plan-list-item", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](34, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
@@ -1827,31 +2025,49 @@ function AccountInfoComponent_div_1_div_3_Template(rf, ctx) {
   }
 }
 
-function AccountInfoComponent_div_1_div_5_Template(rf, ctx) {
+function AccountInfoComponent_div_1_button_10_Template(rf, ctx) {
   if (rf & 1) {
     const _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 27)(1, "button", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_1_div_5_Template_button_click_1_listener() {
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "button", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_1_button_10_Template_button_click_0_listener() {
       _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r10);
       const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
       return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r9.openSettings(true));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Account settings/parameters");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, "Account settings/parameters");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
 }
 
 function AccountInfoComponent_div_1_Template(rf, ctx) {
   if (rf & 1) {
+    const _r12 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 4);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_1_div_1_Template, 34, 21, "div", 5);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](2, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](3, AccountInfoComponent_div_1_div_3_Template, 35, 28, "div", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](4, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](5, AccountInfoComponent_div_1_div_5_Template, 3, 0, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](6, "async");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "div", 7)(6, "button", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_1_Template_button_click_6_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r12);
+      const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r11.openAccountHistory());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](7, "History");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "button", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_1_Template_button_click_8_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r12);
+      const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r13.openActiveTransactions());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](9, "Scheduled transactions");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](10, AccountInfoComponent_div_1_button_10_Template, 2, 0, "button", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](11, "async");
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
   }
 
   if (rf & 2) {
@@ -1860,20 +2076,20 @@ function AccountInfoComponent_div_1_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](2, 3, ctx_r0.account$).accountType === ctx_r0.ACCOUNT_TYPES.TRANSACTIONAL);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](4, 5, ctx_r0.account$).accountType === ctx_r0.ACCOUNT_TYPES.SAVING);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](6, 7, ctx_r0.account$).accountType === ctx_r0.ACCOUNT_TYPES.SAVING);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](11, 7, ctx_r0.account$).accountType === ctx_r0.ACCOUNT_TYPES.SAVING);
   }
 }
 
 function AccountInfoComponent_div_4_button_8_Template(rf, ctx) {
   if (rf & 1) {
-    const _r15 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    const _r18 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "button", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "button", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_4_button_8_Template_button_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r15);
-      const ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r14.fireContract());
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r18);
+      const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r17.fireContract());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Fire saving contract ");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
@@ -1882,13 +2098,13 @@ function AccountInfoComponent_div_4_button_8_Template(rf, ctx) {
 
 function AccountInfoComponent_div_4_button_10_Template(rf, ctx) {
   if (rf & 1) {
-    const _r17 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    const _r20 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "button", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "button", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_4_button_10_Template_button_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r17);
-      const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r16.terminateContract());
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r20);
+      const ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r19.terminateContract());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](1, " Terminate saving contract ");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
@@ -1897,13 +2113,13 @@ function AccountInfoComponent_div_4_button_10_Template(rf, ctx) {
 
 function AccountInfoComponent_div_4_div_12_Template(rf, ctx) {
   if (rf & 1) {
-    const _r19 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    const _r22 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 36)(1, "button", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 35)(1, "button", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_4_div_12_Template_button_click_1_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r19);
-      const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r18.openSettings(false));
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r22);
+      const ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r21.openSettings(false));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Account information");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
@@ -1912,26 +2128,26 @@ function AccountInfoComponent_div_4_div_12_Template(rf, ctx) {
 
 function AccountInfoComponent_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    const _r21 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    const _r24 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 29)(1, "div", 30);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](2, "app-account-plan-list-item", 31);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](3, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](4, "div", 32)(5, "button", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_4_Template_button_click_5_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r21);
-      const ctx_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r20.changeAccountPlan());
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r24);
+      const ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r23.changeAccountPlan());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](6, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](7, " Change saving plan ");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](8, AccountInfoComponent_div_4_button_8_Template, 2, 0, "button", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](8, AccountInfoComponent_div_4_button_8_Template, 2, 0, "button", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](9, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](10, AccountInfoComponent_div_4_button_10_Template, 2, 0, "button", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](10, AccountInfoComponent_div_4_button_10_Template, 2, 0, "button", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](11, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](12, AccountInfoComponent_div_4_div_12_Template, 3, 0, "div", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](12, AccountInfoComponent_div_4_div_12_Template, 3, 0, "div", 34);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](13, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
@@ -1953,47 +2169,47 @@ function AccountInfoComponent_div_4_Template(rf, ctx) {
 
 function AccountInfoComponent_div_8_div_1_app_account_plan_list_item_1_Template(rf, ctx) {
   if (rf & 1) {
-    const _r27 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    const _r30 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "app-account-plan-list-item", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "app-account-plan-list-item", 40);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("customCallback", function AccountInfoComponent_div_8_div_1_app_account_plan_list_item_1_Template_app_account_plan_list_item_customCallback_0_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r27);
-      const ctx_r26 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](3);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r26.onSelectNewPlan($event));
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r30);
+      const ctx_r29 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](3);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r29.onSelectNewPlan($event));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
 
   if (rf & 2) {
-    const plan_r25 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("isCustomCallback", true)("savingPlan", plan_r25);
+    const plan_r28 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("isCustomCallback", true)("savingPlan", plan_r28);
   }
 }
 
 function AccountInfoComponent_div_8_div_1_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 39);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_8_div_1_app_account_plan_list_item_1_Template, 1, 2, "app-account-plan-list-item", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 38);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_8_div_1_app_account_plan_list_item_1_Template, 1, 2, "app-account-plan-list-item", 39);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](2, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
 
   if (rf & 2) {
-    const ctx_r22 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+    const ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](2, 1, ctx_r22.savingPlans$));
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](2, 1, ctx_r25.savingPlans$));
   }
 }
 
 function AccountInfoComponent_div_8_div_3_Template(rf, ctx) {
   if (rf & 1) {
-    const _r29 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
+    const _r32 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵgetCurrentView"]();
 
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 36)(1, "button", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 35)(1, "button", 8);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function AccountInfoComponent_div_8_div_3_Template_button_click_1_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r29);
-      const ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r28.openSettings(true));
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵrestoreView"](_r32);
+      const ctx_r31 = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵresetView"](ctx_r31.openSettings(true));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtext"](2, "Return to settings");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]()();
@@ -2002,10 +2218,10 @@ function AccountInfoComponent_div_8_div_3_Template(rf, ctx) {
 
 function AccountInfoComponent_div_8_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 37);
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_8_div_1_Template, 3, 3, "div", 38);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_8_div_1_Template, 3, 3, "div", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](2, "async");
-    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](3, AccountInfoComponent_div_8_div_3_Template, 3, 0, "div", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](3, AccountInfoComponent_div_8_div_3_Template, 3, 0, "div", 34);
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](4, "async");
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
   }
@@ -2109,6 +2325,14 @@ class AccountInfoComponent {
     });
   }
 
+  openAccountHistory() {
+    this.navigationService.goTo(src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState.TRANSACTION_HISTORY);
+  }
+
+  openActiveTransactions() {
+    this.navigationService.goTo(src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState.REGULAR_TRANSACTION_HISTORY);
+  }
+
 }
 
 AccountInfoComponent.ɵfac = function AccountInfoComponent_Factory(t) {
@@ -2120,11 +2344,11 @@ AccountInfoComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE
   selectors: [["app-account-info"]],
   decls: 12,
   vars: 20,
-  consts: [[3, "lastState"], ["class", "atm-account-info", "fxLayout", "column", "fxLayoutAlign", "space-between center", 4, "ngIf"], ["class", "atm-account-settings", 4, "ngIf"], ["class", "atm-change-saving-plan", 4, "ngIf"], ["fxLayout", "column", "fxLayoutAlign", "space-between center", 1, "atm-account-info"], ["class", "transactional", 4, "ngIf"], ["class", "saving", 4, "ngIf"], ["class", "page-features", 4, "ngIf"], [1, "transactional"], ["disabled", ""], [1, "name-section"], [1, "balance-section"], [1, "credit-amount-section"], [1, "lending-rate-section"], [1, "is-default-section"], [1, "saving"], ["disabled", "", "fxFlex", "60"], [1, "safe-balance-section"], ["class", "current-balance-section", 4, "ngIf"], ["class", "payments-left-section", 4, "ngIf"], ["class", "next-payment-section", 4, "ngIf"], [1, "capitalization-section"], [1, "autorenewal-section"], ["fxFlex", "50", 3, "disabled", "savingPlan"], [1, "current-balance-section"], [1, "payments-left-section"], [1, "next-payment-section"], [1, "page-features"], [3, "click"], [1, "atm-account-settings"], [1, "main-section"], ["fxFlex", "50", "fxLayoutAlign", "center", 3, "disabled", "savingPlan"], [1, "edit-plan-btns"], [3, "disabled", "click"], [3, "click", 4, "ngIf"], ["class", "page-features", "fxLayoutAlign", "flex-end center", 4, "ngIf"], ["fxLayoutAlign", "flex-end center", 1, "page-features"], [1, "atm-change-saving-plan"], ["class", "choose-plan-section", 4, "ngIf"], [1, "choose-plan-section"], ["fxFlex", "50", "fxLayoutAlign", "center", 3, "isCustomCallback", "savingPlan", "customCallback", 4, "ngFor", "ngForOf"], ["fxFlex", "50", "fxLayoutAlign", "center", 3, "isCustomCallback", "savingPlan", "customCallback"]],
+  consts: [[3, "lastState"], ["class", "atm-account-info", "fxLayout", "column", "fxLayoutAlign", "space-between center", 4, "ngIf"], ["class", "atm-account-settings", 4, "ngIf"], ["class", "atm-change-saving-plan", 4, "ngIf"], ["fxLayout", "column", "fxLayoutAlign", "space-between center", 1, "atm-account-info"], ["class", "transactional", 4, "ngIf"], ["class", "saving", 4, "ngIf"], [1, "page-features"], [3, "click"], [3, "click", 4, "ngIf"], [1, "transactional"], ["disabled", ""], [1, "name-section"], [1, "balance-section"], [1, "credit-amount-section"], [1, "lending-rate-section"], [1, "is-default-section"], [1, "saving"], ["disabled", "", "fxFlex", "60"], [1, "safe-balance-section"], ["class", "current-balance-section", 4, "ngIf"], ["class", "payments-left-section", 4, "ngIf"], ["class", "next-payment-section", 4, "ngIf"], [1, "capitalization-section"], [1, "autorenewal-section"], ["fxFlex", "50", 3, "disabled", "savingPlan"], [1, "current-balance-section"], [1, "payments-left-section"], [1, "next-payment-section"], [1, "atm-account-settings"], [1, "main-section"], ["fxFlex", "50", "fxLayoutAlign", "center", 3, "disabled", "savingPlan"], [1, "edit-plan-btns"], [3, "disabled", "click"], ["class", "page-features", "fxLayoutAlign", "flex-end center", 4, "ngIf"], ["fxLayoutAlign", "flex-end center", 1, "page-features"], [1, "atm-change-saving-plan"], ["class", "choose-plan-section", 4, "ngIf"], [1, "choose-plan-section"], ["fxFlex", "50", "fxLayoutAlign", "center", 3, "isCustomCallback", "savingPlan", "customCallback", 4, "ngFor", "ngForOf"], ["fxFlex", "50", "fxLayoutAlign", "center", 3, "isCustomCallback", "savingPlan", "customCallback"]],
   template: function AccountInfoComponent_Template(rf, ctx) {
     if (rf & 1) {
       _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](0, "app-atm-header", 0);
-      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_1_Template, 7, 9, "div", 1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](1, AccountInfoComponent_div_1_Template, 12, 9, "div", 1);
       _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](2, "async");
       _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](3, "async");
       _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](4, AccountInfoComponent_div_4_Template, 14, 16, "div", 2);
@@ -2148,7 +2372,7 @@ AccountInfoComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE
     }
   },
   dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_11__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_11__.NgIf, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_12__.DefaultLayoutDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_12__.DefaultLayoutAlignDirective, _angular_flex_layout_flex__WEBPACK_IMPORTED_MODULE_12__.DefaultFlexDirective, _components_atm_header_atm_header_component__WEBPACK_IMPORTED_MODULE_5__.AtmHeaderComponent, _components_account_plan_list_item_account_plan_list_item_component__WEBPACK_IMPORTED_MODULE_6__.AccountPlanListItemComponent, _angular_common__WEBPACK_IMPORTED_MODULE_11__.AsyncPipe],
-  styles: [".atm-account-info[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  height: 90%;\n}\n.atm-account-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-top: 5px;\n  width: 60%;\n  height: inherit;\n  font-size: 14px;\n  color: black;\n  box-sizing: border-box;\n}\n.atm-account-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  margin: 5px auto;\n}\n.atm-account-info[_ngcontent-%COMP%]   .transactional[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n.atm-account-info[_ngcontent-%COMP%]   .saving[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n.atm-account-info[_ngcontent-%COMP%]   .page-features[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: flex-end;\n  width: 100%;\n}\n.atm-account-info[_ngcontent-%COMP%]   .page-features[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-top: 0;\n  height: 100%;\n  width: auto;\n}\n.atm-account-settings[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 90%;\n}\n.atm-account-settings[_ngcontent-%COMP%]   .main-section[_ngcontent-%COMP%] {\n  justify-content: space-between;\n  height: 50%;\n}\n.atm-account-settings[_ngcontent-%COMP%]   .edit-plan-btns[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.atm-account-settings[_ngcontent-%COMP%]   .edit-plan-btns[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  height: 50px;\n}\n.atm-change-saving-plan[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 90%;\n  padding-top: 5px;\n}\n.atm-change-saving-plan[_ngcontent-%COMP%]   .choose-plan-section[_ngcontent-%COMP%] {\n  overflow: auto;\n  width: 100%;\n  min-height: 85%;\n  background: #fff;\n  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;\n  padding: 12px 8px;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.atm-change-saving-plan[_ngcontent-%COMP%]   .page-features[_ngcontent-%COMP%] {\n  padding-top: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjY291bnQtaW5mby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGdCQUFBO0VBQ0EsV0FBQTtBQUNKO0FBQUk7RUFDSSxlQUFBO0VBQ0EsVUFBQTtFQUNBLGVBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUVBLHNCQUFBO0FBQ1I7QUFDUTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtFQUNBLGdCQUFBO0FBQ1o7QUFHSTtFQUNJLGFBQUE7RUFDQSx1QkFBQTtFQUNBLFdBQUE7QUFEUjtBQUlJO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsV0FBQTtBQUZSO0FBS0k7RUFDSSxhQUFBO0VBQ0EseUJBQUE7RUFDQSxXQUFBO0FBSFI7QUFLUTtFQUNJLGFBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtBQUhaO0FBUUE7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSw4QkFBQTtFQUNBLFdBQUE7QUFMSjtBQU9JO0VBQ0ksOEJBQUE7RUFDQSxXQUFBO0FBTFI7QUFRSTtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLDZCQUFBO0FBTlI7QUFRUTtFQUNJLFlBQUE7QUFOWjtBQVdBO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsOEJBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7QUFSSjtBQVVJO0VBQ0ksY0FBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvR0FBQTtFQUNBLGlCQUFBO0VBQ0EsZUFBQTtFQUNBLHVCQUFBO0FBUlI7QUFXSTtFQUNJLGdCQUFBO0FBVFIiLCJmaWxlIjoiYWNjb3VudC1pbmZvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmF0bS1hY2NvdW50LWluZm8ge1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIGhlaWdodDogOTAlO1xyXG4gICAgYnV0dG9uIHtcclxuICAgICAgICBtYXJnaW4tdG9wOiA1cHg7XHJcbiAgICAgICAgd2lkdGg6IDYwJTtcclxuICAgICAgICBoZWlnaHQ6IGluaGVyaXQ7XHJcbiAgICAgICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgICAgIGNvbG9yOiBibGFjaztcclxuICAgICAgICAvLyBtYXJnaW46IGF1dG87XHJcbiAgICAgICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuXHJcbiAgICAgICAgPiBkaXYge1xyXG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICAgICAgICAgIG1hcmdpbjogNXB4IGF1dG87XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG5cclxuICAgIC50cmFuc2FjdGlvbmFsIHtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgfVxyXG5cclxuICAgIC5zYXZpbmcge1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgfVxyXG5cclxuICAgIC5wYWdlLWZlYXR1cmVzIHtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbiAgICAgICAgd2lkdGg6IDEwMCU7XHJcblxyXG4gICAgICAgIGJ1dHRvbiB7XHJcbiAgICAgICAgICAgIG1hcmdpbi10b3A6IDA7XHJcbiAgICAgICAgICAgIGhlaWdodDogMTAwJTtcclxuICAgICAgICAgICAgd2lkdGg6IGF1dG87XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59XHJcblxyXG4uYXRtLWFjY291bnQtc2V0dGluZ3Mge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICBoZWlnaHQ6IDkwJTtcclxuXHJcbiAgICAubWFpbi1zZWN0aW9uIHtcclxuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICAgICAgaGVpZ2h0OiA1MCU7XHJcbiAgICB9XHJcblxyXG4gICAgLmVkaXQtcGxhbi1idG5zIHtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQ7XHJcblxyXG4gICAgICAgIGJ1dHRvbiB7XHJcbiAgICAgICAgICAgIGhlaWdodDogNTBweDtcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn1cclxuXHJcbi5hdG0tY2hhbmdlLXNhdmluZy1wbGFuIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgaGVpZ2h0OiA5MCU7XHJcbiAgICBwYWRkaW5nLXRvcDogNXB4O1xyXG5cclxuICAgIC5jaG9vc2UtcGxhbi1zZWN0aW9uIHtcclxuICAgICAgICBvdmVyZmxvdzogYXV0bztcclxuICAgICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgICBtaW4taGVpZ2h0OiA4NSU7XHJcbiAgICAgICAgYmFja2dyb3VuZDogI2ZmZjtcclxuICAgICAgICBib3gtc2hhZG93OiBpbnNldCAtMXB4IC0xcHggI2ZmZiwgaW5zZXQgMXB4IDFweCBncmV5LCBpbnNldCAtMnB4IC0ycHggI2RmZGZkZiwgaW5zZXQgMnB4IDJweCAjMGEwYTBhO1xyXG4gICAgICAgIHBhZGRpbmc6IDEycHggOHB4O1xyXG4gICAgICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIH1cclxuXHJcbiAgICAucGFnZS1mZWF0dXJlcyB7XHJcbiAgICAgICAgcGFkZGluZy10b3A6IDVweDtcclxuICAgIH1cclxufSJdfQ== */"]
+  styles: [".atm-account-info[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  height: 90%;\n}\n.atm-account-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-top: 5px;\n  width: 60%;\n  height: inherit;\n  font-size: 14px;\n  color: black;\n  box-sizing: border-box;\n}\n.atm-account-info[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  margin: 5px auto;\n}\n.atm-account-info[_ngcontent-%COMP%]   .transactional[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n.atm-account-info[_ngcontent-%COMP%]   .saving[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n.atm-account-info[_ngcontent-%COMP%]   .page-features[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n}\n.atm-account-info[_ngcontent-%COMP%]   .page-features[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  margin-top: 0;\n  height: 100%;\n  width: auto;\n}\n.atm-account-settings[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 90%;\n}\n.atm-account-settings[_ngcontent-%COMP%]   .main-section[_ngcontent-%COMP%] {\n  justify-content: space-between;\n  height: 50%;\n}\n.atm-account-settings[_ngcontent-%COMP%]   .edit-plan-btns[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.atm-account-settings[_ngcontent-%COMP%]   .edit-plan-btns[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  height: 50px;\n}\n.atm-change-saving-plan[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 90%;\n  padding-top: 5px;\n}\n.atm-change-saving-plan[_ngcontent-%COMP%]   .choose-plan-section[_ngcontent-%COMP%] {\n  overflow: auto;\n  width: 100%;\n  min-height: 85%;\n  background: #fff;\n  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;\n  padding: 12px 8px;\n  flex-wrap: wrap;\n  justify-content: center;\n}\n.atm-change-saving-plan[_ngcontent-%COMP%]   .page-features[_ngcontent-%COMP%] {\n  padding-top: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFjY291bnQtaW5mby5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGdCQUFBO0VBQ0EsV0FBQTtBQUNKO0FBQUk7RUFDSSxlQUFBO0VBQ0EsVUFBQTtFQUNBLGVBQUE7RUFDQSxlQUFBO0VBQ0EsWUFBQTtFQUNBLHNCQUFBO0FBRVI7QUFBUTtFQUNJLGFBQUE7RUFDQSw4QkFBQTtFQUNBLGdCQUFBO0FBRVo7QUFFSTtFQUNJLGFBQUE7RUFDQSx1QkFBQTtFQUNBLFdBQUE7QUFBUjtBQUdJO0VBQ0ksYUFBQTtFQUNBLDhCQUFBO0VBQ0EsV0FBQTtBQURSO0FBSUk7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxXQUFBO0FBRlI7QUFJUTtFQUNJLGFBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtBQUZaO0FBT0E7RUFDSSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSw4QkFBQTtFQUNBLFdBQUE7QUFKSjtBQU1JO0VBQ0ksOEJBQUE7RUFDQSxXQUFBO0FBSlI7QUFPSTtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLDZCQUFBO0FBTFI7QUFPUTtFQUNJLFlBQUE7QUFMWjtBQVVBO0VBQ0ksYUFBQTtFQUNBLHNCQUFBO0VBQ0EsOEJBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7QUFQSjtBQVNJO0VBQ0ksY0FBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvR0FBQTtFQUNBLGlCQUFBO0VBQ0EsZUFBQTtFQUNBLHVCQUFBO0FBUFI7QUFVSTtFQUNJLGdCQUFBO0FBUlIiLCJmaWxlIjoiYWNjb3VudC1pbmZvLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmF0bS1hY2NvdW50LWluZm8ge1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIGhlaWdodDogOTAlO1xyXG4gICAgYnV0dG9uIHtcclxuICAgICAgICBtYXJnaW4tdG9wOiA1cHg7XHJcbiAgICAgICAgd2lkdGg6IDYwJTtcclxuICAgICAgICBoZWlnaHQ6IGluaGVyaXQ7XHJcbiAgICAgICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgICAgIGNvbG9yOiBibGFjaztcclxuICAgICAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG5cclxuICAgICAgICA+IGRpdiB7XHJcbiAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICAgICAgICAgICAgbWFyZ2luOiA1cHggYXV0bztcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgLnRyYW5zYWN0aW9uYWwge1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICB9XHJcblxyXG4gICAgLnNhdmluZyB7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICB9XHJcblxyXG4gICAgLnBhZ2UtZmVhdHVyZXMge1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG5cclxuICAgICAgICBidXR0b24ge1xyXG4gICAgICAgICAgICBtYXJnaW4tdG9wOiAwO1xyXG4gICAgICAgICAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICAgICAgICAgIHdpZHRoOiBhdXRvO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxufVxyXG5cclxuLmF0bS1hY2NvdW50LXNldHRpbmdzIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgaGVpZ2h0OiA5MCU7XHJcblxyXG4gICAgLm1haW4tc2VjdGlvbiB7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgICAgIGhlaWdodDogNTAlO1xyXG4gICAgfVxyXG5cclxuICAgIC5lZGl0LXBsYW4tYnRucyB7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG5cclxuICAgICAgICBidXR0b24ge1xyXG4gICAgICAgICAgICBoZWlnaHQ6IDUwcHg7XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59XHJcblxyXG4uYXRtLWNoYW5nZS1zYXZpbmctcGxhbiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICAgIGhlaWdodDogOTAlO1xyXG4gICAgcGFkZGluZy10b3A6IDVweDtcclxuXHJcbiAgICAuY2hvb3NlLXBsYW4tc2VjdGlvbiB7XHJcbiAgICAgICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICAgICAgbWluLWhlaWdodDogODUlO1xyXG4gICAgICAgIGJhY2tncm91bmQ6ICNmZmY7XHJcbiAgICAgICAgYm94LXNoYWRvdzogaW5zZXQgLTFweCAtMXB4ICNmZmYsIGluc2V0IDFweCAxcHggZ3JleSwgaW5zZXQgLTJweCAtMnB4ICNkZmRmZGYsIGluc2V0IDJweCAycHggIzBhMGEwYTtcclxuICAgICAgICBwYWRkaW5nOiAxMnB4IDhweDtcclxuICAgICAgICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICB9XHJcblxyXG4gICAgLnBhZ2UtZmVhdHVyZXMge1xyXG4gICAgICAgIHBhZGRpbmctdG9wOiA1cHg7XHJcbiAgICB9XHJcbn0iXX0= */"]
 });
 
 /***/ }),
@@ -2882,7 +3106,7 @@ function NewTransactionComponent_div_3_option_7_Template(rf, ctx) { if (rf & 1) 
     const account_r9 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("value", account_r9.id);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate"](account_r9.accountName);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate2"]("", account_r9.accountName, " #", account_r9.id, "");
 } }
 function NewTransactionComponent_div_3_div_8_span_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
@@ -2896,7 +3120,7 @@ function NewTransactionComponent_div_3_div_8_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r3.transactionForm.get("senderAccountDd").errors == null ? null : ctx_r3.transactionForm.get("senderAccountDd").errors["required"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx_r3.transactionForm.get("senderAccountId").errors == null ? null : ctx_r3.transactionForm.get("senderAccountId").errors["required"]);
 } }
 function NewTransactionComponent_div_3_div_15_span_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "span");
@@ -2984,14 +3208,14 @@ function NewTransactionComponent_div_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](5, "ender account:");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "select", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](7, NewTransactionComponent_div_3_option_7_Template, 2, 2, "option", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](7, NewTransactionComponent_div_3_option_7_Template, 2, 3, "option", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](8, NewTransactionComponent_div_3_div_8_Template, 2, 1, "div", 10);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "div", 6)(10, "label", 11)(11, "u");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](12, "A");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](13, "mount:");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](13);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](14, "input", 12);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](15, NewTransactionComponent_div_3_div_15_Template, 3, 2, "div", 10);
@@ -3058,26 +3282,28 @@ function NewTransactionComponent_div_3_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
     let tmp_2_0;
-    let tmp_3_0;
     let tmp_4_0;
     let tmp_5_0;
     let tmp_6_0;
     let tmp_7_0;
+    let tmp_8_0;
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("formGroup", ctx_r1.transactionForm);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](7);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngForOf", ctx_r1.accounts);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_2_0 = ctx_r1.transactionForm.get("senderAccountDd")) == null ? null : tmp_2_0.invalid) && ((tmp_2_0 = ctx_r1.transactionForm.get("senderAccountDd")) == null ? null : tmp_2_0.touched));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_2_0 = ctx_r1.transactionForm.get("senderAccountId")) == null ? null : tmp_2_0.invalid) && ((tmp_2_0 = ctx_r1.transactionForm.get("senderAccountId")) == null ? null : tmp_2_0.touched));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate1"]("mount: ", ctx_r1.acc, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_4_0 = ctx_r1.transactionForm.get("amount")) == null ? null : tmp_4_0.invalid) && ((tmp_4_0 = ctx_r1.transactionForm.get("amount")) == null ? null : tmp_4_0.touched));
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_3_0 = ctx_r1.transactionForm.get("amount")) == null ? null : tmp_3_0.invalid) && ((tmp_3_0 = ctx_r1.transactionForm.get("amount")) == null ? null : tmp_3_0.touched));
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_4_0 = ctx_r1.transactionForm.get("receiverAccountId")) == null ? null : tmp_4_0.invalid) && ((tmp_4_0 = ctx_r1.transactionForm.get("receiverAccountId")) == null ? null : tmp_4_0.touched));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_5_0 = ctx_r1.transactionForm.get("receiverAccountId")) == null ? null : tmp_5_0.invalid) && ((tmp_5_0 = ctx_r1.transactionForm.get("receiverAccountId")) == null ? null : tmp_5_0.touched));
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_5_0 = ctx_r1.transactionForm.get("scheduledTime")) == null ? null : tmp_5_0.invalid) && ((tmp_5_0 = ctx_r1.transactionForm.get("scheduledTime")) == null ? null : tmp_5_0.touched));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_6_0 = ctx_r1.transactionForm.get("scheduledTime")) == null ? null : tmp_6_0.invalid) && ((tmp_6_0 = ctx_r1.transactionForm.get("scheduledTime")) == null ? null : tmp_6_0.touched));
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_6_0 = ctx_r1.transactionForm.get("period")) == null ? null : tmp_6_0.invalid) && ((tmp_6_0 = ctx_r1.transactionForm.get("period")) == null ? null : tmp_6_0.touched) || ((tmp_6_0 = ctx_r1.transactionForm.get("initialRepeats")) == null ? null : tmp_6_0.invalid) && ((tmp_6_0 = ctx_r1.transactionForm.get("initialRepeats")) == null ? null : tmp_6_0.touched));
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](10);
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_7_0 = ctx_r1.transactionForm.get("period")) == null ? null : tmp_7_0.invalid) && ((tmp_7_0 = ctx_r1.transactionForm.get("period")) == null ? null : tmp_7_0.touched) || ((tmp_7_0 = ctx_r1.transactionForm.get("initialRepeats")) == null ? null : tmp_7_0.invalid) && ((tmp_7_0 = ctx_r1.transactionForm.get("initialRepeats")) == null ? null : tmp_7_0.touched));
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_8_0 = ctx_r1.transactionForm.get("period")) == null ? null : tmp_8_0.invalid) && ((tmp_8_0 = ctx_r1.transactionForm.get("period")) == null ? null : tmp_8_0.touched) || ((tmp_8_0 = ctx_r1.transactionForm.get("initialRepeats")) == null ? null : tmp_8_0.invalid) && ((tmp_8_0 = ctx_r1.transactionForm.get("initialRepeats")) == null ? null : tmp_8_0.touched));
 } }
 class NewTransactionComponent {
     constructor(fb, atmHttpService, notificationService, navigationService) {
@@ -3089,7 +3315,7 @@ class NewTransactionComponent {
         this.httpError = '';
         this.accounts = [];
         this.transactionForm = this.fb.group({
-            senderAccountDd: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(null, [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]),
+            senderAccountId: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(null, [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]),
             amount: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(0, [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.min(1)]),
             receiverAccountId: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(null, [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]),
             sendAt: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormControl(false),
@@ -3103,7 +3329,7 @@ class NewTransactionComponent {
         this.atmHttpService.getAllAccounts()
             .subscribe(accounts => {
             this.accounts = accounts;
-            this.transactionForm.patchValue({ senderAccountDd: accounts[0].id }, { emitEvent: false });
+            this.transactionForm.patchValue({ senderAccountId: accounts[0].id }, { emitEvent: false });
             this.transactionForm.get('scheduledTime')?.disable();
             this.transactionForm.get('period')?.disable();
             this.transactionForm.get('initialRepeats')?.disable();
@@ -3153,7 +3379,7 @@ class NewTransactionComponent {
         }
     }
     sendTransfer() {
-        this.atmHttpService.createNewTransferFromTransaction(this.transactionForm.get('amount').value, this.transactionForm.get('senderAccountDd').value, this.transactionForm.get('receiverAccountId').value)
+        this.atmHttpService.createNewTransferFromTransaction(this.transactionForm.get('amount').value, this.transactionForm.get('senderAccountId').value, this.transactionForm.get('receiverAccountId').value)
             .pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_7__.catchError)(err => {
             if (err.status === 404) {
                 this.httpError = 'Receiver account not found';
@@ -3169,7 +3395,7 @@ class NewTransactionComponent {
         });
     }
     sendScheduled() {
-        this.atmHttpService.createScheduledTransaction(this.transactionForm.get('amount').value, this.transactionForm.get('senderAccountDd').value, this.transactionForm.get('receiverAccountId').value, this.getSeconds(this.transactionForm.get('scheduledTime').value))
+        this.atmHttpService.createScheduledTransaction(this.transactionForm.get('amount').value, this.transactionForm.get('senderAccountId').value, this.transactionForm.get('receiverAccountId').value, this.getSeconds(this.transactionForm.get('scheduledTime').value))
             .pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_7__.catchError)(err => {
             if (err.status === 404) {
                 this.httpError = 'Receiver account not found';
@@ -3187,7 +3413,7 @@ class NewTransactionComponent {
     sendRegular() {
         const transactionData = {
             amount: this.transactionForm.get('amount').value,
-            senderAccountId: this.transactionForm.get('senderAccountDd').value,
+            senderAccountId: this.transactionForm.get('senderAccountId').value,
             receiverAccountId: this.transactionForm.get('receiverAccountId').value,
             scheduledTime: this.getSeconds(this.transactionForm.get('scheduledTime').value) ?? null,
             period: this.transactionForm.get('period').value,
@@ -3216,11 +3442,11 @@ class NewTransactionComponent {
     }
 }
 NewTransactionComponent.ɵfac = function NewTransactionComponent_Factory(t) { return new (t || NewTransactionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_atm_http_service__WEBPACK_IMPORTED_MODULE_1__.AtmHttpService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_2__.NotificationService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_navigation_service__WEBPACK_IMPORTED_MODULE_3__.NavigationService)); };
-NewTransactionComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({ type: NewTransactionComponent, selectors: [["app-new-transaction"]], decls: 4, vars: 3, consts: [[3, "lastState"], [1, "atm-new-transaction"], ["class", "form-error-border", 4, "ngIf"], ["class", "new-transaction-form", 3, "formGroup", 4, "ngIf"], [1, "form-error-border"], [1, "new-transaction-form", 3, "formGroup"], [1, "field-row"], ["for", "senderAccountDd"], ["fxFlex", "60", "name", "senderAccountDd", "formControlName", "senderAccountDd", "id", "senderAccountDd"], [3, "value", 4, "ngFor", "ngForOf"], ["class", "error-border", "fxFlex", "100", "fxLayoutAlign", "flex-end center", 4, "ngIf"], ["for", "amount"], ["fxFlex", "60", "id", "amount", "formControlName", "amount", "type", "number"], ["for", "receiverAccountId"], ["fxFlex", "60", "id", "receiverAccountId", "formControlName", "receiverAccountId", "type", "number"], ["fxFlex", "30", "id", "sendAt", "formControlName", "sendAt", "type", "checkbox"], ["for", "sendAt"], ["fxFlex", "60", "id", "scheduledTime", "formControlName", "scheduledTime", "placeholder", "", "type", "datetime-local"], ["fxFlex", "30", "id", "isRegular", "formControlName", "isRegular", "type", "checkbox"], ["for", "isRegular"], ["fxFlex", "60", "fxLayoutAlign", "space-between center"], ["for", "period", "fxLayoutAlign", "flex-start center"], ["height", "12px", "src", "https://img.icons8.com/pixels/512/experimental-info-pix.png", "alt", "Info", 2, "aspect-ratio", "1", "cursor", "pointer", 3, "click"], ["fxFlex", "60", "id", "period", "formControlName", "period", "type", "text"], ["for", "period"], ["fxFlex", "60", "id", "initialRepeats", "formControlName", "initialRepeats", "type", "text"], [1, "submit-row"], [3, "click"], [3, "value"], ["fxFlex", "100", "fxLayoutAlign", "flex-end center", 1, "error-border"], [4, "ngIf"]], template: function NewTransactionComponent_Template(rf, ctx) { if (rf & 1) {
+NewTransactionComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({ type: NewTransactionComponent, selectors: [["app-new-transaction"]], decls: 4, vars: 3, consts: [[3, "lastState"], [1, "atm-new-transaction"], ["class", "form-error-border", 4, "ngIf"], ["class", "new-transaction-form", 3, "formGroup", 4, "ngIf"], [1, "form-error-border"], [1, "new-transaction-form", 3, "formGroup"], [1, "field-row"], ["for", "senderAccountId"], ["fxFlex", "60", "name", "senderAccountId", "formControlName", "senderAccountId", "id", "senderAccountId"], [3, "value", 4, "ngFor", "ngForOf"], ["class", "error-border", "fxFlex", "100", "fxLayoutAlign", "flex-end center", 4, "ngIf"], ["for", "amount"], ["fxFlex", "60", "id", "amount", "formControlName", "amount", "type", "number"], ["for", "receiverAccountId"], ["fxFlex", "60", "id", "receiverAccountId", "formControlName", "receiverAccountId", "type", "number"], ["fxFlex", "30", "id", "sendAt", "formControlName", "sendAt", "type", "checkbox"], ["for", "sendAt"], ["fxFlex", "60", "id", "scheduledTime", "formControlName", "scheduledTime", "placeholder", "", "type", "datetime-local"], ["fxFlex", "30", "id", "isRegular", "formControlName", "isRegular", "type", "checkbox"], ["for", "isRegular"], ["fxFlex", "60", "fxLayoutAlign", "space-between center"], ["for", "period", "fxLayoutAlign", "flex-start center"], ["height", "12px", "src", "https://img.icons8.com/pixels/512/experimental-info-pix.png", "alt", "Info", 2, "aspect-ratio", "1", "cursor", "pointer", 3, "click"], ["fxFlex", "60", "id", "period", "formControlName", "period", "type", "text"], ["for", "period"], ["fxFlex", "60", "id", "initialRepeats", "formControlName", "initialRepeats", "type", "text"], [1, "submit-row"], [3, "click"], [3, "value"], ["fxFlex", "100", "fxLayoutAlign", "flex-end center", 1, "error-border"], [4, "ngIf"]], template: function NewTransactionComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "app-atm-header", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](2, NewTransactionComponent_div_2_Template, 2, 1, "div", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](3, NewTransactionComponent_div_3_Template, 60, 8, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](3, NewTransactionComponent_div_3_Template, 60, 9, "div", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("lastState", ctx.ATM_STATES.MAIN_MENU);
@@ -3365,55 +3591,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "TransactionsHistoryComponent": () => (/* binding */ TransactionsHistoryComponent)
 /* harmony export */ });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ 1640);
 /* harmony import */ var src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/interfaces/app.interfaces */ 5675);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var src_app_services_atm_http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/atm-http.service */ 9823);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _components_atm_header_atm_header_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/atm-header/atm-header.component */ 1490);
-/* harmony import */ var _components_transaction_list_item_transaction_list_item_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/transaction-list-item/transaction-list-item.component */ 3078);
+/* harmony import */ var src_app_services_account_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/account.service */ 9876);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 4666);
+/* harmony import */ var _components_atm_header_atm_header_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/atm-header/atm-header.component */ 1490);
+/* harmony import */ var _components_transaction_list_item_transaction_list_item_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/transaction-list-item/transaction-list-item.component */ 3078);
 
 
 
 
 
 
-function TransactionsHistoryComponent_div_1_app_transaction_list_item_1_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](0, "app-transaction-list-item", 4);
-} if (rf & 2) {
-    const transaction_r2 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("transaction", transaction_r2);
-} }
-function TransactionsHistoryComponent_div_1_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](1, TransactionsHistoryComponent_div_1_app_transaction_list_item_1_Template, 1, 1, "app-transaction-list-item", 3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-} if (rf & 2) {
-    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx_r0.transactionsHitory);
-} }
-class TransactionsHistoryComponent {
-    constructor(atmHttpService) {
-        this.atmHttpService = atmHttpService;
-        this.ATM_STATES = src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState;
-    }
-    ngOnInit() {
-        this.atmHttpService.getTransactionsHistory()
-            .subscribe(transactions => {
-            this.transactionsHitory = transactions;
-        });
-    }
+
+
+
+function TransactionsHistoryComponent_ng_container_3_app_transaction_list_item_1_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "app-transaction-list-item", 4);
+  }
+
+  if (rf & 2) {
+    const transactionSch_r3 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("transactionSch", transactionSch_r3);
+  }
 }
-TransactionsHistoryComponent.ɵfac = function TransactionsHistoryComponent_Factory(t) { return new (t || TransactionsHistoryComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_atm_http_service__WEBPACK_IMPORTED_MODULE_1__.AtmHttpService)); };
-TransactionsHistoryComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({ type: TransactionsHistoryComponent, selectors: [["app-transactions-history"]], decls: 2, vars: 2, consts: [[3, "lastState"], ["class", "atm-transactions-history", 4, "ngIf"], [1, "atm-transactions-history"], [3, "transaction", 4, "ngFor", "ngForOf"], [3, "transaction"]], template: function TransactionsHistoryComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](0, "app-atm-header", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](1, TransactionsHistoryComponent_div_1_Template, 2, 1, "div", 1);
-    } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("lastState", ctx.ATM_STATES.MAIN_MENU);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx.transactionsHitory);
-    } }, dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_5__.NgIf, _components_atm_header_atm_header_component__WEBPACK_IMPORTED_MODULE_2__.AtmHeaderComponent, _components_transaction_list_item_transaction_list_item_component__WEBPACK_IMPORTED_MODULE_3__.TransactionListItemComponent], styles: [".atm-transactions-history[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  overflow: auto;\n  width: 100%;\n  height: 90%;\n  max-height: 90%;\n  background: #fff;\n  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;\n  padding: 12px 8px;\n}\n.atm-transactions-history[_ngcontent-%COMP%]   app-transaction-list-item[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zYWN0aW9ucy1oaXN0b3J5LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7RUFHQSxjQUFBO0VBQ0EsV0FBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvR0FBQTtFQUNBLGlCQUFBO0FBREo7QUFHSTtFQUNJLFdBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLGFBQUE7QUFEUiIsImZpbGUiOiJ0cmFuc2FjdGlvbnMtaGlzdG9yeS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hdG0tdHJhbnNhY3Rpb25zLWhpc3Rvcnkge1xyXG4gICAgbWFyZ2luLXRvcDogMTBweDtcclxuICAgIC8vIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAvLyBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiA5MCU7XHJcbiAgICBtYXgtaGVpZ2h0OiA5MCU7XHJcbiAgICBiYWNrZ3JvdW5kOiAjZmZmO1xyXG4gICAgYm94LXNoYWRvdzogaW5zZXQgLTFweCAtMXB4ICNmZmYsIGluc2V0IDFweCAxcHggZ3JleSwgaW5zZXQgLTJweCAtMnB4ICNkZmRmZGYsIGluc2V0IDJweCAycHggIzBhMGEwYTtcclxuICAgIHBhZGRpbmc6IDEycHggOHB4O1xyXG5cclxuICAgIGFwcC10cmFuc2FjdGlvbi1saXN0LWl0ZW0ge1xyXG4gICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgICAgICBwYWRkaW5nOiAxMHB4O1xyXG4gICAgfVxyXG59Il19 */"] });
 
+function TransactionsHistoryComponent_ng_container_3_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementContainerStart"](0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, TransactionsHistoryComponent_ng_container_3_app_transaction_list_item_1_Template, 1, 1, "app-transaction-list-item", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementContainerEnd"]();
+  }
+
+  if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngForOf", ctx_r0.scheduledTransactions);
+  }
+}
+
+function TransactionsHistoryComponent_ng_container_4_app_transaction_list_item_1_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "app-transaction-list-item", 6);
+  }
+
+  if (rf & 2) {
+    const transaction_r5 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("transaction", transaction_r5);
+  }
+}
+
+function TransactionsHistoryComponent_ng_container_4_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementContainerStart"](0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, TransactionsHistoryComponent_ng_container_4_app_transaction_list_item_1_Template, 1, 1, "app-transaction-list-item", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementContainerEnd"]();
+  }
+
+  if (rf & 2) {
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngForOf", ctx_r1.transactionsHitory);
+  }
+}
+
+class TransactionsHistoryComponent {
+  constructor(atmHttpService, accountService) {
+    this.atmHttpService = atmHttpService;
+    this.accountService = accountService;
+    this.isScheduledAndRegular = false;
+    this.ATM_STATES = src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState;
+    this.selectedAccount$ = this.accountService.selectedAccount$;
+  }
+
+  ngOnInit() {
+    if (this.isScheduledAndRegular && this.selectedAccount$.value) {
+      (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.forkJoin)([this.atmHttpService.getScheduledTransactions(this.selectedAccount$.value.id), this.atmHttpService.getAllAccounts()]).subscribe(([transactions, _]) => {
+        this.scheduledTransactions = transactions;
+      });
+    } else {
+      (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.forkJoin)([this.atmHttpService.getTransactionsHistory(this.selectedAccount$.value?.id), this.atmHttpService.getAllAccounts()]).subscribe(([transactions, _]) => {
+        this.transactionsHitory = transactions;
+      });
+    }
+  }
+
+}
+
+TransactionsHistoryComponent.ɵfac = function TransactionsHistoryComponent_Factory(t) {
+  return new (t || TransactionsHistoryComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_atm_http_service__WEBPACK_IMPORTED_MODULE_1__.AtmHttpService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](src_app_services_account_service__WEBPACK_IMPORTED_MODULE_2__.AccountService));
+};
+
+TransactionsHistoryComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
+  type: TransactionsHistoryComponent,
+  selectors: [["app-transactions-history"]],
+  inputs: {
+    isScheduledAndRegular: "isScheduledAndRegular"
+  },
+  decls: 5,
+  vars: 5,
+  consts: [[3, "lastState"], [1, "atm-transactions-history"], [4, "ngIf"], [3, "transactionSch", 4, "ngFor", "ngForOf"], [3, "transactionSch"], [3, "transaction", 4, "ngFor", "ngForOf"], [3, "transaction"]],
+  template: function TransactionsHistoryComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "app-atm-header", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](1, "async");
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "div", 1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](3, TransactionsHistoryComponent_ng_container_3_Template, 2, 1, "ng-container", 2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](4, TransactionsHistoryComponent_ng_container_4_Template, 2, 1, "ng-container", 2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("lastState", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](1, 3, ctx.selectedAccount$) ? ctx.ATM_STATES.ACCOUNT_INFO : ctx.ATM_STATES.MAIN_MENU);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.scheduledTransactions);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.transactionsHitory);
+    }
+  },
+  dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_7__.NgIf, _components_atm_header_atm_header_component__WEBPACK_IMPORTED_MODULE_3__.AtmHeaderComponent, _components_transaction_list_item_transaction_list_item_component__WEBPACK_IMPORTED_MODULE_4__.TransactionListItemComponent, _angular_common__WEBPACK_IMPORTED_MODULE_7__.AsyncPipe],
+  styles: [".atm-transactions-history[_ngcontent-%COMP%], .atm-transactions-scheduled[_ngcontent-%COMP%] {\n  margin-top: 10px;\n  overflow: auto;\n  width: 100%;\n  height: 90%;\n  max-height: 90%;\n  background: #fff;\n  box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;\n  padding: 12px 8px;\n}\n.atm-transactions-history[_ngcontent-%COMP%]   app-transaction-list-item[_ngcontent-%COMP%], .atm-transactions-scheduled[_ngcontent-%COMP%]   app-transaction-list-item[_ngcontent-%COMP%] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding: 10px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRyYW5zYWN0aW9ucy1oaXN0b3J5LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7RUFHQSxjQUFBO0VBQ0EsV0FBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxvR0FBQTtFQUNBLGlCQUFBO0FBREo7QUFHSTtFQUNJLFdBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSx1QkFBQTtFQUNBLGFBQUE7QUFEUiIsImZpbGUiOiJ0cmFuc2FjdGlvbnMtaGlzdG9yeS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hdG0tdHJhbnNhY3Rpb25zLWhpc3RvcnksIC5hdG0tdHJhbnNhY3Rpb25zLXNjaGVkdWxlZCB7XHJcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xyXG4gICAgLy8gZGlzcGxheTogZmxleDtcclxuICAgIC8vIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIG92ZXJmbG93OiBhdXRvO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDkwJTtcclxuICAgIG1heC1oZWlnaHQ6IDkwJTtcclxuICAgIGJhY2tncm91bmQ6ICNmZmY7XHJcbiAgICBib3gtc2hhZG93OiBpbnNldCAtMXB4IC0xcHggI2ZmZiwgaW5zZXQgMXB4IDFweCBncmV5LCBpbnNldCAtMnB4IC0ycHggI2RmZGZkZiwgaW5zZXQgMnB4IDJweCAjMGEwYTBhO1xyXG4gICAgcGFkZGluZzogMTJweCA4cHg7XHJcblxyXG4gICAgYXBwLXRyYW5zYWN0aW9uLWxpc3QtaXRlbSB7XHJcbiAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgICAgIHBhZGRpbmc6IDEwcHg7XHJcbiAgICB9XHJcbn0iXX0= */"]
+});
 
 /***/ }),
 
@@ -3570,6 +3871,7 @@ class AccountService {
         this.selectedAccount$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(null);
         this.newPlan$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(null);
         this.planType$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject(null);
+        this.allAccounts$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__.BehaviorSubject([]);
         this.newPlan$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.filter)(plan => !!plan)).subscribe(plan => {
             if (typeof plan.additionAllowed == 'undefined') {
                 this.planType$.next(_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AccountType.TRANSACTIONAL);
@@ -3601,6 +3903,12 @@ class AccountService {
                 }
                 return;
             }
+            else if (state == _interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState.TRANSACTION_HISTORY || state == _interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__.AtmState.REGULAR_TRANSACTION_HISTORY) {
+                if (this.selectedAccount$.value) {
+                    this.stateName$.next(`${state} for account #${this.selectedAccount$.value?.id}`);
+                    return;
+                }
+            }
             this.stateName$.next(state);
         });
     }
@@ -3627,11 +3935,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AtmHttpService": () => (/* binding */ AtmHttpService)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 9337);
 /* harmony import */ var src_app_interfaces_app_interfaces__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/interfaces/app.interfaces */ 5675);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ 2340);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _utils_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.service */ 8270);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _account_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./account.service */ 9876);
+/* harmony import */ var _utils_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils.service */ 8270);
+
 
 
 
@@ -3640,8 +3951,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class AtmHttpService {
-    constructor(http, utilsService) {
+    constructor(http, accountService, utilsService) {
         this.http = http;
+        this.accountService = accountService;
         this.utilsService = utilsService;
     }
     getAllAtm() {
@@ -3654,12 +3966,12 @@ class AtmHttpService {
     }
     loginToAtm(number, pin, atm) {
         const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.appUrl}/login`;
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
         return this.http.post(url, this.utilsService.toUrlEncoded({ number, pin, atm }), { headers });
     }
     getAllAccounts() {
         const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/account/all-my`;
-        return this.http.get(url);
+        return this.http.get(url).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_5__.tap)(accounts => this.accountService.allAccounts$.next(accounts)));
     }
     getAccountInfo() {
         const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/account/auth`;
@@ -3691,9 +4003,19 @@ class AtmHttpService {
         const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/transfer/deposit`;
         return this.http.post(url, { amount });
     }
-    getTransactionsHistory() {
-        const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/transaction/history`;
+    getTransactionsHistory(accountId) {
+        let url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/transaction/history`;
+        if (accountId)
+            url += `/${accountId}`;
         return this.http.get(url);
+    }
+    getScheduledTransactions(accountId) {
+        const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/transaction/regular/${accountId}`;
+        return this.http.get(url);
+    }
+    cancelRegularTransaction(id) {
+        const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/transaction/regular/cancel/${id}`;
+        return this.http.patch(url, {});
     }
     changePinCode(pin) {
         const url = `${src_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.backApi}/card/update-pin`;
@@ -3724,8 +4046,8 @@ class AtmHttpService {
         return this.http.patch(url, {});
     }
 }
-AtmHttpService.ɵfac = function AtmHttpService_Factory(t) { return new (t || AtmHttpService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_utils_service__WEBPACK_IMPORTED_MODULE_2__.UtilsService)); };
-AtmHttpService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({ token: AtmHttpService, factory: AtmHttpService.ɵfac });
+AtmHttpService.ɵfac = function AtmHttpService_Factory(t) { return new (t || AtmHttpService)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_account_service__WEBPACK_IMPORTED_MODULE_2__.AccountService), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_utils_service__WEBPACK_IMPORTED_MODULE_3__.UtilsService)); };
+AtmHttpService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjectable"]({ token: AtmHttpService, factory: AtmHttpService.ɵfac });
 
 
 /***/ }),

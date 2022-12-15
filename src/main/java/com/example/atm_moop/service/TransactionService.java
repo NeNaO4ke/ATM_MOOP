@@ -55,7 +55,7 @@ public class TransactionService implements ITransactionService {
     }
 
     @Override
-    public TransferTransaction save(TransferTransaction transferTransaction){
+    public TransferTransaction save(TransferTransaction transferTransaction) {
         return transferTransactionRepository.save(transferTransaction);
     }
 
@@ -84,12 +84,16 @@ public class TransactionService implements ITransactionService {
         RegularTransaction transaction = IAccountService.getResourceOrThrowException(regularTransactionRepository.findById(transactionId));
         Account account = IAccountService.getResourceOrThrowException(accountRepository.findById(transaction.getFromAccount().getId()));
         IAccountService.confirmOwnedByUser(account.getUser().getId(), userId);
+        deleteJobById(transactionId);
+        regularTransactionRepository.updateTransactionStatusById(TRANSACTION_STATUS.CANCELED, transactionId);
+    }
+
+    private void deleteJobById(Long id) throws SchedulerException {
         JobDetail job = JobBuilder.newJob(QuartzScheduledTransaction.class)
-                .withIdentity(String.valueOf(transactionId), "transactions-scheduled")
+                .withIdentity(String.valueOf(id), "transactions-scheduled")
                 .withDescription("Scheduled transaction")
                 .build();
         scheduler.deleteJob(job.getKey());
-        regularTransactionRepository.updateTransactionStatusById(TRANSACTION_STATUS.CANCELED, transactionId);
     }
 
 
@@ -130,6 +134,11 @@ public class TransactionService implements ITransactionService {
                         regularTransactionRepository.updateTransactionStatusById(TRANSACTION_STATUS.REJECTED, transactionId);
                     }
                     regularTransactionRepository.updateTransactionStatusById(TRANSACTION_STATUS.COMMITTED, transactionId);
+                    try {
+                        deleteJobById(transactionId);
+                    } catch (SchedulerException e) {
+                        throw new RuntimeException(e);
+                    }
                     return regularTransaction;
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Cannot execute scheduled transaction with id " + transactionId + " as it was not found."));
@@ -148,8 +157,7 @@ public class TransactionService implements ITransactionService {
         if (scheduledTime != null) {
             if (scheduledTime.isAfter(Instant.now())) {
                 timestamp = new Timestamp(scheduledTime.toEpochMilli());
-            }
-            else throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Scheduled time must be in future.");
+            } else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Scheduled time must be in future.");
         }
         RegularTransaction transaction = RegularTransaction.createRegularTransaction(TRANSACTION_TYPE.TRANSFERRING, amount, senderAcc, receiverAcc, period, timestamp, initialRepeats, initialRepeats);
         transaction = regularTransactionRepository.save(transaction);
@@ -169,11 +177,13 @@ public class TransactionService implements ITransactionService {
 
     @Override
     @Transactional
-    public void fireRegularTransaction(Long transactionId) throws ResourceNotFoundException {
+    public void fireRegularTransaction(Long transactionId, JobExecutionContext context) throws ResourceNotFoundException {
         regularTransactionRepository.findByIdWithUser(transactionId)
                 .map(regularTransaction -> {
                     Long fromAccountId = regularTransaction.getFromAccount().getId();
                     User user = accountRepository.findByIdWithUser(fromAccountId).get().getUser();
+                    Trigger oldTrigger = context.getTrigger();
+                    JobDetail oldJobDetail = context.getJobDetail();
                     try {
                         transferService.transfer(user.getId(),
                                 fromAccountId,
@@ -188,14 +198,16 @@ public class TransactionService implements ITransactionService {
                             repeatsLeft = repeatsLeft - 1;
                             if (repeatsLeft == 0) {
                                 regularTransactionRepository.updateTransactionStatusAndRepeatsLeftById(TRANSACTION_STATUS.COMMITTED, repeatsLeft, transactionId);
+                                deleteJobById(transactionId);
                             } else {
                                 regularTransactionRepository.updateRepeatsLeftById(repeatsLeft, transactionId);
-                                scheduleNext(nowPlusPeriod, regularTransaction);
+                                scheduler.rescheduleJob(oldTrigger.getKey(), buildJobTriggerForRegular(oldJobDetail, nowPlusPeriod));
                             }
                         } else {
-                            scheduleNext(nowPlusPeriod, regularTransaction);
+                            scheduler.rescheduleJob(oldTrigger.getKey(), buildJobTriggerForRegular(oldJobDetail, nowPlusPeriod));
                         }
-                    } catch (AccountStatusException | ResourceNotFoundException | RightsViolationException e) {
+                    } catch (AccountStatusException | ResourceNotFoundException | RightsViolationException |
+                             SchedulerException e) {
                         regularTransactionRepository.updateTransactionStatusById(TRANSACTION_STATUS.REJECTED, transactionId);
                     }
                     return regularTransaction;

@@ -18,7 +18,7 @@ public class QuartzRegularTransaction implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
         long transactionId = context.getMergedJobDataMap().getLong("transactionId");
         try {
-            transactionService.fireRegularTransaction(transactionId);
+            transactionService.fireRegularTransaction(transactionId, context);
         } catch (ResourceNotFoundException e) {
             throw new RuntimeException(e);
         }
