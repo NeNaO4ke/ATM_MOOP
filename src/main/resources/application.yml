@@ -42,10 +42,6 @@ spring:
   web:
     resources:
       static-locations: /
-#  session:
-#    store-type: jdbc
-#    jdbc:
-#      initialize-schema: always
 
 ---
 

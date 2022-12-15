@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example.atm_moop.repository</OriginalElement>
+  <nodes>
+    <node x="4626.668114973261" y="4213.0">com.example.atm_moop.repository.CardRepository</node>
+    <node x="3300.6681149732617" y="4850.0">com.example.atm_moop.repository.BankRepository</node>
+    <node x="4095.6681149732613" y="4002.0">com.example.atm_moop.service.TransactionService</node>
+    <node x="1159.0" y="6056.0">com.example.atm_moop.controller.HomePageController</node>
+    <node x="5868.834893048128" y="2219.0">com.example.atm_moop.domain.Account</node>
+    <node x="5011.25" y="3146.0">com.example.atm_moop.repository.TransferTransactionRepository</node>
+    <node x="7103.25" y="435.0">com.example.atm_moop.domain.Bank</node>
+    <node x="2339.125" y="5381.0">com.example.atm_moop.service.BankService</node>
+    <node x="900.0" y="6056.0">com.example.atm_moop.config.JacksonConfig</node>
+    <node x="3628.6681149732617" y="4826.0">com.example.atm_moop.task.QuartzRegularTransaction</node>
+    <node x="6137.988302139037" y="3991.0">com.example.atm_moop.domain.Transaction</node>
+    <node x="4612.375" y="3157.0">com.example.atm_moop.repository.AccountRepository</node>
+    <node x="5747.918114973261" y="4749.0">com.example.atm_moop.domain.TransferTransaction</node>
+    <node x="5066.403409090909" y="3627.0">com.example.atm_moop.service.TransferService</node>
+    <node x="1761.863302139037" y="4749.0">com.example.atm_moop.service.CardService</node>
+    <node x="5446.168114973261" y="4246.0">com.example.atm_moop.repository.ATMRepository</node>
+    <node x="228.0" y="6056.0">com.example.atm_moop.config.MvcConfig</node>
+    <node x="606.0" y="6056.0">com.example.atm_moop.config.EncryptionConfig</node>
+    <node x="-181.0" y="5381.0">com.example.atm_moop.config.BadCredentialsHelper</node>
+    <node x="5868.875" y="833.0">com.example.atm_moop.domain.Card</node>
+    <node x="6749.918114973261" y="4639.0">com.example.atm_moop.domain.RegularTransaction</node>
+    <node x="1075.0701871657752" y="4850.0">com.example.atm_moop.repository.LoginAttemptRepository</node>
+    <node x="-181.0" y="6056.0">com.example.atm_moop.domain.TransactionalAccountPlan</node>
+    <node x="3696.6681149732617" y="4246.0">com.example.atm_moop.repository.SavingAccountRepository</node>
+    <node x="2277.6681149732617" y="4694.0">com.example.atm_moop.service.AccountService</node>
+    <node x="2808.653409090909" y="5370.0">com.example.atm_moop.controller.CardController</node>
+    <node x="7581.903409090909" y="2230.0">com.example.atm_moop.domain.SavingAccountPlan</node>
+    <node x="1787.863302139037" y="1678.0">com.example.atm_moop.domain.CardAtmUserDetails</node>
+    <node x="1216.988302139037" y="5667.0">com.example.atm_moop.config.WebSecurityConfig</node>
+    <node x="5515.918114973261" y="4826.0">com.example.atm_moop.controller.AtmController</node>
+    <node x="6464.918114973261" y="4850.0">com.example.atm_moop.repository.UserRepository</node>
+    <node x="630.0" y="5359.0">com.example.atm_moop.config.MyDaoProvider</node>
+    <node x="410.75" y="1623.0">com.example.atm_moop.domain.LoginAttempt</node>
+    <node x="3412.209893048128" y="3157.0">com.example.atm_moop.repository.TransactionalAccountRepository</node>
+    <node x="4230.125" y="4826.0">com.example.atm_moop.task.QuartzScheduledTransaction</node>
+    <node x="4952.375" y="-15.0">com.example.atm_moop.domain.ATM</node>
+    <node x="2772.6681149732617" y="4771.0">com.example.atm_moop.controller.TransactionController</node>
+    <node x="3672.709893048128" y="3706.0">com.example.atm_moop.repository.RegularTransactionRepository</node>
+    <node x="7535.668114973261" y="2847.0">com.example.atm_moop.domain.SavingAccount</node>
+    <node x="7754.668114973261" y="1491.0">com.example.atm_moop.domain.User</node>
+    <node x="7047.668114973261" y="3001.0">com.example.atm_moop.domain.TransactionalAccount</node>
+    <node x="1855.125" y="5359.0">com.example.atm_moop.config.SimpleAuthenticationFilter</node>
+    <node x="221.0" y="5381.0">com.example.atm_moop.config.AuthSuccessHandler</node>
+    <node x="1389.0" y="6056.0">com.example.atm_moop.service.interfaces</node>
+    <node x="5012.168114973261" y="4200.0">com.example.atm_moop.controller.TransferController</node>
+    <node x="6200.988302139037" y="5249.0">com.example.atm_moop.config.DbDataInserter</node>
+    <node x="1795.0" y="6056.0">com.example.atm_moop.domain.enums</node>
+    <node x="1246.125" y="5260.0">com.example.atm_moop.controller.AccountController</node>
+    <node x="6225.918114973261" y="4862.5">com.example.atm_moop.repository.TransactionRepository</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.domain.Card" relationship="CREATE">
+      <point x="254.99969786096335" y="-0.0" />
+      <point x="8138.168" y="5432.0" />
+      <point x="8138.168" y="815.5" />
+      <point x="1674.0" y="815.5" />
+      <point x="1674.0" y="1115.0" />
+      <point x="-181.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.WebSecurityConfig" target="com.example.atm_moop.config.MyDaoProvider" relationship="CREATE">
+      <point x="-215.0" y="15.0" />
+      <point x="795.5" y="5854.0" />
+      <point x="-0.0" y="73.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.TransactionalAccount" target="com.example.atm_moop.domain.Account" relationship="GENERALIZATION">
+      <point x="0.0" y="-194.0" />
+      <point x="7281.668114973261" y="2825.0" />
+      <point x="7532.695187165775" y="2825.0" />
+      <point x="7532.695187165775" y="2805.0" />
+      <point x="6196.334893048128" y="2805.0" />
+      <point x="131.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.MyDaoProvider" target="com.example.atm_moop.domain.ATM" relationship="CREATE">
+      <point x="15.0" y="-73.0" />
+      <point x="810.5" y="5223.0" />
+      <point x="1141.5" y="5223.0" />
+      <point x="1141.5" y="6173.5" />
+      <point x="8153.168" y="6173.5" />
+      <point x="8153.168" y="179.0" />
+      <point x="142.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.CardService" target="com.example.atm_moop.repository.CardRepository" relationship="TO_ONE">
+      <point x="14.999697860963124" y="128.0" />
+      <point x="1968.363" y="5102.0" />
+      <point x="4797.668" y="5102.0" />
+      <point x="-1.1497326158860233E-4" y="60.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.WebSecurityConfig" target="com.example.atm_moop.config.SimpleAuthenticationFilter" relationship="CREATE">
+      <point x="215.0" y="-0.0" />
+      <point x="2087.125" y="5839.0" />
+      <point x="-0.0" y="73.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.MyDaoProvider" target="com.example.atm_moop.domain.Card" relationship="CREATE">
+      <point x="-64.25" y="-73.0" />
+      <point x="731.25" y="3023.5" />
+      <point x="1674.0" y="3023.5" />
+      <point x="1674.0" y="1115.0" />
+      <point x="-181.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.domain.ATM" relationship="CREATE">
+      <point x="29.99969786096335" y="-183.0" />
+      <point x="6485.988" y="5223.0" />
+      <point x="1141.5" y="5223.0" />
+      <point x="1141.5" y="6173.5" />
+      <point x="8153.168" y="6173.5" />
+      <point x="8153.168" y="179.0" />
+      <point x="142.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.WebSecurityConfig" target="com.example.atm_moop.config.AuthSuccessHandler" relationship="CREATE">
+      <point x="-215.0" y="30.0" />
+      <point x="415.5" y="5869.0" />
+      <point x="-0.0" y="51.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.TransferTransaction" target="com.example.atm_moop.domain.Transaction" relationship="GENERALIZATION">
+      <point x="114.5" y="-128.0" />
+      <point x="6091.418114973261" y="4617.0" />
+      <point x="6320.278409090909" y="4617.0" />
+      <point x="6320.278409090909" y="4597.0" />
+      <point x="6429.738302139037" y="4597.0" />
+      <point x="97.25" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.SavingAccount" target="com.example.atm_moop.domain.Account" relationship="GENERALIZATION">
+      <point x="-113.0" y="-348.0" />
+      <point x="7648.668114973261" y="2825.0" />
+      <point x="7532.695187165775" y="2825.0" />
+      <point x="7532.695187165775" y="2805.0" />
+      <point x="6196.334893048128" y="2805.0" />
+      <point x="131.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.SavingAccountRepository" relationship="TO_ONE">
+      <point x="14.999697860963352" y="-183.0" />
+      <point x="6470.988" y="5177.0" />
+      <point x="3893.168" y="5177.0" />
+      <point x="6.999885026738411" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransactionService" target="com.example.atm_moop.repository.AccountRepository" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="271.0" />
+      <point x="4351.168" y="4655.0" />
+      <point x="4989.0" y="4655.0" />
+      <point x="4989.0" y="3195.0" />
+      <point x="144.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.repository.TransactionRepository" target="com.example.atm_moop.domain.Transaction" relationship="DEPENDENCY">
+      <point x="0.0" y="-14.5" />
+      <point x="6335.418114973261" y="4607.0" />
+      <point x="6235.238302139037" y="4607.0" />
+      <point x="-97.25" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.Card" target="com.example.atm_moop.domain.User" relationship="TO_ONE">
+      <point x="15.0" y="282.0" />
+      <point x="6064.875" y="1971.0" />
+      <point x="6788.5" y="1971.0" />
+      <point x="6788.5" y="1843.0" />
+      <point x="-183.0001149732616" y="15.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.Account" target="com.example.atm_moop.domain.Card" relationship="TO_ONE">
+      <point x="1.0695187211240409E-4" y="-282.0" />
+      <point x="6065.335" y="2114.0" />
+      <point x="4059.5" y="2114.0" />
+      <point x="4059.5" y="1542.0" />
+      <point x="6049.875" y="1542.0" />
+      <point x="-0.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.service.CardService" relationship="TO_ONE">
+      <point x="-3.021390366484411E-4" y="183.0" />
+      <point x="6455.988" y="5641.0" />
+      <point x="3392.0" y="5641.0" />
+      <point x="3392.0" y="5239.0" />
+      <point x="1953.363" y="5239.0" />
+      <point x="-3.021390368758148E-4" y="128.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.AccountService" target="com.example.atm_moop.repository.TransactionalAccountRepository" relationship="TO_ONE">
+      <point x="-15.000114973261589" y="-183.0" />
+      <point x="2500.168" y="3435.0" />
+      <point x="3662.21" y="3435.0" />
+      <point x="1.0695187211240409E-4" y="38.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransactionService" target="com.example.atm_moop.repository.TransactionalAccountRepository" relationship="TO_ONE">
+      <point x="-15.000114973261589" y="-271.0" />
+      <point x="4336.168" y="3435.0" />
+      <point x="3662.21" y="3435.0" />
+      <point x="1.0695187211240409E-4" y="38.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.AccountService" target="com.example.atm_moop.repository.SavingAccountRepository" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="183.0" />
+      <point x="2515.168" y="5177.0" />
+      <point x="3893.168" y="5177.0" />
+      <point x="6.999885026738411" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.repository.AccountRepository" target="com.example.atm_moop.domain.Account" relationship="DEPENDENCY">
+      <point x="0.0" y="-38.0" />
+      <point x="4756.875" y="2825.0" />
+      <point x="5934.334893048128" y="2825.0" />
+      <point x="-131.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.controller.AccountController" target="com.example.atm_moop.service.AccountService" relationship="TO_ONE">
+      <point x="-0.0" y="-172.0" />
+      <point x="1530.125" y="5208.0" />
+      <point x="2500.168" y="5208.0" />
+      <point x="-15.000114973261589" y="183.0" />
+    </edge>
+    <edge source="com.example.atm_moop.task.QuartzRegularTransaction" target="com.example.atm_moop.service.TransactionService" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-51.0" />
+      <point x="3752.168" y="4717.0" />
+      <point x="4366.168" y="4717.0" />
+      <point x="14.999885026738411" y="271.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransferService" target="com.example.atm_moop.repository.TransferTransactionRepository" relationship="TO_ONE">
+      <point x="-251.50040909090876" y="-120.5" />
+      <point x="4945.0" y="3656.5" />
+      <point x="4945.0" y="3180.0" />
+      <point x="-268.0" y="-15.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.domain.TransactionalAccount" relationship="CREATE">
+      <point x="255.0" y="-15.0" />
+      <point x="7281.668114973261" y="5417.0" />
+      <point x="-0.0" y="194.0" />
+    </edge>
+    <edge source="com.example.atm_moop.task.QuartzScheduledTransaction" target="com.example.atm_moop.service.TransactionService" relationship="TO_ONE">
+      <point x="-0.0" y="-51.0" />
+      <point x="4353.625" y="4717.0" />
+      <point x="4366.168" y="4717.0" />
+      <point x="14.999885026738411" y="271.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.RegularTransaction" target="com.example.atm_moop.domain.Account" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-238.0" />
+      <point x="6980.918" y="4576.0" />
+      <point x="6065.335" y="4576.0" />
+      <point x="1.0695187211240409E-4" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransferService" target="com.example.atm_moop.repository.TransactionalAccountRepository" relationship="TO_ONE">
+      <point x="-4.090909087608452E-4" y="-150.0" />
+      <point x="5317.903" y="3435.0" />
+      <point x="3662.21" y="3435.0" />
+      <point x="1.0695187211240409E-4" y="38.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransactionService" target="com.example.atm_moop.repository.TransferTransactionRepository" relationship="TO_ONE">
+      <point x="255.4998850267384" y="-82.5" />
+      <point x="4945.0" y="4190.5" />
+      <point x="4945.0" y="3180.0" />
+      <point x="-268.0" y="-15.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.Transaction" target="com.example.atm_moop.domain.Account" relationship="TO_ONE">
+      <point x="147.01169786096307" y="282.0" />
+      <point x="6479.5" y="4576.0" />
+      <point x="6065.335" y="4576.0" />
+      <point x="1.0695187211240409E-4" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.MyDaoProvider" target="com.example.atm_moop.domain.LoginAttempt" relationship="CREATE">
+      <point x="-158.0" y="-73.0" />
+      <point x="62.75" y="205.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.CardService" target="com.example.atm_moop.repository.ATMRepository" relationship="TO_ONE">
+      <point x="-3.021390368758148E-4" y="-128.0" />
+      <point x="1953.363" y="4674.0" />
+      <point x="5563.668" y="4674.0" />
+      <point x="-1.1497326158860233E-4" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.domain.Bank" relationship="CREATE">
+      <point x="255.0" y="30.0" />
+      <point x="8168.168" y="5462.0" />
+      <point x="8168.168" y="607.0" />
+      <point x="105.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.CardAtmUserDetails" target="com.example.atm_moop.domain.ATM" relationship="TO_ONE">
+      <point x="-3.021390368758148E-4" y="-150.0" />
+      <point x="1937.863" y="404.0" />
+      <point x="5094.375" y="404.0" />
+      <point x="-0.0" y="194.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.BankRepository" relationship="TO_ONE">
+      <point x="-255.00030213903665" y="30.0" />
+      <point x="4260.0" y="5462.0" />
+      <point x="4260.0" y="5514.0" />
+      <point x="3454.668" y="5514.0" />
+      <point x="-1.1497326158860233E-4" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.controller.AtmController" target="com.example.atm_moop.repository.ATMRepository" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-51.0" />
+      <point x="5621.918" y="4674.0" />
+      <point x="5563.668" y="4674.0" />
+      <point x="-1.1497326158860233E-4" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransferService" target="com.example.atm_moop.repository.AccountRepository" relationship="TO_ONE">
+      <point x="-251.50040909090876" y="-0.0" />
+      <point x="4989.0" y="3777.0" />
+      <point x="4989.0" y="3195.0" />
+      <point x="144.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.CardAtmUserDetails" target="com.example.atm_moop.domain.Card" relationship="TO_ONE">
+      <point x="-3.021390368758148E-4" y="150.0" />
+      <point x="1937.863" y="2114.0" />
+      <point x="4059.5" y="2114.0" />
+      <point x="4059.5" y="1542.0" />
+      <point x="6049.875" y="1542.0" />
+      <point x="-0.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.ATMRepository" relationship="TO_ONE">
+      <point x="-255.00030213903665" y="-15.0" />
+      <point x="5485.0" y="5417.0" />
+      <point x="5485.0" y="4674.0" />
+      <point x="5563.668" y="4674.0" />
+      <point x="-1.1497326158860233E-4" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.UserRepository" relationship="TO_ONE">
+      <point x="140.92981283422432" y="-183.0" />
+      <point x="-0.0" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.WebSecurityConfig" target="com.example.atm_moop.service.CardService" relationship="TO_ONE">
+      <point x="-3.021390368758148E-4" y="-172.0" />
+      <point x="1431.988" y="5641.0" />
+      <point x="3392.0" y="5641.0" />
+      <point x="3392.0" y="5239.0" />
+      <point x="1953.363" y="5239.0" />
+      <point x="-3.021390368758148E-4" y="128.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.RegularTransaction" target="com.example.atm_moop.domain.Transaction" relationship="GENERALIZATION">
+      <point x="-115.5" y="-238.0" />
+      <point x="6865.418114973261" y="4617.0" />
+      <point x="6320.278409090909" y="4617.0" />
+      <point x="6320.278409090909" y="4597.0" />
+      <point x="6429.738302139037" y="4597.0" />
+      <point x="97.25" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.User" target="com.example.atm_moop.domain.Card" relationship="TO_MANY">
+      <point x="-183.0001149732616" y="-0.0" />
+      <point x="7589.403" y="1828.0" />
+      <point x="7589.403" y="1542.0" />
+      <point x="6049.875" y="1542.0" />
+      <point x="-0.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.LoginAttempt" target="com.example.atm_moop.domain.ATM" relationship="TO_ONE">
+      <point x="-0.0" y="-205.0" />
+      <point x="574.75" y="404.0" />
+      <point x="5094.375" y="404.0" />
+      <point x="-0.0" y="194.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.LoginAttempt" target="com.example.atm_moop.domain.Card" relationship="TO_ONE">
+      <point x="-0.0" y="205.0" />
+      <point x="574.75" y="2114.0" />
+      <point x="4059.5" y="2114.0" />
+      <point x="4059.5" y="1542.0" />
+      <point x="6049.875" y="1542.0" />
+      <point x="-0.0" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.BankService" target="com.example.atm_moop.repository.BankRepository" relationship="TO_ONE">
+      <point x="-0.0" y="51.0" />
+      <point x="2448.625" y="5514.0" />
+      <point x="3454.668" y="5514.0" />
+      <point x="-1.1497326158860233E-4" y="27.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.MyDaoProvider" target="com.example.atm_moop.repository.LoginAttemptRepository" relationship="TO_ONE">
+      <point x="165.5" y="-0.0" />
+      <point x="1018.0" y="5432.0" />
+      <point x="1018.0" y="4877.0" />
+      <point x="-256.5001871657753" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.domain.User" relationship="CREATE">
+      <point x="255.0" y="15.0" />
+      <point x="8005.168114973261" y="5447.0" />
+      <point x="67.5" y="337.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.AccountService" target="com.example.atm_moop.service.TransactionService" relationship="TO_ONE">
+      <point x="237.4998850267384" y="-123.5" />
+      <point x="3026.668" y="4753.5" />
+      <point x="3026.668" y="4717.0" />
+      <point x="4366.168" y="4717.0" />
+      <point x="14.999885026738411" y="271.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransactionService" target="com.example.atm_moop.service.TransferService" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-271.0" />
+      <point x="4351.168" y="3959.0" />
+      <point x="5317.903" y="3959.0" />
+      <point x="-4.090909087608452E-4" y="150.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.TransferTransaction" target="com.example.atm_moop.domain.Account" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-128.0" />
+      <point x="5976.918" y="4576.0" />
+      <point x="6065.335" y="4576.0" />
+      <point x="1.0695187211240409E-4" y="282.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.TransactionService" target="com.example.atm_moop.repository.RegularTransactionRepository" relationship="TO_ONE">
+      <point x="-248.0" y="-271.0" />
+      <point x="195.45822192513333" y="71.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.AccountRepository" relationship="TO_ONE">
+      <point x="-255.00030213903665" y="-0.0" />
+      <point x="4989.0" y="5432.0" />
+      <point x="4989.0" y="3195.0" />
+      <point x="144.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.AccountService" target="com.example.atm_moop.repository.AccountRepository" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-183.0" />
+      <point x="2515.168" y="4655.0" />
+      <point x="4989.0" y="4655.0" />
+      <point x="4989.0" y="3195.0" />
+      <point x="144.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.Account" target="com.example.atm_moop.domain.User" relationship="TO_ONE">
+      <point x="15.000106951872112" y="-282.0" />
+      <point x="6080.335" y="1971.0" />
+      <point x="6788.5" y="1971.0" />
+      <point x="6788.5" y="1843.0" />
+      <point x="-183.0001149732616" y="15.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.WebSecurityConfig" target="com.example.atm_moop.config.BadCredentialsHelper" relationship="CREATE">
+      <point x="-215.0" y="45.0" />
+      <point x="10.0" y="5884.0" />
+      <point x="-0.0" y="51.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.CardService" target="com.example.atm_moop.domain.Card" relationship="CREATE">
+      <point x="-191.50030213903688" y="-0.0" />
+      <point x="1674.0" y="4877.0" />
+      <point x="1674.0" y="1115.0" />
+      <point x="-181.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.MyDaoProvider" target="com.example.atm_moop.service.CardService" relationship="TO_ONE">
+      <point x="-0.0" y="-73.0" />
+      <point x="795.5" y="5239.0" />
+      <point x="1953.363" y="5239.0" />
+      <point x="-3.021390368758148E-4" y="128.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.service.TransferService" relationship="TO_ONE">
+      <point x="-255.00030213903665" y="15.0" />
+      <point x="5470.0" y="5447.0" />
+      <point x="5470.0" y="4576.0" />
+      <point x="5755.418" y="4576.0" />
+      <point x="5755.418" y="3959.0" />
+      <point x="5317.903" y="3959.0" />
+      <point x="-4.090909087608452E-4" y="150.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.SavingAccount" target="com.example.atm_moop.domain.SavingAccountPlan" relationship="TO_ONE">
+      <point x="-4.764705882352246" y="-348.0" />
+      <point x="-0.0" y="271.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.Card" target="com.example.atm_moop.domain.Bank" relationship="TO_ONE">
+      <point x="-0.0" y="-282.0" />
+      <point x="6049.875" y="419.0" />
+      <point x="7223.75" y="419.0" />
+      <point x="15.0" y="-172.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.TransactionRepository" relationship="TO_ONE">
+      <point x="44.99969786096335" y="-183.0" />
+      <point x="6500.988" y="4952.5" />
+      <point x="6335.418114973261" y="4952.5" />
+      <point x="-0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.atm_moop.config.WebSecurityConfig" target="com.example.atm_moop.repository.LoginAttemptRepository" relationship="TO_ONE">
+      <point x="-215.00030213903688" y="-0.0" />
+      <point x="1018.0" y="5839.0" />
+      <point x="1018.0" y="4877.0" />
+      <point x="-256.5001871657753" y="-0.0" />
+    </edge>
+    <edge source="com.example.atm_moop.controller.TransferController" target="com.example.atm_moop.service.TransferService" relationship="TO_ONE">
+      <point x="206.4998850267384" y="49.5" />
+      <point x="5470.0" y="4322.5" />
+      <point x="5470.0" y="4576.0" />
+      <point x="5755.418" y="4576.0" />
+      <point x="5755.418" y="3959.0" />
+      <point x="5317.903" y="3959.0" />
+      <point x="-4.090909087608452E-4" y="150.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.Bank" target="com.example.atm_moop.domain.ATM" relationship="TO_MANY">
+      <point x="-0.0" y="-172.0" />
+      <point x="7208.75" y="404.0" />
+      <point x="5094.375" y="404.0" />
+      <point x="-0.0" y="194.0" />
+    </edge>
+    <edge source="com.example.atm_moop.domain.ATM" target="com.example.atm_moop.domain.Bank" relationship="TO_MANY">
+      <point x="15.0" y="194.0" />
+      <point x="5109.375" y="419.0" />
+      <point x="7223.75" y="419.0" />
+      <point x="15.0" y="-172.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.service.AccountService" relationship="TO_ONE">
+      <point x="-15.000302139036648" y="-183.0" />
+      <point x="6440.988" y="5208.0" />
+      <point x="2500.168" y="5208.0" />
+      <point x="-15.000114973261589" y="183.0" />
+    </edge>
+    <edge source="com.example.atm_moop.config.DbDataInserter" target="com.example.atm_moop.repository.CardRepository" relationship="TO_ONE">
+      <point x="-3.021390366484411E-4" y="-183.0" />
+      <point x="6455.988" y="5102.0" />
+      <point x="4797.668" y="5102.0" />
+      <point x="-1.1497326158860233E-4" y="60.0" />
+    </edge>
+    <edge source="com.example.atm_moop.controller.CardController" target="com.example.atm_moop.service.CardService" relationship="TO_ONE">
+      <point x="-4.0909090921559255E-4" y="-62.0" />
+      <point x="2995.153" y="5239.0" />
+      <point x="1953.363" y="5239.0" />
+      <point x="-3.021390368758148E-4" y="128.0" />
+    </edge>
+    <edge source="com.example.atm_moop.service.CardService" target="com.example.atm_moop.domain.CardAtmUserDetails" relationship="CREATE">
+      <point x="-30.500302139036876" y="-128.0" />
+      <point x="-15.000302139036876" y="150.0" />
+    </edge>
+    <edge source="com.example.atm_moop.controller.TransactionController" target="com.example.atm_moop.service.TransactionService" relationship="TO_ONE">
+      <point x="-1.1497326158860233E-4" y="-106.0" />
+      <point x="3026.668" y="4717.0" />
+      <point x="4366.168" y="4717.0" />
+      <point x="14.999885026738411" y="271.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.1101960138362708" showDependencies="true" x="4004.0" y="3020.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
