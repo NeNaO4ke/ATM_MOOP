@@ -51,7 +51,6 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getAccountById(accountId, cardAtmUserDetails.getCard().getUser().getId()), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/plans", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<?> getTransactionalPlans() {
         Map<String, Object> response = new HashMap<>();

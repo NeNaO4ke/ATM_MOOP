@@ -16,7 +16,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/api/card")
-@CrossOrigin("http://localhost:4200")
 public class CardController {
 
     private final CardService cardService;

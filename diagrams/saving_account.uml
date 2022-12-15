@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.saving_account</OriginalElement>
+  <nodes>
+    <node x="707.875" y="-91.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.bank</node>
+    <node x="679.75" y="445.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.login_attempt</node>
+    <node x="935.75" y="487.5">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.bank_atms</node>
+    <node x="400.0" y="403.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account</node>
+    <node x="409.0" y="1065.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.regular_transaction</node>
+    <node x="-175.0" y="776.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transactional_account</node>
+    <node x="724.25" y="734.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transaction</node>
+    <node x="530.0" y="114.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.card</node>
+    <node x="670.0" y="1107.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transfer_transaction</node>
+    <node x="771.0" y="170.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.atm</node>
+    <node x="159.99999999999994" y="720.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.saving_account</node>
+    <node x="319.62499999999994" y="184.5">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.usr_role</node>
+    <node x="405.75" y="-147.0">4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.usr</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.card" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.bank" relationship="REFERENCES">
+      <point x="55.25" y="-118.5" />
+      <point x="695.75" y="93.0" />
+      <point x="797.375" y="93.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.regular_transaction" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transaction" relationship="REFERENCES">
+      <point x="60.25" y="-104.5" />
+      <point x="589.75" y="1044.0" />
+      <point x="861.25" y="1044.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.usr_role" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.usr" relationship="REFERENCES">
+      <point x="0.0" y="-48.0" />
+      <point x="398.125" y="93.0" />
+      <point x="465.75" y="93.0" />
+      <point x="-60.0" y="104.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.bank_atms" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.atm" relationship="REFERENCES">
+      <point x="-36.75" y="-48.0" />
+      <point x="972.5" y="377.0" />
+      <point x="934.5" y="377.0" />
+      <point x="54.5" y="62.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.login_attempt" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.card" relationship="REFERENCES">
+      <point x="-59.0" y="-90.5" />
+      <point x="738.75" y="377.0" />
+      <point x="640.5" y="377.0" />
+      <point x="0.0" y="118.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transactional_account" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" relationship="REFERENCES">
+      <point x="0.0" y="-90.5" />
+      <point x="-17.5" y="699.0" />
+      <point x="234.88970588235293" y="699.0" />
+      <point x="234.88970588235293" y="689.0" />
+      <point x="441.5" y="689.0" />
+      <point x="-83.0" y="132.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.card" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.usr" relationship="REFERENCES">
+      <point x="-55.25" y="-118.5" />
+      <point x="585.25" y="93.0" />
+      <point x="602.625" y="93.0" />
+      <point x="602.625" y="83.0" />
+      <point x="585.75" y="83.0" />
+      <point x="60.0" y="104.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.saving_account" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" relationship="REFERENCES">
+      <point x="0.0" y="-146.5" />
+      <point x="334.49999999999994" y="699.0" />
+      <point x="234.88970588235293" y="699.0" />
+      <point x="234.88970588235293" y="689.0" />
+      <point x="441.5" y="689.0" />
+      <point x="-83.0" y="132.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.usr" relationship="REFERENCES">
+      <point x="-62.25" y="-132.5" />
+      <point x="462.25" y="377.0" />
+      <point x="519.5" y="377.0" />
+      <point x="519.5" y="93.0" />
+      <point x="602.625" y="93.0" />
+      <point x="602.625" y="83.0" />
+      <point x="585.75" y="83.0" />
+      <point x="60.0" y="104.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transaction" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" relationship="REFERENCES">
+      <point x="0.0" y="-132.5" />
+      <point x="861.25" y="689.0" />
+      <point x="607.5" y="689.0" />
+      <point x="83.0" y="132.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.bank_atms" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.bank" relationship="REFERENCES">
+      <point x="36.75" y="-48.0" />
+      <point x="1046.0" y="377.0" />
+      <point x="1014.5" y="377.0" />
+      <point x="1014.5" y="93.0" />
+      <point x="797.375" y="93.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.card" relationship="REFERENCES">
+      <point x="62.25" y="-132.5" />
+      <point x="586.75" y="377.0" />
+      <point x="640.5" y="377.0" />
+      <point x="0.0" y="118.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.login_attempt" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.atm" relationship="REFERENCES">
+      <point x="59.0" y="-90.5" />
+      <point x="856.75" y="377.0" />
+      <point x="825.5" y="377.0" />
+      <point x="-54.5" y="62.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transfer_transaction" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transaction" relationship="REFERENCES">
+      <point x="58.75" y="-62.5" />
+      <point x="846.25" y="1044.0" />
+      <point x="861.25" y="1044.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.transfer_transaction" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" relationship="REFERENCES">
+      <point x="-58.75" y="-62.5" />
+      <point x="728.75" y="1034.0" />
+      <point x="654.25" y="1034.0" />
+      <point x="654.25" y="699.0" />
+      <point x="524.5" y="699.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+    <edge source="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.regular_transaction" target="4af219fc-be82-4fcf-a51d-11c24fdbac24.TABLE:atm-dev.public.account" relationship="REFERENCES">
+      <point x="-60.25" y="-104.5" />
+      <point x="469.25" y="1044.0" />
+      <point x="519.5" y="1044.0" />
+      <point x="519.5" y="699.0" />
+      <point x="524.5" y="699.0" />
+      <point x="0.0" y="132.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5863983344899375" showDependencies="false" x="454.0" y="563.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

@@ -28,7 +28,6 @@ public class BadCredentialsHelper implements AuthenticationFailureHandler {
         body.put("message", exception.getMessage());
         response.setStatus(400);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         response.getOutputStream().println(objectMapper.writeValueAsString(body));
     }
 }

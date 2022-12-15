@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/atm")
-@CrossOrigin("http://localhost:4200")
 public class AtmController {
 
 

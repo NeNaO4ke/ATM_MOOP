@@ -26,6 +26,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -73,7 +74,8 @@ public class MyDaoProvider extends DaoAuthenticationProvider {
                     throw new BadCredentialsException("Your card has been blocked!");
                 }
             }
-            throw new BadCredentialsException("Invalid pin code! " + (3 - attempts.size()) + " attempt(s) left.");
+            List<LoginAttempt> failed = attempts.stream().takeWhile(loginAttempt -> !loginAttempt.isSuccessful()).collect(Collectors.toList());
+            throw new BadCredentialsException("Invalid pin code! " + (3 - failed.size()) + " attempt(s) left.");
         }
 
     }
