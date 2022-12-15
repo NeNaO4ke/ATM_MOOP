@@ -9,7 +9,6 @@ import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.repository.AccountRepository;
-import com.example.atm_moop.repository.SavingAccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
 import com.example.atm_moop.service.interfaces.IAccountService;

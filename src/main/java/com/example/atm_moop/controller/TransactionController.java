@@ -2,10 +2,10 @@ package com.example.atm_moop.controller;
 
 import com.example.atm_moop.domain.CardAtmUserDetails;
 import com.example.atm_moop.domain.RegularTransaction;
-import com.example.atm_moop.dto.RegularTransactionInfo;
-import com.example.atm_moop.dto.TransferTransactionInfo;
 import com.example.atm_moop.dto.RegularTransactionDTO;
+import com.example.atm_moop.dto.RegularTransactionInfo;
 import com.example.atm_moop.dto.ScheduledTransactionDTO;
+import com.example.atm_moop.dto.TransferTransactionInfo;
 import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;

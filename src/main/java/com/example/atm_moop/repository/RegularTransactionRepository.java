@@ -1,6 +1,5 @@
 package com.example.atm_moop.repository;
 
-import com.example.atm_moop.domain.Account;
 import com.example.atm_moop.domain.RegularTransaction;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
 import com.example.atm_moop.dto.RegularTransactionInfo;

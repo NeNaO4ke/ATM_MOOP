@@ -3,7 +3,6 @@ package com.example.atm_moop.integration;
 import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
-import com.example.atm_moop.TestDbSetup;
 import com.example.atm_moop.domain.RegularTransaction;
 import com.example.atm_moop.domain.Transaction;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
@@ -42,7 +41,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
@@ -78,8 +76,6 @@ public class RegularTransactionTest {
     @Autowired
     private WebApplicationContext context;
 
-    @Autowired
-    private TestDbSetup testDbSetup;
 
     @Autowired
     private AccountService accountService;

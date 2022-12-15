@@ -3,10 +3,6 @@ package com.example.atm_moop.integration;
 import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
-import com.example.atm_moop.TestDbSetup;
-import com.example.atm_moop.domain.Bank;
-import com.example.atm_moop.repository.UserRepository;
-import com.example.atm_moop.service.BankService;
 import com.example.atm_moop.service.CardService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +30,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Optional;
-
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
@@ -43,7 +37,6 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.requestB
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
@@ -65,8 +58,6 @@ public class CardTest {
     @Autowired
     private WebApplicationContext context;
 
-    @Autowired
-    private TestDbSetup testDbSetup;
 
     @Autowired
     private CardService cardService;

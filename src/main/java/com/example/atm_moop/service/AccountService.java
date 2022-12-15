@@ -14,10 +14,8 @@ import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.service.interfaces.IAccountService;
 import lombok.RequiredArgsConstructor;
 import org.javamoney.moneta.Money;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.money.MonetaryAmount;
 import java.math.BigDecimal;
@@ -25,7 +23,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

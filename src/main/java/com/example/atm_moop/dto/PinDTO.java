@@ -7,8 +7,6 @@ import lombok.Value;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import java.math.BigDecimal;
 
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)

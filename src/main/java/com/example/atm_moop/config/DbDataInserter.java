@@ -87,10 +87,17 @@ public class DbDataInserter {
         User patron = new User(null, "Pes", null, "Patron", java.sql.Date.valueOf(LocalDate.of(2019, Month.AUGUST, 26)), USER_STATUS.OK, null, null);
         User mykola = new User(null, "Mykola", "Olexandrovych", "Parasiuk", java.sql.Date.valueOf(LocalDate.of(1986, Month.DECEMBER, 19)), USER_STATUS.OK, null, null);
 
+        User bublyk = new User(null, "Volodymyr", "Vasyliovych", "Bublyk", null, USER_STATUS.OK, null, null);
+        User ruslan = new User(null, "Ruslan", null, "Zymovets", null, USER_STATUS.OK, null, null);
+        User illia = new User(null, "Illia",null , "Stasiuk", null, USER_STATUS.OK, null, null);
+
         roman = userRepository.save(roman);
         bohdan = userRepository.save(bohdan);
         mykola = userRepository.save(mykola);
         patron = userRepository.save(patron);
+        bublyk = userRepository.save(bublyk);
+        ruslan = userRepository.save(ruslan);
+        illia = userRepository.save(illia);
 
         Instant nowPlusYear = new Date().toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -101,10 +108,16 @@ public class DbDataInserter {
         Card cardBohdan = new Card("2711080501813222", "1111", expiryDate, "413", CARD_STATUS.OK, bohdan, bank2);
         Card cardPatron = new Card("5169162679576631", "6969", expiryDate, "666", CARD_STATUS.OK, patron, bank3);
         Card cardMykola = new Card("5169189283112248", "1488", expiryDate, "919", CARD_STATUS.OK, mykola, bank3);
+        Card cardBublyk = new Card("5117826250968077", "7245", expiryDate, "313", CARD_STATUS.OK, bublyk, bank3);
+        Card cardRuslan = new Card("5117825500474209", "6914", expiryDate, "371", CARD_STATUS.OK, ruslan, bank2);
+        Card cardIllia = new Card("5374789363017935", "0051", expiryDate, "815", CARD_STATUS.OK, illia, bank1);
         cardRoman = cardRepository.save(cardRoman);
         cardBohdan = cardRepository.save(cardBohdan);
         cardPatron = cardRepository.save(cardPatron);
         cardMykola = cardRepository.save(cardMykola);
+        cardBublyk = cardRepository.save(cardBublyk);
+        cardRuslan = cardRepository.save(cardRuslan);
+        cardIllia = cardRepository.save(cardIllia);
 
         Money romanMoney = Money.of(10000, "UAH");
         Money bohdanMoney = Money.of(300, "USD");
@@ -118,6 +131,16 @@ public class DbDataInserter {
         mykolaAcc.setDefault(true);
         TransactionalAccount mykolaUsdAcc = TransactionalAccount.createFromPlan(TransactionalAccountPlan.LIGHT, "Mykola current USD account", "USD", mykola, cardMykola);
 
+
+        TransactionalAccount bublykAcc = TransactionalAccount.createFromPlan(TransactionalAccountPlan.MEDIUM, "Credit acc for Bublyk", "UAH", bublyk, cardBublyk);
+        bublykAcc.setDefault(true);
+
+        TransactionalAccount ruslanAcc = TransactionalAccount.createFromPlan(TransactionalAccountPlan.MEDIUM, "Credit acc for Ruslan", "UAH", ruslan, cardRuslan);
+        ruslanAcc.setDefault(true);
+
+        TransactionalAccount illiaAcc = TransactionalAccount.createFromPlan(TransactionalAccountPlan.MEDIUM, "Credit acc for Illia", "UAH", illia, cardIllia);
+        illiaAcc.setDefault(true);
+
         SavingAccount patronSavingAcc = SavingAccount.createFromPlan(SavingAccountPlan.LONG, "Patron`s saving acc", "UAH", patron, cardPatron);
         SavingAccount mykolaSavingAcc = SavingAccount.createFromPlan(SavingAccountPlan.STANDARD, "Mykola`s saving acc", "USD", mykola, cardMykola);
 
@@ -125,6 +148,9 @@ public class DbDataInserter {
         bohdanAcc = genAccountRepository.save(bohdanAcc);
         patronAcc = genAccountRepository.save(patronAcc);
         mykolaAcc = genAccountRepository.save(mykolaAcc);
+        genAccountRepository.save(bublykAcc);
+        genAccountRepository.save(ruslanAcc);
+       genAccountRepository.save(illiaAcc);
 
         patronSavingAcc = genAccountRepository.save(patronSavingAcc);
         transferService.transfer(patron.getId(), patronAcc.getId(), patronSavingAcc.getId(), BigDecimal.valueOf(3000));
