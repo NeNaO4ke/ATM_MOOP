@@ -12,6 +12,8 @@ import com.example.atm_moop.repository.AccountRepository;
 import com.example.atm_moop.repository.SavingAccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
+import org.hibernate.proxy.HibernateProxy;
 import org.javamoney.moneta.Money;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -106,12 +108,13 @@ public class AccountService {
     }
 
     @Transactional
-    public void changeSavingPlan(Long accountId, Long userId, SavingAccountPlan plan) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
+    public SavingAccount changeSavingPlan(Long accountId, Long userId, SavingAccountPlan plan) throws AccountStatusException, ResourceNotFoundException, RightsViolationException {
         SavingAccount account = getAccountWithOkStatus(savingAccountRepository.findById(accountId));
         confirmOwnedByUser(account.getUser().getId(), userId);
         if(account.getSavingAccountPlan() == plan)
             throw new AccountStatusException("New plan mut not match previous.");
-        savingAccountRepository.updateSavingAccountPlanById(plan, accountId);
+        account.setSavingAccountPlan(plan);
+        return savingAccountRepository.save(account);
     }
 
     public static <T> T getResourceOrThrowException(Optional<T> optional) throws ResourceNotFoundException {
@@ -149,6 +152,7 @@ public class AccountService {
         if (Objects.equals(accountReceiverId, accountSenderId))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You cannot transfer from and to same account");
     }
+
 
 
 }

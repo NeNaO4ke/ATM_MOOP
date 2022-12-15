@@ -9,10 +9,13 @@ import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;
 import com.example.atm_moop.repository.AccountRepository;
+import com.example.atm_moop.repository.SavingAccountRepository;
 import com.example.atm_moop.repository.TransactionalAccountRepository;
 import com.example.atm_moop.repository.TransferTransactionRepository;
 import com.example.atm_moop.util.MoneyUtil;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
+import org.hibernate.proxy.HibernateProxy;
 import org.javamoney.moneta.Money;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,7 @@ public class TransferService {
     private final TransactionalAccountRepository transactionalAccountRepository;
 
     private final AccountRepository<Account> accountRepository;
+    private final SavingAccountRepository savingAccountRepository;
 
     private final TransferTransactionRepository transferTransactionRepository;
 
@@ -79,7 +83,7 @@ public class TransferService {
             savingAccount.setCurrentEstimatedAmount(savingAccount.getCurrentEstimatedAmount().add(MoneyUtil.extractAmount(receiverTransferringAmount)));
             accountRepository.saveAll(List.of(senderAcc, savingAccount));
         } else {
-               accountRepository.saveAll(List.of(senderAcc, receiverAcc));
+            accountRepository.saveAll(List.of(senderAcc, receiverAcc));
         }
 
         transferTransaction.setTransactionStatus(TRANSACTION_STATUS.COMMITTED);
@@ -113,13 +117,19 @@ public class TransferService {
             if (receiverAcc.getAccountStatus() != ACCOUNT_STATUS.OK && receiverAcc.getAccountStatus() != ACCOUNT_STATUS.ACCUMULATING) {
                 AccountService.getAccountWithOkStatus(optionalReceiver);
             }
-            SavingAccount savingAccount = (SavingAccount) receiverAcc;
-            if (!savingAccount.getSavingAccountPlan().isAdditionAllowed()) {
+            SavingAccount savingAccount;
+            if(receiverAcc instanceof HibernateProxy){
+               savingAccount =  (SavingAccount) Hibernate.unproxy(receiverAcc);
+            } else {
+                savingAccount = (SavingAccount) receiverAcc;
+            }
+            if (!savingAccount.getSavingAccountPlan().isAdditionAllowed() && savingAccount.getAccountStatus() == ACCOUNT_STATUS.ACCUMULATING) {
                 throw new RightsViolationException("You cannot transfer money to saving account that not have feature for it");
             }
             if (!userSenderId.equals(savingAccount.getUser().getId())) {
                 throw new RightsViolationException("You cannot transfer money to saving account that doesn`t belong to you");
             }
+            receiverAcc = savingAccount;
         } else {
             receiverAcc = AccountService.getAccountWithOkStatus(optionalReceiver);
         }

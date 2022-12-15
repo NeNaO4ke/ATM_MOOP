@@ -4,6 +4,7 @@ import com.example.atm_moop.repository.LoginAttemptRepository;
 import com.example.atm_moop.service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -40,6 +42,8 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
     @Autowired
     private LoginAttemptRepository loginAttemptRepository;
 
+    @Value("{cors.proxy-url}")
+    private String corsProxyUrl;
 
 
 
@@ -60,11 +64,12 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
                 .authorizeRequests()
                 .antMatchers("/",
                         "/*.html",
+                        "/*.css",
+                        "/*.js",
                         "/login",
                         "/logout",
                         "/h2-console/**",
                         "/static/**",
-                        "/css/**",
                         "/api/card/verify-atm-support-bank",
                         "/api/atm/all").permitAll()
                 .anyRequest().authenticated()
@@ -106,14 +111,14 @@ public class WebSecurityConfig extends AbstractHttpConfigurer<WebSecurityConfig,
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:63342", "https://4a54-212-90-62-127.eu.ngrok.io"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:63342", corsProxyUrl));
         configuration.setAllowedMethods(Arrays.asList("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH"));
 
         configuration.setAllowCredentials(true);
 
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setExposedHeaders(Arrays.asList("*"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(List.of("*"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

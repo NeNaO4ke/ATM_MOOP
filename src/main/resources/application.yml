@@ -5,6 +5,8 @@ server:
     include-exception: true
     include-stacktrace: always
 
+cors:
+  proxy-url: ${CORS_NGROK_URL:https://ffffff.eu.ngrok.io}
 
 spring:
   profiles:

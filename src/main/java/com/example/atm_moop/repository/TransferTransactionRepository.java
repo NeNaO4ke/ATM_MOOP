@@ -2,7 +2,7 @@ package com.example.atm_moop.repository;
 
 import com.example.atm_moop.domain.Account;
 import com.example.atm_moop.domain.TransferTransaction;
-import com.example.atm_moop.domain.TransferTransactionInfo;
+import com.example.atm_moop.dto.TransferTransactionInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;

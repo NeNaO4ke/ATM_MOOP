@@ -102,8 +102,8 @@ public class AccountController {
 
     @PatchMapping(value = "/saving/change-plan/{accountId}/{newPlan}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> changeSavingPlan(@AuthenticationPrincipal CardAtmUserDetails cardAtmUserDetails, @PathVariable Long accountId, @PathVariable SavingAccountPlan newPlan) throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
-        accountService.changeSavingPlan(accountId, cardAtmUserDetails.getCard().getUser().getId(), newPlan);
-        return new ResponseEntity<>(HttpStatus.OK);
+        SavingAccount savingAccount = accountService.changeSavingPlan(accountId, cardAtmUserDetails.getCard().getUser().getId(), newPlan);
+        return new ResponseEntity<>(savingAccount,HttpStatus.OK);
     }
 
     @GetMapping(path = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)

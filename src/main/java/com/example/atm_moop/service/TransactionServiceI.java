@@ -1,10 +1,7 @@
 package com.example.atm_moop.service;
 
-import com.example.atm_moop.domain.CardAtmUserDetails;
 import com.example.atm_moop.domain.RegularTransaction;
-import com.example.atm_moop.domain.TransferTransactionInfo;
-import com.example.atm_moop.dto.RegularTransactionDTO;
-import com.example.atm_moop.dto.ScheduledTransactionDTO;
+import com.example.atm_moop.dto.TransferTransactionInfo;
 import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.MyAccountNotFoundException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
@@ -19,7 +16,7 @@ import java.util.List;
 public interface TransactionServiceI {
     List<TransferTransactionInfo> getHistoryOfTransferTransactions(Long userId);
 
-    List<TransferTransactionInfo> getAllTransactionsForAccountById(Long accountId);
+    List<TransferTransactionInfo> getAllTransferTransactionsForAccountById(Long accountId);
 
     @Transactional
     RegularTransaction createScheduledTransaction(Long userSenderId, BigDecimal sendingAmount, Long senderAccountId, Long receiverAccountId, Instant scheduledTime) throws AccountStatusException, ResourceNotFoundException, RightsViolationException;

@@ -2,7 +2,7 @@ package com.example.atm_moop.controller;
 
 import com.example.atm_moop.domain.CardAtmUserDetails;
 import com.example.atm_moop.domain.TransferTransaction;
-import com.example.atm_moop.domain.TransferTransactionInfo;
+import com.example.atm_moop.dto.TransferTransactionInfo;
 import com.example.atm_moop.dto.AmountDTO;
 import com.example.atm_moop.dto.TransferInputDTO;
 import com.example.atm_moop.exception.AccountStatusException;

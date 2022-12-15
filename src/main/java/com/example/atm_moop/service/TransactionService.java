@@ -3,8 +3,8 @@ package com.example.atm_moop.service;
 import com.example.atm_moop.domain.*;
 import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
 import com.example.atm_moop.domain.enums.TRANSACTION_TYPE;
-import com.example.atm_moop.dto.RegularTransactionDTO;
-import com.example.atm_moop.dto.ScheduledTransactionDTO;
+import com.example.atm_moop.dto.RegularTransactionInfo;
+import com.example.atm_moop.dto.TransferTransactionInfo;
 import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;
@@ -30,7 +30,6 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -58,7 +57,7 @@ public class TransactionService implements TransactionServiceI {
     }
 
     @Override
-    public List<TransferTransactionInfo> getAllTransactionsForAccountById(Long accountId) {
+    public List<TransferTransactionInfo> getAllTransferTransactionsForAccountById(Long accountId) {
         return accountRepository.findById(accountId)
                 .map(transferTransactionRepository::findByFromAccountOrToAccountSingle)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
@@ -67,6 +66,26 @@ public class TransactionService implements TransactionServiceI {
     public List<TransferTransaction> getAllTransferTransactionsByFromAccountAndStartTimeBetween(Account accountId, Timestamp start,Timestamp end ) {
         return transferTransactionRepository.findByFromAccountAndStartTimeBetween(accountId, start, end);
     }
+
+    public List<RegularTransactionInfo> getAllRegularTransactionsByFromAccountId(Long accountId, Long userId) throws ResourceNotFoundException, RightsViolationException {
+        Account account = AccountService.getResourceOrThrowException(accountRepository.findById(accountId));
+        AccountService.confirmOwnedByUser(account.getUser().getId(), userId);
+        return regularTransactionRepository.findByFromAccountOrderByStartTimeDesc(accountId);
+    }
+
+
+    public void cancelRegularTransaction(Long transactionId, Long userId) throws ResourceNotFoundException, RightsViolationException, SchedulerException {
+        RegularTransaction transaction = AccountService.getResourceOrThrowException(regularTransactionRepository.findById(transactionId));
+        Account account = AccountService.getResourceOrThrowException(accountRepository.findById(transaction.getFromAccount().getId()));
+        AccountService.confirmOwnedByUser(account.getUser().getId(), userId);
+        JobDetail job = JobBuilder.newJob(QuartzScheduledTransaction.class)
+                .withIdentity(String.valueOf(transactionId), "transactions-scheduled")
+                .withDescription("Scheduled transaction")
+                .build();
+        scheduler.deleteJob(job.getKey());
+        regularTransactionRepository.updateTransactionStatusById(TRANSACTION_STATUS.CANCELED, transactionId);
+    }
+
 
     @Override
     @Transactional
@@ -124,6 +143,7 @@ public class TransactionService implements TransactionServiceI {
             if (scheduledTime.isAfter(Instant.now())) {
                 timestamp = new Timestamp(scheduledTime.toEpochMilli());
             }
+            else throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Scheduled time must be in future.");
         }
         RegularTransaction transaction = RegularTransaction.createRegularTransaction(TRANSACTION_TYPE.TRANSFERRING, amount, senderAcc, receiverAcc, period, timestamp, initialRepeats, initialRepeats);
         transaction = regularTransactionRepository.save(transaction);
@@ -183,7 +203,7 @@ public class TransactionService implements TransactionServiceI {
         jobDataMap.put("transactionId", transactionId);
 
         return JobBuilder.newJob(QuartzScheduledTransaction.class)
-                .withIdentity(String.valueOf(System.currentTimeMillis()), "transactions-scheduled")
+                .withIdentity(String.valueOf(transactionId), "transactions-scheduled")
                 .withDescription("Scheduled transaction")
                 .usingJobData(jobDataMap)
                 .storeDurably()
@@ -196,7 +216,7 @@ public class TransactionService implements TransactionServiceI {
         jobDataMap.put("transactionId", transactionId);
 
         return JobBuilder.newJob(QuartzRegularTransaction.class)
-                .withIdentity(String.valueOf(System.currentTimeMillis()), "transactions-regular-transaction")
+                .withIdentity(String.valueOf(transactionId), "transactions-regular-transaction")
                 .withDescription("Regular transaction")
                 .usingJobData(jobDataMap)
                 .storeDurably()

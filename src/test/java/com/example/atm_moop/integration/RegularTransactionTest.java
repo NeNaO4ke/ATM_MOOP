@@ -4,10 +4,15 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.example.atm_moop.TestDbSetup;
+import com.example.atm_moop.domain.Transaction;
+import com.example.atm_moop.domain.enums.TRANSACTION_STATUS;
+import com.example.atm_moop.dto.RegularTransactionInfo;
 import com.example.atm_moop.exception.AccountStatusException;
 import com.example.atm_moop.exception.ResourceNotFoundException;
 import com.example.atm_moop.exception.RightsViolationException;
+import com.example.atm_moop.repository.TransactionRepository;
 import com.example.atm_moop.service.AccountService;
+import com.example.atm_moop.service.TransactionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,13 +40,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.time.Instant;
+import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestBody;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -70,6 +77,12 @@ public class RegularTransactionTest {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private TransactionService transactionService;
+
+    @Autowired
+    private TransactionRepository<Transaction> transactionRepository;
 
     @Autowired
     protected ObjectMapper objectMapper;
@@ -114,7 +127,7 @@ public class RegularTransactionTest {
 
     @BeforeAll
     public void setupBeforeAll() throws AccountStatusException, RightsViolationException, ResourceNotFoundException {
-     //   testDbSetup.populate();
+        //   testDbSetup.populate();
     }
 
     @Test
@@ -147,6 +160,47 @@ public class RegularTransactionTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
+    }
+
+    @Test
+    @WithUserDetails(value = MOCK_USER)
+    public void getAllRegularTransactions() throws Exception {
+
+        scheduleTransaction();
+
+        regularTransaction();
+
+        List<RegularTransactionInfo> allRegularTransactionsByFromAccountId = transactionService.getAllRegularTransactionsByFromAccountId(1L, 1L);
+        System.out.println(allRegularTransactionsByFromAccountId);
+        Long id = allRegularTransactionsByFromAccountId.get(0).getFromAccount().getId();
+        mockMvc.perform(get("/api/transaction/regular/" + id))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+
+    }
+
+    @Test
+    @WithUserDetails(value = MOCK_USER)
+    public void cancelRegularTransaction() throws Exception {
+
+        scheduleTransaction();
+
+        regularTransaction();
+
+        List<RegularTransactionInfo> allRegularTransactionsByFromAccountId = transactionService.getAllRegularTransactionsByFromAccountId(1L, 1L);
+        System.out.println(allRegularTransactionsByFromAccountId);
+        Long transactionId1 = allRegularTransactionsByFromAccountId.get(0).getId();
+        Long transactionId2 = allRegularTransactionsByFromAccountId.get(1).getId();
+
+        transactionService.cancelRegularTransaction(transactionId1, 1L);
+        assertEquals(TRANSACTION_STATUS.CANCELED, transactionRepository.findById(transactionId1).get().getTransactionStatus());
+
+        mockMvc.perform(patch("/api/transaction/regular/cancel/" + transactionId2))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        assertEquals(TRANSACTION_STATUS.CANCELED, transactionRepository.findById(transactionId2).get().getTransactionStatus());
     }
 
 
